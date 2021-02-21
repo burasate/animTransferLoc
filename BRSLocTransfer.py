@@ -1,5 +1,13 @@
 import maya.cmds as cmds
 
+locSuffix = '_BRSSnapLoc'
+
+def resetViewport(*_):
+    # Redraw viewport On
+    cmds.refresh(suspend=False)
+    if cmds.ogs(q=True, pause=True) == True:
+        cmds.ogs(pause=True)  # Turn on Viewport 2.0
+
 def snap(object, target):
     # snap object to tatget
     snapper = cmds.parentConstraint(target, object, weight=1.0)
@@ -7,14 +15,34 @@ def snap(object, target):
 
 def parentConstraint(object, target):
     # snap object to target
+    conList = []
     try:
-        cmds.pointConstraint(target, object, weight=1.0, mo=False)
+        pointC = cmds.pointConstraint(target, object, weight=1.0, mo=False)
     except:
         pass
+    else : conList.append(pointC)
     try:
-        cmds.orientConstraint(target, object, weight=1.0, mo=False)
+        orientC = cmds.orientConstraint(target, object, weight=1.0, mo=False)
     except:
         pass
+    else: conList.append(orientC)
+    return conList
+
+def getAllKeyframe(objectName):
+    minTime = cmds.playbackOptions(q=True, minTime=True)
+    maxTime = cmds.playbackOptions(q=True, maxTime=True)
+    keyframeList = []
+    attrList = ['tx', 'ty', 'tz', 'rx', 'ry', 'rz']
+    if type(objectName)==list:
+        objectName = objectName[0]
+    for attr in attrList:
+        keyList = cmds.keyframe(objectName + '.' + attr, q=True, timeChange=True)
+        if keyList != None:
+            for k in keyList:
+                if k >= minTime and k <= maxTime and not k in keyframeList :
+                    keyframeList.append(k)
+    keyframeList = sorted(keyframeList)
+    return keyframeList
 
 def BRSSnapAllKeys(object, target, keyList=[]):
     bakeK = cmds.checkBox(BakeChk, q=True, value=True)
@@ -52,209 +80,137 @@ def BRSSnapAllKeys(object, target, keyList=[]):
     if cons == True:
         parentConstraint(target,object)
 
+def bakeKey(objectList,keyframeList):
+    at = ['tx', 'ty', 'tz', 'rx', 'ry', 'rz']
+    minKeyframe = round(min(keyframeList))
+    maxKeyframe = round(max(keyframeList))
+    cmds.ogs(pause=True)
+    cmds.refresh(suspend=True)
+    cmds.bakeResults(objectList, sampleBy=1, disableImplicitControl=True, preserveOutsideKeys=True,
+                     sparseAnimCurveBake=False, t=(minKeyframe, maxKeyframe),
+                     at=at)
+    cmds.filterCurve(objectList)
+    cmds.refresh(suspend=False)
+    if cmds.ogs(q=True, pause=True) == True:
+        cmds.ogs(pause=True)  # Turn on Viewport 2.0
+
+def getMimicLocator(objectName,locName=locSuffix):
+    anno = cmds.checkBox(AnnoChk, q=True, value=True)
+    LocName = objectName + locName
+    # delete exist locator
+    try: cmds.delete(LocName)
+    except:pass
+
+    # create mimic locator
+    locator = cmds.spaceLocator(n=LocName)
+    cmds.setAttr(LocName + '.overrideEnabled', 1)
+    cmds.setAttr(LocName + '.overrideRGBColors', 1)
+    cmds.setAttr(LocName + '.overrideColorRGB', 0.465, 1, 0.0)
+    cmds.setAttr(LocName + '.useOutlinerColor', 1)
+    cmds.setAttr(LocName + '.outlinerColor', 0.7067, 1, 0)
+    parentConstraint(locator, objectName)
+
+    annoText = objectName
+    if annoText.__contains__(':'):
+        annoText = (annoText.split(':')).pop()
+    annotateShape = cmds.annotate(LocName, tx=annoText)
+    cmds.pickWalk(d='up')
+    annotate = (cmds.ls(sl=True))[0]
+    cmds.parent(annotate, LocName)
+    cmds.setAttr(annotate + '.overrideEnabled', 1)
+    cmds.setAttr(annotate + '.overrideDisplayType', 2)
+    cmds.setAttr(annotateShape + '.displayArrow', 0)
+    cmds.setAttr(annotate + '.translateX', 0)
+    cmds.setAttr(annotate + '.translateY', 0)
+    cmds.setAttr(annotate + '.translateZ', 0)
+    cmds.setAttr(annotate + '.hiddenInOutliner', True)
+    cmds.rename(annotate, objectName + '_annotate')
+    if anno == False:
+        cmds.delete(objectName + '_annotate')
+
+    return locator
+
+def keepKeyframe(objectList,keyframeList):
+    newKeyframeList = []
+    for k in keyframeList:
+        k = round(k,0)
+        newKeyframeList.append(k)
+    for k in range(int(min(newKeyframeList)),int(max(newKeyframeList))):
+        if not float(k) in newKeyframeList:
+            cmds.cutKey(objectList,time=(float(k),float(k)))
+    #print (newKeyframeList)
+
+def deleteConstraint(objectName):
+    con = cmds.listRelatives(objectName, type='constraint')
+    cmds.delete(con)
 
 def objectToLocatorSnap(*_):
-    minTime = cmds.playbackOptions(q=True, minTime=True)
-    maxTime = cmds.playbackOptions(q=True, maxTime=True)
     curTime = cmds.currentTime(query=True)
-    anno = cmds.checkBox(AnnoChk, q=True, value=True)
-    tangentValue = cmds.optionMenu(tangentMode,q=True,v=True)
-    trail = cmds.checkBox(trailChk, q=True, value=True)
-    ghost = cmds.checkBox(ghostChk, q=True, value=True)
     bakeK = cmds.checkBox(BakeChk, q=True, value=True)
+
+    selected = cmds.ls(sl=True)
+    #print (selected)
+    for objName in selected:
+        #print(objName)
+        keyframeList = getAllKeyframe(objName)
+        #print(keyframeList)
+
+        if keyframeList != []:
+            SnapLoc = getMimicLocator(objName)[0]
+            #print(SnapLoc)
+
+            bakeKey(SnapLoc,keyframeList)
+            print(bakeK)
+            if bakeK == False:
+                keepKeyframe(SnapLoc,keyframeList)
+            deleteConstraint(SnapLoc)
+
+    # Finish
+    cmds.currentTime(curTime)
+    cmds.select(selected, r=True)
+    resetViewport()
+    print ('Create Anim Locator {}'.format(selected))
+
+def locatorToObjectSnap(*_):
+    curTime = cmds.currentTime(query=True)
+    bakeK = cmds.checkBox(BakeChk, q=True, value=True)
+    global locSuffix
+    at = ['tx', 'ty', 'tz', 'rx', 'ry', 'rz']
 
     selected = cmds.ls(sl=True)
     # print (selected)
-
     for objName in selected:
-        # print(objName)
-        keyframeList = []
-        attrList = ['translateX',
-                    'translateY',
-                    'translateZ',
-                    'rotateX',
-                    'rotateY',
-                    'rotateZ'
-                    ]
+        SnapLoc = objName+locSuffix
+        print(SnapLoc)
 
-        for keyAttr in attrList:
-            keys = cmds.keyframe(objName + '.' + keyAttr, q=True, timeChange=True)
-            if keys != None:
-                keyframeList = keyframeList + keys
-                # print (objName+keyAttr+'  '+str(len(keys)))+ ' Keys'
-        if keyframeList == []:
-            break
-        keyframeList = sorted(list(dict.fromkeys(keyframeList)))
-        # print (len(keyframeList))
-        # print (keyframeList)
-
-        objNameKeyableAttr = cmds.listAttr(objName, keyable=True)
-        # print (objNameKeyableAttr)
-
-        snapLocName = objName + '_BRSSnapLoc'
-
-        # Exist Loc
         try:
-            cmds.delete(snapLocName)
-        except:
-            pass
-
-        # Create Locator
-        cmds.spaceLocator(name=snapLocName)
-        cmds.setAttr(snapLocName + '.overrideEnabled', 1)
-        cmds.setAttr(snapLocName + '.overrideRGBColors', 1)
-        cmds.setAttr(snapLocName + '.overrideColorRGB', 0.465, 1, 0.0)
-        cmds.setAttr(snapLocName + '.useOutlinerColor', 1)
-        cmds.setAttr(snapLocName + '.outlinerColor', 0.7067,1,0)
-        snap(snapLocName, objName)
-
-        # Set First Keyframe
-        cmds.currentTime(keyframeList[0])
-        cmds.setKeyframe(snapLocName, itt=tangentValue.lower(), ott=tangentValue.lower(), breakdown=0, hierarchy='none', controlPoints=0,
-                         at=('tx', 'ty', 'tz', 'rx', 'ry', 'rz'))
-
-        # Redraw viewport Off
-        cmds.refresh(suspend=True)
-
-        print ('Create ' + snapLocName)
-        if len(keyframeList)<=1 and bakeK == True:
-            keyframeList = [minTime, maxTime]
-        BRSSnapAllKeys(snapLocName, objName, keyframeList)
-        cmds.filterCurve(snapLocName + '.translateX',
-                         snapLocName + '.translateY',
-                         snapLocName + '.translateZ',
-                         snapLocName + '.rotateX',
-                         snapLocName + '.rotateY',
-                         snapLocName + '.rotateZ')
-
-        # Annotate
-        annoText = objName
-        if annoText.__contains__(':') :
-            annoText = (annoText.split(':')).pop()
-        annotateShape = cmds.annotate(snapLocName, tx=annoText)
-        cmds.pickWalk(d='up')
-        annotate = (cmds.ls(sl=True))[0]
-        cmds.parent(annotate, snapLocName)
-        cmds.setAttr(annotate + '.overrideEnabled', 1)
-        cmds.setAttr(annotate + '.overrideDisplayType', 2)
-        cmds.setAttr(annotateShape + '.displayArrow', 0)
-        cmds.setAttr(annotate + '.translateX', 0)
-        cmds.setAttr(annotate + '.translateY', 0)
-        cmds.setAttr(annotate + '.translateZ', 0)
-        cmds.setAttr(annotate + '.hiddenInOutliner', True)
-        cmds.rename(annotate, objName + '_annotate')
-        if anno == False:
-            cmds.delete(objName + '_annotate')
-        if trail :
-            BRSArc(objName,snapLocName,[minTime,maxTime])
-        if ghost :
-            BRSGhost(snapLocName)
-
-    # Finish
-    cmds.currentTime(curTime)
-    cmds.select(selected, r=True)
-
-    # Redraw viewport On
-    cmds.refresh(suspend=False)
-
-
-def locatorToObjectSnap(*_):
-    cmds.delete(cmds.ls(dag=1, ap=1, sl=1, type="constraint"))
-    minTime = cmds.playbackOptions(q=True, minTime=True)
-    maxTime = cmds.playbackOptions(q=True, maxTime=True)
-    curTime = cmds.currentTime(query=True)
-    bakeK = cmds.checkBox(BakeChk, q=True, value=True)
-    tangentValue = cmds.optionMenu(tangentMode,q=True,v=True)
-
-    # Redraw viewport Off
-    cmds.refresh(suspend=True)
-
-    selected = cmds.ls(sl=True)
-
-    for objName in selected:
-        snapLocName = objName + '_BRSSnapLoc'
-        try:
-            cmds.select(snapLocName)
+            keyframeList = getAllKeyframe(SnapLoc)
+            cmds.select(SnapLoc)
         except:
             pass
         else:
-            # Delete Keys
-            try:
-                cmds.cutKey(objName, cl=True, at=('tx', 'ty', 'tz'))
-            except:
-                pass
-            try:
-                cmds.cutKey(objName, cl=True, at=('rx', 'ry', 'rz'))
-            except:
-                pass
+            cmds.cutKey(objName, cl=True, at=at)
+            deleteConstraint(objName)
+            parentConstraint(objName,SnapLoc)
+            bakeKey(objName, keyframeList)
+            keepKeyframe(objName,keyframeList)
+            cmds.delete(SnapLoc)
 
-            keyframeList = []
-            attrList = ['translateX',
-                        'translateY',
-                        'translateZ',
-                        'rotateX',
-                        'rotateY',
-                        'rotateZ'
-                        ]
+    # Fixing Unsnap Keyframe
+    cmds.snapKey(selected, timeMultiple=1.0)
 
-            for keyAttr in attrList:
-                keys = cmds.keyframe(snapLocName + '.' + keyAttr, q=True, timeChange=True)
-                if keys != None:
-                    keyframeList = keyframeList + keys
-                    # print (objName+keyAttr+'  '+str(len(keys)))+ ' Keys'
-            if keyframeList == []:
-                break
-
-            keyframeList = sorted(list(dict.fromkeys(keyframeList)))
-            # print (len(keyframeList))
-            # print (keyframeList)
-
-            # Set First Keyframe
-            cmds.currentTime(keyframeList[0])
-            cmds.setKeyframe(objName, itt=tangentValue.lower(), ott=tangentValue.lower(), breakdown=0, hierarchy='none', controlPoints=0,
-                             at=('tx', 'ty', 'tz', 'rx', 'ry', 'rz'))
-
-            if len(keyframeList)<=1 and bakeK == True:
-                keyframeList = [minTime,maxTime]
-            BRSSnapAllKeys(objName, snapLocName, keyframeList)
-            print ('Delete ' + snapLocName)
-            cmds.delete(snapLocName)
     # Finish
     cmds.currentTime(curTime)
     cmds.select(selected, r=True)
-    cmds.checkBox(BakeChk, e=True, value=False)
-
-    # Redraw viewport On
-    cmds.refresh(suspend=False)
-
-def BRSArc(name,target,keyList=[cmds.playbackOptions(q=True, minTime=True),cmds.playbackOptions(q=True, maxTime=True)]):
-    cmds.snapshot(n=name+'_Arc', motionTrail=True, increment=True, startTime=keyList[0],endTime=keyList[-1])
-    cmds.setAttr (name+'_Arc'+'HandleShape.trailColor',0.7067,1,0,type='double3')
-    cmds.setAttr (name+'_Arc'+'HandleShape.extraTrailColor',0.0601,0.0601,0.0601,type='double3')
-    cmds.setAttr (name+'_Arc'+'HandleShape.trailDrawMode',1)
-
-def BRSGhost(target):
-    cmds.setAttr (target+'Shape.ghosting',1)
-    cmds.setAttr (target+'Shape.ghostingControl',0)
-    cmds.setAttr (target+'Shape.ghostColorPreA',0.4)
-    cmds.setAttr (target+'Shape.ghostColorPostA',0.4)
-    cmds.setAttr (target+'Shape.ghostColorPre',1,1,0,type='double3')
-    cmds.setAttr (target+'Shape.ghostColorPost',1,0,0,type='double3')
-
-def uiUpdate(*_):
-    bakeK = cmds.checkBox(BakeChk, q=True, value=True)
-    if bakeK == True:
-        cmds.intField(SampleInt, e=True, editable=True, vis=True,bgc=(0,0,0))
-    else:
-        cmds.intField(SampleInt, e=True, editable=False, vis=True,bgc=colorSet['bg'])
-
+    resetViewport()
+    print ('Apply Anim Locator {}'.format(selected))
 
 """
 -----------------------------------------------------------------------
 UI
 -----------------------------------------------------------------------
 """
-version = '1.03'
+version = '1.04'
 winID = 'BRSLOCTRANSFER'
 winWidth = 200
 
@@ -276,30 +232,23 @@ cmds.window(winID, t='BRS Locator Transfer' + ' - ' + version,
 
 cmds.columnLayout(adj=True, w=winWidth)
 cmds.text(l='BRS Locator Transfer' + ' - ' + version, fn='boldLabelFont', h=20, bgc=colorSet['green'])
-cmds.rowLayout(numberOfColumns=1, columnWidth1=winWidth-1)
-tangentMode = cmds.optionMenu(label='Key Tangent : ', w=200, bgc=colorSet['shadow'])
-cmds.menuItem(label='Auto')
-cmds.menuItem(label='Step')
-cmds.setParent('..')
 cmds.rowLayout(numberOfColumns=2, columnWidth2=(winWidth * 0.5, winWidth * 0.5), columnAlign2=['center', 'center'])
 ConsChk = cmds.checkBox(label='Constraint', align='center',v=True)
 AnnoChk = cmds.checkBox(label='Annotation', align='center',v=True)
 cmds.setParent('..')
 cmds.rowLayout(numberOfColumns=2, columnWidth2=(winWidth * 0.5, winWidth * 0.5), columnAlign2=['center', 'center'])
-trailChk = cmds.checkBox(label='Motion Trail', align='center',v=False)
-ghostChk = cmds.checkBox(label='Ghosting', align='center',v=False)
-cmds.setParent('..')
-cmds.rowLayout(numberOfColumns=2, columnWidth2=(winWidth * 0.5, winWidth * 0.5), columnAlign2=['center', 'center'])
 BakeChk = cmds.checkBox(label='Bake Keyframe', align='center', cc=uiUpdate)
-SampleInt = cmds.intField(editable=False, min=1, max=5, v=1, step=1, vis=True ,bgc=colorSet['bg'])
 cmds.setParent('..')
 cmds.rowLayout(numberOfColumns=1, columnWidth1=winWidth-1)
-cmds.button(l='Store Locator', h=25 ,w=winWidth-1 , c=objectToLocatorSnap, bgc=colorSet['highlight'])
+cmds.button(l='Create Anim Locator', h=25 ,w=winWidth-1 , c=objectToLocatorSnap, bgc=colorSet['highlight'])
 cmds.setParent('..')
 cmds.rowLayout(numberOfColumns=1, columnWidth1=winWidth-1)
-cmds.button(l='Transfer Back', h=25 ,w=winWidth-1 , c=locatorToObjectSnap, bgc=colorSet['highlight'])
+cmds.button(l='Apply Anim Locator', h=25 ,w=winWidth-1 , c=locatorToObjectSnap, bgc=colorSet['highlight'])
 cmds.setParent('..')
 cmds.text(l='Created by Burasate Uttha', h=20, al='left', fn='smallPlainLabelFont')
-cmds.showWindow(winID)
-# Redraw viewport On
-cmds.refresh(suspend=False)
+
+def BRSLocTransferUI(*_):
+    cmds.showWindow(winID)
+    resetViewport()
+    
+BRSLocTransferUI()
