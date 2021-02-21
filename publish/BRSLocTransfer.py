@@ -13,7 +13,7 @@ def formatPath(path):
 mayaAppDir = formatPath(mel.eval('getenv MAYA_APP_DIR'))
 scriptsDir = formatPath(mayaAppDir + os.sep + 'scripts')
 
-url = 'https://raw.githubusercontent.com/burasate/animTransferLoc/master/BRSLocTransfer.py'
+url = 'https://raw.githubusercontent.com/burasate/animTransferLoc/master/main.py'
 for i in range(3):
     statusCode = urllib.urlopen(url).code
     if statusCode == 200:
