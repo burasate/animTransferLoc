@@ -147,6 +147,7 @@ def deleteConstraint(objectName):
 def objectToLocatorSnap(*_):
     curTime = cmds.currentTime(query=True)
     bakeK = cmds.checkBox(BakeChk, q=True, value=True)
+    cons = cmds.checkBox(ConsChk, q=True, value=True)
 
     selected = cmds.ls(sl=True)
     #print (selected)
@@ -164,6 +165,8 @@ def objectToLocatorSnap(*_):
             if bakeK == False:
                 keepKeyframe(SnapLoc,keyframeList)
             deleteConstraint(SnapLoc)
+            if cons:
+                parentConstraint(objName,SnapLoc)
 
     # Finish
     cmds.currentTime(curTime)
@@ -237,7 +240,7 @@ ConsChk = cmds.checkBox(label='Constraint', align='center',v=True)
 AnnoChk = cmds.checkBox(label='Annotation', align='center',v=True)
 cmds.setParent('..')
 cmds.rowLayout(numberOfColumns=2, columnWidth2=(winWidth * 0.5, winWidth * 0.5), columnAlign2=['center', 'center'])
-BakeChk = cmds.checkBox(label='Bake Keyframe', align='center', cc=uiUpdate)
+BakeChk = cmds.checkBox(label='Bake Keyframe', align='center')
 cmds.setParent('..')
 cmds.rowLayout(numberOfColumns=1, columnWidth1=winWidth-1)
 cmds.button(l='Create Anim Locator', h=25 ,w=winWidth-1 , c=objectToLocatorSnap, bgc=colorSet['highlight'])
