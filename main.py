@@ -45,42 +45,6 @@ def getAllKeyframe(objectName):
     keyframeList = sorted(keyframeList)
     return keyframeList
 
-def BRSSnapAllKeys(object, target, keyList=[]):
-    bakeK = cmds.checkBox(BakeChk, q=True, value=True)
-    bakeSample = cmds.intField(SampleInt, q=True, v=True)
-    cons = cmds.checkBox(ConsChk, q=True, value=True)
-    tangentValue = cmds.optionMenu(tangentMode,q=True,v=True)
-
-    tempPosConstr = None
-    tempRotConstr = None
-    try:
-        tempPosConstr = cmds.pointConstraint(target, object, weight=1.0, mo=False)
-    except:
-        pass
-    try:
-        tempRotConstr = cmds.orientConstraint(target, object, weight=1.0, mo=False)
-    except:
-        pass
-
-    if bakeK == True:
-        cmds.bakeResults(object, simulation=True, t=(keyList[0], keyList[-1]),
-                         sampleBy=bakeSample,
-                         oversamplingRate=1, disableImplicitControl=True, preserveOutsideKeys=True,
-                         sparseAnimCurveBake=False, removeBakedAttributeFromLayer=False,
-                         removeBakedAnimFromLayer=False,
-                         bakeOnOverrideLayer=False, minimizeRotation=True, at=('tx', 'ty', 'tz', 'rx', 'ry', 'rz'))
-        cmds.keyTangent(object, itt=tangentValue.lower(), ott=tangentValue.lower(), time=(keyList[0],keyList[-1]) )
-    else:
-        for frame in keyList:
-            cmds.currentTime(frame)
-            cmds.setKeyframe(object, itt=tangentValue.lower(), ott=tangentValue.lower(), breakdown=0, hierarchy='none', controlPoints=0,
-                             at=('tx', 'ty', 'tz', 'rx', 'ry', 'rz'))
-
-    cmds.delete(tempPosConstr, tempRotConstr)
-
-    if cons == True:
-        parentConstraint(target,object)
-
 def bakeKey(objectList,keyframeList):
     at = ['tx', 'ty', 'tz', 'rx', 'ry', 'rz']
     minKeyframe = round(min(keyframeList))
