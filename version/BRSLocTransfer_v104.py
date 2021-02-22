@@ -1,6 +1,8 @@
 import maya.cmds as cmds
+import maya.mel as mel
 
 locSuffix = '_BRSSnapLoc'
+
 
 def resetViewport(*_):
     # Redraw viewport On
@@ -39,46 +41,11 @@ def getAllKeyframe(objectName):
         keyList = cmds.keyframe(objectName + '.' + attr, q=True, timeChange=True)
         if keyList != None:
             for k in keyList:
-                if k >= minTime and k <= maxTime and not k in keyframeList :
+                if not k in keyframeList :
                     keyframeList.append(k)
     keyframeList = sorted(keyframeList)
+    #print(keyframeList)
     return keyframeList
-
-def BRSSnapAllKeys(object, target, keyList=[]):
-    bakeK = cmds.checkBox(BakeChk, q=True, value=True)
-    bakeSample = cmds.intField(SampleInt, q=True, v=True)
-    cons = cmds.checkBox(ConsChk, q=True, value=True)
-    tangentValue = cmds.optionMenu(tangentMode,q=True,v=True)
-
-    tempPosConstr = None
-    tempRotConstr = None
-    try:
-        tempPosConstr = cmds.pointConstraint(target, object, weight=1.0, mo=False)
-    except:
-        pass
-    try:
-        tempRotConstr = cmds.orientConstraint(target, object, weight=1.0, mo=False)
-    except:
-        pass
-
-    if bakeK == True:
-        cmds.bakeResults(object, simulation=True, t=(keyList[0], keyList[-1]),
-                         sampleBy=bakeSample,
-                         oversamplingRate=1, disableImplicitControl=True, preserveOutsideKeys=True,
-                         sparseAnimCurveBake=False, removeBakedAttributeFromLayer=False,
-                         removeBakedAnimFromLayer=False,
-                         bakeOnOverrideLayer=False, minimizeRotation=True, at=('tx', 'ty', 'tz', 'rx', 'ry', 'rz'))
-        cmds.keyTangent(object, itt=tangentValue.lower(), ott=tangentValue.lower(), time=(keyList[0],keyList[-1]) )
-    else:
-        for frame in keyList:
-            cmds.currentTime(frame)
-            cmds.setKeyframe(object, itt=tangentValue.lower(), ott=tangentValue.lower(), breakdown=0, hierarchy='none', controlPoints=0,
-                             at=('tx', 'ty', 'tz', 'rx', 'ry', 'rz'))
-
-    cmds.delete(tempPosConstr, tempRotConstr)
-
-    if cons == True:
-        parentConstraint(target,object)
 
 def bakeKey(objectList,keyframeList):
     at = ['tx', 'ty', 'tz', 'rx', 'ry', 'rz']
@@ -87,8 +54,7 @@ def bakeKey(objectList,keyframeList):
     cmds.ogs(pause=True)
     cmds.refresh(suspend=True)
     cmds.bakeResults(objectList, sampleBy=1, disableImplicitControl=True, preserveOutsideKeys=True,
-                     sparseAnimCurveBake=False, t=(minKeyframe, maxKeyframe),
-                     at=at)
+                     sparseAnimCurveBake=False, t=(minKeyframe, maxKeyframe),at=at)
     cmds.filterCurve(objectList)
     cmds.refresh(suspend=False)
     if cmds.ogs(q=True, pause=True) == True:
@@ -156,14 +122,14 @@ def objectToLocatorSnap(*_):
         keyframeList = getAllKeyframe(objName)
         #print(keyframeList)
 
-        if keyframeList != []:
+        if len(keyframeList) > 1:
             SnapLoc = getMimicLocator(objName)[0]
             #print(SnapLoc)
 
             bakeKey(SnapLoc,keyframeList)
-            print(bakeK)
             if bakeK == False:
                 keepKeyframe(SnapLoc,keyframeList)
+                print ('keepKeyframe')
             deleteConstraint(SnapLoc)
             if cons:
                 parentConstraint(objName,SnapLoc)
@@ -241,7 +207,11 @@ AnnoChk = cmds.checkBox(label='Annotation', align='center',v=True)
 cmds.setParent('..')
 cmds.rowLayout(numberOfColumns=2, columnWidth2=(winWidth * 0.5, winWidth * 0.5), columnAlign2=['center', 'center'])
 BakeChk = cmds.checkBox(label='Bake Keyframe', align='center')
+#TimelineChk = cmds.checkBox(label='In Timeline', align='center')
 cmds.setParent('..')
+#cmds.rowLayout(numberOfColumns=2, columnWidth2=(winWidth * 0.5, winWidth * 0.5), columnAlign2=['center', 'center'])
+#cmds.checkBox(label='Redirection', align='center')
+#cmds.setParent('..')
 cmds.rowLayout(numberOfColumns=1, columnWidth1=winWidth-1)
 cmds.button(l='Create Anim Locator', h=25 ,w=winWidth-1 , c=objectToLocatorSnap, bgc=colorSet['highlight'])
 cmds.setParent('..')
