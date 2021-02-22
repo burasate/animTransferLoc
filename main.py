@@ -147,6 +147,7 @@ def deleteConstraint(objectName):
 def objectToLocatorSnap(*_):
     curTime = cmds.currentTime(query=True)
     bakeK = cmds.checkBox(BakeChk, q=True, value=True)
+    cons = cmds.checkBox(ConsChk, q=True, value=True)
 
     selected = cmds.ls(sl=True)
     #print (selected)
@@ -164,6 +165,8 @@ def objectToLocatorSnap(*_):
             if bakeK == False:
                 keepKeyframe(SnapLoc,keyframeList)
             deleteConstraint(SnapLoc)
+            if cons:
+                parentConstraint(objName,SnapLoc)
 
     # Finish
     cmds.currentTime(curTime)
