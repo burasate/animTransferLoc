@@ -188,7 +188,10 @@ def objectToLocatorSnap(toGroup=True,forceConstraint=False):
         cons = forceConstraint
 
     selected = cmds.ls(sl=True)
-    #print (selected)
+    # print (selected)
+    if toGroup:
+        createBRSAnimLocGrp(selected)
+
     for objName in selected:
         #print(objName)
         keyframeList = getAllKeyframe(objName)
@@ -198,7 +201,8 @@ def objectToLocatorSnap(toGroup=True,forceConstraint=False):
             statTextUI('get keyframe {} {} - {}'.format(objName, min(keyframeList), max(keyframeList)))
             SnapLoc = getMimicLocator(objName)[0]
             #print(SnapLoc)
-
+            if toGroup:
+                cmds.parent(SnapLoc,BRSAnimLocGrp)
             statTextUI('Bake to {}'.format(SnapLoc))
             bakeKey(SnapLoc,keyframeList,inTimeline=tl)
             if bakeK == False:
@@ -207,9 +211,6 @@ def objectToLocatorSnap(toGroup=True,forceConstraint=False):
             deleteConstraint(SnapLoc)
             if cons:
                 parentConstraint(objName,SnapLoc)
-            if toGroup:
-                createBRSAnimLocGrp(selected)
-                cmds.parent(SnapLoc,BRSAnimLocGrp)
 
     # Finish
     cmds.currentTime(curTime)
