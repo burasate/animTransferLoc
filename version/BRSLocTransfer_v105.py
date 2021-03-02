@@ -1,8 +1,14 @@
+"""
+BRS ANIM LOCATOR TRANSFER TOOL
+BY BURASATE UTTHA (DEX3D)
+"""
+
 import maya.cmds as cmds
 import maya.mel as mel
 
 locSuffix = '_BRSSnapLoc'
-
+BRSAnimLocGrp = 'BRSAnimLoc_Grp'
+redirectGuide = 'BRSRedirectGuide'
 
 def resetViewport(*_):
     # Redraw viewport On
@@ -14,6 +20,10 @@ def snap(object, target):
     # snap object to tatget
     snapper = cmds.parentConstraint(target, object, weight=1.0)
     cmds.delete(snapper)
+
+def snapPoint(object, target):
+    pointCon = cmds.pointConstraint(target, object, mo=False, weight=1.0)
+    cmds.delete(pointCon)
 
 def parentConstraint(object, target):
     # snap object to target
@@ -29,6 +39,56 @@ def parentConstraint(object, target):
         pass
     else: conList.append(orientC)
     return conList
+
+def createBRSAnimLocGrp(snapObj):
+    attr = ['tx','ty','tz','rx','ry','rz','sx','sy','sz']
+    try:
+        cmds.select(BRSAnimLocGrp)
+    except:
+        cmds.group(n=BRSAnimLocGrp,empty=True)
+        cmds.setAttr('{}.rotateOrder'.format(BRSAnimLocGrp),3)
+        cmds.setAttr(BRSAnimLocGrp + '.useOutlinerColor', 1)
+        cmds.setAttr(BRSAnimLocGrp + '.outlinerColor', 0.7067, 1, 0)
+        snapPoint(BRSAnimLocGrp,snapObj)
+        for a in attr:
+            cmds.setAttr('{}.{}'.format(BRSAnimLocGrp,a),lock=True)
+
+def createRedirectGuide(*_):
+    try:
+        cmds.delete(redirectGuide)
+    except:
+        pass
+    try:
+        cmds.select(BRSAnimLocGrp)
+    except:
+        pass
+    else:
+        cmds.spaceLocator(n=redirectGuide)
+        cmds.setAttr(redirectGuide + '.overrideEnabled', 1)
+        cmds.setAttr(redirectGuide + '.overrideRGBColors', 1)
+        cmds.setAttr(redirectGuide + '.overrideColorRGB', 0.0, 0.701, 1)
+        cmds.setAttr(redirectGuide + '.useOutlinerColor', 1)
+        cmds.setAttr(redirectGuide + '.outlinerColor', 0.0, 0.7, 1)
+        cmds.setAttr('{}.localScaleZ'.format(redirectGuide), 2)
+        snapPoint(redirectGuide,BRSAnimLocGrp)
+
+def applyRedirectGuide(*_):
+    attr = ['tx', 'ty', 'tz', 'rx', 'ry', 'rz', 'sx', 'sy', 'sz']
+    try:
+        cmds.select([redirectGuide,BRSAnimLocGrp])
+    except:
+        pass
+    else:
+        for a in attr:
+            cmds.setAttr('{}.{}'.format(BRSAnimLocGrp,a),lock=False)
+        selection = cmds.listRelatives(BRSAnimLocGrp, children=True)
+        cmds.select(selection)
+        objectToLocatorSnap(toGroup=False,forceConstraint=True)
+        snap(BRSAnimLocGrp,redirectGuide)
+        locatorToObjectSnap()
+        cmds.delete(redirectGuide)
+        for a in attr:
+            cmds.setAttr('{}.{}'.format(BRSAnimLocGrp,a),lock=True)
 
 def getAllKeyframe(objectName):
     minTime = cmds.playbackOptions(q=True, minTime=True)
@@ -47,11 +107,15 @@ def getAllKeyframe(objectName):
     #print(keyframeList)
     return keyframeList
 
-def bakeKey(objectList,keyframeList):
+def bakeKey(objectList,keyframeList,inTimeline=False):
     at = ['tx', 'ty', 'tz', 'rx', 'ry', 'rz']
-    minKeyframe = round(min(keyframeList))
-    maxKeyframe = round(max(keyframeList))
-    cmds.ogs(pause=True)
+    if inTimeline:
+        minKeyframe = round(cmds.playbackOptions(q=True, minTime=True))
+        maxKeyframe = round(cmds.playbackOptions(q=True, maxTime=True))
+    else:
+        minKeyframe = round(min(keyframeList))
+        maxKeyframe = round(max(keyframeList))
+    #cmds.ogs(pause=True)
     cmds.refresh(suspend=True)
     cmds.bakeResults(objectList, sampleBy=1, disableImplicitControl=True, preserveOutsideKeys=True,
                      sparseAnimCurveBake=False, t=(minKeyframe, maxKeyframe),at=at)
@@ -110,10 +174,18 @@ def deleteConstraint(objectName):
     con = cmds.listRelatives(objectName, type='constraint')
     cmds.delete(con)
 
-def objectToLocatorSnap(*_):
+def statTextUI(text):
+    cmds.text(statText,e=True,l=text)
+    cmds.refresh()
+
+def objectToLocatorSnap(toGroup=True,forceConstraint=False):
     curTime = cmds.currentTime(query=True)
     bakeK = cmds.checkBox(BakeChk, q=True, value=True)
     cons = cmds.checkBox(ConsChk, q=True, value=True)
+    tl = cmds.checkBox(TimelineChk, q=True, value=True)
+
+    if forceConstraint:
+        cons = forceConstraint
 
     selected = cmds.ls(sl=True)
     #print (selected)
@@ -123,27 +195,32 @@ def objectToLocatorSnap(*_):
         #print(keyframeList)
 
         if len(keyframeList) > 1:
+            statTextUI('get keyframe {} {} - {}'.format(objName, min(keyframeList), max(keyframeList)))
             SnapLoc = getMimicLocator(objName)[0]
             #print(SnapLoc)
 
-            bakeKey(SnapLoc,keyframeList)
+            statTextUI('Bake to {}'.format(SnapLoc))
+            bakeKey(SnapLoc,keyframeList,inTimeline=tl)
             if bakeK == False:
                 keepKeyframe(SnapLoc,keyframeList)
                 print ('keepKeyframe')
             deleteConstraint(SnapLoc)
             if cons:
                 parentConstraint(objName,SnapLoc)
+            if toGroup:
+                createBRSAnimLocGrp(selected)
+                cmds.parent(SnapLoc,BRSAnimLocGrp)
 
     # Finish
     cmds.currentTime(curTime)
     cmds.select(selected, r=True)
     resetViewport()
+    statTextUI('')
     print ('Create Anim Locator {}'.format(selected))
 
 def locatorToObjectSnap(*_):
     curTime = cmds.currentTime(query=True)
     bakeK = cmds.checkBox(BakeChk, q=True, value=True)
-    global locSuffix
     at = ['tx', 'ty', 'tz', 'rx', 'ry', 'rz']
 
     selected = cmds.ls(sl=True)
@@ -158,12 +235,16 @@ def locatorToObjectSnap(*_):
         except:
             pass
         else:
-            cmds.cutKey(objName, cl=True, at=at)
+            cmds.cutKey(objName, cl=True, at=at,time=(min(keyframeList),max(keyframeList)))
             deleteConstraint(objName)
             parentConstraint(objName,SnapLoc)
+            statTextUI('Bake to {}'.format(objName))
             bakeKey(objName, keyframeList)
             keepKeyframe(objName,keyframeList)
             cmds.delete(SnapLoc)
+
+            if cmds.listRelatives(BRSAnimLocGrp,children=True) == None:
+                cmds.delete(BRSAnimLocGrp)
 
     # Fixing Unsnap Keyframe
     cmds.snapKey(selected, timeMultiple=1.0)
@@ -172,6 +253,7 @@ def locatorToObjectSnap(*_):
     cmds.currentTime(curTime)
     cmds.select(selected, r=True)
     resetViewport()
+    statTextUI('')
     print ('Apply Anim Locator {}'.format(selected))
 
 """
@@ -179,7 +261,7 @@ def locatorToObjectSnap(*_):
 UI
 -----------------------------------------------------------------------
 """
-version = '1.04'
+version = '1.05'
 winID = 'BRSLOCTRANSFER'
 winWidth = 200
 
@@ -199,25 +281,34 @@ cmds.window(winID, t='BRS Locator Transfer' + ' - ' + version,
             w=winWidth, sizeable=True,
             retain=True, bgc=colorSet['bg'])
 
-cmds.columnLayout(adj=True, w=winWidth)
-cmds.text(l='BRS Locator Transfer' + ' - ' + version, fn='boldLabelFont', h=20, bgc=colorSet['green'])
+cmds.columnLayout(adj=False, w=winWidth)
+cmds.text(l='BRS Locator Transfer' + ' - ' + version, fn='boldLabelFont', h=20, w=winWidth, bgc=colorSet['green'])
+statText = cmds.text(l='', fn='smallPlainLabelFont', h=15, w=winWidth, bgc=colorSet['shadow'])
+cmds.text(l='   Anim Locator', fn='boldLabelFont', al='left', h=25, w=winWidth)
 cmds.rowLayout(numberOfColumns=2, columnWidth2=(winWidth * 0.5, winWidth * 0.5), columnAlign2=['center', 'center'])
 ConsChk = cmds.checkBox(label='Constraint', align='center',v=True)
 AnnoChk = cmds.checkBox(label='Annotation', align='center',v=True)
 cmds.setParent('..')
 cmds.rowLayout(numberOfColumns=2, columnWidth2=(winWidth * 0.5, winWidth * 0.5), columnAlign2=['center', 'center'])
 BakeChk = cmds.checkBox(label='Bake Keyframe', align='center')
-#TimelineChk = cmds.checkBox(label='In Timeline', align='center')
-cmds.setParent('..')
-#cmds.rowLayout(numberOfColumns=2, columnWidth2=(winWidth * 0.5, winWidth * 0.5), columnAlign2=['center', 'center'])
-#cmds.checkBox(label='Redirection', align='center')
-#cmds.setParent('..')
-cmds.rowLayout(numberOfColumns=1, columnWidth1=winWidth-1)
-cmds.button(l='Create Anim Locator', h=25 ,w=winWidth-1 , c=objectToLocatorSnap, bgc=colorSet['highlight'])
+TimelineChk = cmds.checkBox(label='In Timeline', align='center')
 cmds.setParent('..')
 cmds.rowLayout(numberOfColumns=1, columnWidth1=winWidth-1)
-cmds.button(l='Apply Anim Locator', h=25 ,w=winWidth-1 , c=locatorToObjectSnap, bgc=colorSet['highlight'])
+cmds.button(l='Create Anim Locator', h=25 ,w=winWidth-4 ,
+            c=lambda arg: objectToLocatorSnap(toGroup=True,forceConstraint=False), bgc=colorSet['highlight'])
 cmds.setParent('..')
+cmds.rowLayout(numberOfColumns=1, columnWidth1=winWidth-1)
+cmds.button(l='Apply Anim Locator', h=25 ,w=winWidth-4, c=locatorToObjectSnap, bgc=colorSet['highlight'])
+cmds.setParent('..')
+
+cmds.text(l='   Redirection', fn='boldLabelFont', al='left', h=25, w=winWidth)
+cmds.rowLayout(numberOfColumns=1, columnWidth1=winWidth-1)
+cmds.button(l='Create Redirection Guide', h=25 ,w=winWidth-4, bgc=colorSet['highlight'], c=createRedirectGuide)
+cmds.setParent('..')
+cmds.rowLayout(numberOfColumns=1, columnWidth1=winWidth-1)
+cmds.button(l='Apply Redirection', h=25 ,w=winWidth-4, bgc=colorSet['highlight'], c=applyRedirectGuide)
+cmds.setParent('..')
+
 cmds.text(l='Created by Burasate Uttha', h=20, al='left', fn='smallPlainLabelFont')
 
 def BRSLocTransferUI(*_):
