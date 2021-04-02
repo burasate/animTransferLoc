@@ -218,6 +218,11 @@ def objectToLocatorSnap(toGroup=True,forceConstraint=False):
     resetViewport()
     statTextUI('')
     print ('Create Anim Locator {}'.format(selected))
+    cmds.inViewMessage(
+        amg='Create Anim Locator to <hl>{}</hl>'.format(selected[0]),
+        pos='midCenter',fade=True,
+        fit=100, fst=2000, fot=100
+    )
 
 def locatorToObjectSnap(*_):
     curTime = cmds.currentTime(query=True)
@@ -256,13 +261,18 @@ def locatorToObjectSnap(*_):
     resetViewport()
     statTextUI('')
     print ('Apply Anim Locator {}'.format(selected))
+    cmds.inViewMessage(
+        amg='Apply Anim Locator <hl>{}</hl> Finish'.format(selected[0]),
+        pos='midCenter', fade=True,
+        fit=100, fst=2000, fot=100
+    )
 
 """
 -----------------------------------------------------------------------
 UI
 -----------------------------------------------------------------------
 """
-version = '1.05'
+version = '1.06'
 winID = 'BRSLOCTRANSFER'
 winWidth = 200
 
