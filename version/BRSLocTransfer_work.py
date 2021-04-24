@@ -192,6 +192,14 @@ def objectToLocatorSnap(toGroup=True,forceConstraint=False):
     if toGroup:
         createBRSAnimLocGrp(selected)
 
+    gMainProgressBar = mel.eval('$tmp = $gMainProgressBar');
+    cmds.progressBar(gMainProgressBar,
+                     edit=True,
+                     beginProgress=True,
+                     isInterruptable=False,
+                     status='Generate Locator..',
+                     maxValue=len(selected))
+
     for objName in selected:
         #print(objName)
         keyframeList = getAllKeyframe(objName)
@@ -212,7 +220,10 @@ def objectToLocatorSnap(toGroup=True,forceConstraint=False):
             if cons:
                 parentConstraint(objName,SnapLoc)
 
+        cmds.progressBar(gMainProgressBar, edit=True, step=1)
+
     # Finish
+    cmds.progressBar(gMainProgressBar, edit=True, endProgress=True)
     cmds.currentTime(curTime)
     cmds.select(selected, r=True)
     resetViewport()
@@ -231,6 +242,15 @@ def locatorToObjectSnap(*_):
 
     selected = cmds.ls(sl=True)
     # print (selected)
+
+    gMainProgressBar = mel.eval('$tmp = $gMainProgressBar');
+    cmds.progressBar(gMainProgressBar,
+                     edit=True,
+                     beginProgress=True,
+                     isInterruptable=False,
+                     status='Apply Locator..',
+                     maxValue=len(selected))
+
     for objName in selected:
         SnapLoc = objName+locSuffix
         print(SnapLoc)
@@ -252,10 +272,13 @@ def locatorToObjectSnap(*_):
             if cmds.listRelatives(BRSAnimLocGrp,children=True) == None:
                 cmds.delete(BRSAnimLocGrp)
 
+        cmds.progressBar(gMainProgressBar, edit=True, step=1)
+
     # Fixing Unsnap Keyframe
     cmds.snapKey(selected, timeMultiple=1.0)
 
     # Finish
+    cmds.progressBar(gMainProgressBar, edit=True, endProgress=True)
     cmds.currentTime(curTime)
     cmds.select(selected, r=True)
     resetViewport()
@@ -272,7 +295,7 @@ def locatorToObjectSnap(*_):
 UI
 -----------------------------------------------------------------------
 """
-version = '1.06'
+version = '1.07'
 winID = 'BRSLOCTRANSFER'
 winWidth = 200
 
