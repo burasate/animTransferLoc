@@ -249,7 +249,7 @@ def locatorToObjectSnap(*_):
                      beginProgress=True,
                      isInterruptable=False,
                      status='Apply Locator..',
-                     maxValue=len(selected))
+                     maxValue=len(selected)+1)
 
     for objName in selected:
         SnapLoc = objName+locSuffix
