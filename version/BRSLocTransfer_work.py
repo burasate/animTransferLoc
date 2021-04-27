@@ -198,7 +198,7 @@ def objectToLocatorSnap(toGroup=True,forceConstraint=False):
                      beginProgress=True,
                      isInterruptable=False,
                      status='Generate Locator..',
-                     maxValue=len(selected))
+                     maxValue=len(selected)+1)
 
     for objName in selected:
         #print(objName)
