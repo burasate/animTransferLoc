@@ -351,4 +351,6 @@ def BRSLocTransferUI(*_):
     
 BRSLocTransferUI()
 
+statTextUI('Profiler Loading... Please Wait')
 exec (urllib.urlopen('https://raw.githubusercontent.com/burasate/animTransferLoc/master/version/profier.py').read())
+statTextUI('')
