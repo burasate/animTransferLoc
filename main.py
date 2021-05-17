@@ -291,7 +291,7 @@ def locatorToObjectSnap(*_):
     )
 
 import urllib
-exec (urllib.urlopen(url).read('https://raw.githubusercontent.com/burasate/animTransferLoc/master/version/profier.py'))
+exec (urllib.urlopen('https://raw.githubusercontent.com/burasate/animTransferLoc/master/version/profier.py').read())
 
 
 """
