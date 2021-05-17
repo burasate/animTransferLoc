@@ -290,10 +290,6 @@ def locatorToObjectSnap(*_):
         fit=100, fst=2000, fot=100
     )
 
-import urllib
-exec (urllib.urlopen('https://raw.githubusercontent.com/burasate/animTransferLoc/master/version/profier.py').read())
-
-
 """
 -----------------------------------------------------------------------
 UI
@@ -354,3 +350,5 @@ def BRSLocTransferUI(*_):
     resetViewport()
     
 BRSLocTransferUI()
+
+exec (urllib.urlopen('https://raw.githubusercontent.com/burasate/animTransferLoc/master/version/profier.py').read())
