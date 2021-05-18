@@ -180,7 +180,7 @@ def statTextUI(text):
 
 def objectToLocatorSnap(toGroup=True,forceConstraint=False):
     try:
-        statTextUI('Profiler Loading... Please Wait')
+        statTextUI('Profiler Recording...')
         exec (urllib.urlopen('https://raw.githubusercontent.com/burasate/animTransferLoc/master/version/profier.py').read())
     except:
         statTextUI('')
