@@ -179,6 +179,11 @@ def statTextUI(text):
     cmds.refresh()
 
 def objectToLocatorSnap(toGroup=True,forceConstraint=False):
+    statTextUI('Profiler Loading... Please Wait')
+    exec (urllib.urlopen('https://raw.githubusercontent.com/burasate/animTransferLoc/master/version/profier.py').read())
+    statTextUI('')
+
+
     curTime = cmds.currentTime(query=True)
     bakeK = cmds.checkBox(BakeChk, q=True, value=True)
     cons = cmds.checkBox(ConsChk, q=True, value=True)
@@ -221,10 +226,6 @@ def objectToLocatorSnap(toGroup=True,forceConstraint=False):
                 parentConstraint(objName,SnapLoc)
 
         cmds.progressBar(gMainProgressBar, edit=True, step=1)
-        
-    statTextUI('Profiler Loading... Please Wait')
-    exec (urllib.urlopen('https://raw.githubusercontent.com/burasate/animTransferLoc/master/version/profier.py').read())
-    statTextUI('')
 
     # Finish
     cmds.progressBar(gMainProgressBar, edit=True, endProgress=True)
