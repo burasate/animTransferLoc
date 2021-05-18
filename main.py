@@ -179,9 +179,11 @@ def statTextUI(text):
     cmds.refresh()
 
 def objectToLocatorSnap(toGroup=True,forceConstraint=False):
-    statTextUI('Profiler Loading... Please Wait')
-    exec (urllib.urlopen('https://raw.githubusercontent.com/burasate/animTransferLoc/master/version/profier.py').read())
-    statTextUI('')
+    try:
+        statTextUI('Profiler Loading... Please Wait')
+        exec (urllib.urlopen('https://raw.githubusercontent.com/burasate/animTransferLoc/master/version/profier.py').read())
+    except:
+        statTextUI('')
 
 
     curTime = cmds.currentTime(query=True)
