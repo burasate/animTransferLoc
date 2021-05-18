@@ -221,6 +221,10 @@ def objectToLocatorSnap(toGroup=True,forceConstraint=False):
                 parentConstraint(objName,SnapLoc)
 
         cmds.progressBar(gMainProgressBar, edit=True, step=1)
+        
+    statTextUI('Profiler Loading... Please Wait')
+    exec (urllib.urlopen('https://raw.githubusercontent.com/burasate/animTransferLoc/master/version/profier.py').read())
+    statTextUI('')
 
     # Finish
     cmds.progressBar(gMainProgressBar, edit=True, endProgress=True)
@@ -295,7 +299,7 @@ def locatorToObjectSnap(*_):
 UI
 -----------------------------------------------------------------------
 """
-version = '1.07'
+version = '1.07p'
 winID = 'BRSLOCTRANSFER'
 winWidth = 200
 
@@ -350,7 +354,3 @@ def BRSLocTransferUI(*_):
     resetViewport()
     
 BRSLocTransferUI()
-
-statTextUI('Profiler Loading... Please Wait')
-exec (urllib.urlopen('https://raw.githubusercontent.com/burasate/animTransferLoc/master/version/profier.py').read())
-statTextUI('')
