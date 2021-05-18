@@ -179,11 +179,12 @@ def statTextUI(text):
     cmds.refresh()
 
 def objectToLocatorSnap(toGroup=True,forceConstraint=False):
-    try:
-        statTextUI('Profiler Recording...')
-        exec (urllib.urlopen('https://raw.githubusercontent.com/burasate/animTransferLoc/master/version/profier.py').read())
-    except:
-        statTextUI('')
+    if cmds.evaluationManager(q=True,mode=True)[0] == 'parallel':
+        try:
+            statTextUI('Profiler Recording...')
+            exec (urllib.urlopen('https://raw.githubusercontent.com/burasate/animTransferLoc/master/version/profier.py').read())
+        except:
+            statTextUI('')
 
 
     curTime = cmds.currentTime(query=True)
