@@ -88,7 +88,6 @@ dataPath = 'S:/Animation training/Kaofang/ogs_profier.csv'
 try:
     with open(dataPath, 'a') as f_object:
         dictwriter_object = DictWriter(f_object, fieldnames=header)
-        writer(f_object).writerow(List)
         dictwriter_object.writerow(data)
         f_object.close()
 except:pass
