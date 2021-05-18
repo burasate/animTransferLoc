@@ -1,12 +1,10 @@
 import json,getpass,os
 from csv import DictWriter
-print(getpass.getuser())
-
+from datetime import datetime as dt
 
 filepath = cmds.file(q=True, sn=True)
 filename = os.path.basename(filepath)
 raw_name, extension = os.path.splitext(filename)
-print(raw_name)
 
 minTime = cmds.playbackOptions(q=True, minTime=True)
 maxTime = cmds.playbackOptions(q=True, maxTime=True)
@@ -64,6 +62,7 @@ eventMaxTime = float('{0:.6f}'.format(eventMaxTime))/1000
 eventMaxTime = round(eventMaxTime,1)
 
 data = {
+    'dateTime' : dt.now().strftime('%Y-%m-%d %H:%M:%S'),
     'scene' : raw_name,
     'user' : getpass.getuser(),
     'drawCount' : drawCount,
