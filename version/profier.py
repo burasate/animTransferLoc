@@ -1,5 +1,6 @@
 import json,getpass,os
 from csv import DictWriter
+from csv import writer
 from datetime import datetime as dt
 
 filepath = cmds.file(q=True, sn=True)
@@ -72,7 +73,10 @@ data = {
     'criticalPath' : criticalPath,
     'eventMaxTime' : eventMaxTime
 }
-print (list(data))
+header = []
+for col in data:
+    header.append(col)
+print (header)
 print( 'draw count {} frames'.format(drawCount) )
 print( 'total time {} ms'.format(totalTime) )
 print( 'refresh time {} ms'.format(refreshTime) )
@@ -83,7 +87,8 @@ dataPath = 'S:/Animation training/Kaofang/ogs_profier.csv'
 #dataPath = 'C:/Users/DEX3D_I7/Desktop/ogs_profier.csv'
 try:
     with open(dataPath, 'a') as f_object:
-        dictwriter_object = DictWriter(f_object, fieldnames=list(data))
+        dictwriter_object = DictWriter(f_object, fieldnames=header)
+        writer(f_object).writerow(List)
         dictwriter_object.writerow(data)
         f_object.close()
 except:pass
