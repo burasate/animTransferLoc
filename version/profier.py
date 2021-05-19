@@ -17,7 +17,7 @@ frameRange = 10
 cmds.playbackOptions(e=True, minTime=currFrame - 10.0,
                      maxTime=currFrame + float(frameRange - 10))
 
-cmds.profiler(bufferSize=200)
+cmds.profiler(bufferSize=200,reset=True)
 cmds.profiler(sampling=True)
 
 # cmds.play(wait=True,playSound=False,record=True)
