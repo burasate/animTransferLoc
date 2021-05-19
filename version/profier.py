@@ -12,7 +12,7 @@ maxTime = cmds.playbackOptions(q=True, maxTime=True)
 fStart = cmds.playbackOptions(q=True, animationStartTime=True)
 fEnd = cmds.playbackOptions(q=True, animationEndTime=True)
 currFrame = cmds.currentTime(q=True)
-frameRange = 10
+frameRange = 5
 
 cmds.profiler(bufferSize=200)
 cmds.profiler(sampling=True)
