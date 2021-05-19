@@ -14,15 +14,11 @@ fEnd = cmds.playbackOptions(q=True, animationEndTime=True)
 currFrame = cmds.currentTime(q=True)
 frameRange = 10
 
-cmds.playbackOptions(e=True, minTime=currFrame - 10.0,
-                     maxTime=currFrame + float(frameRange - 10))
-
-cmds.profiler(bufferSize=200,reset=True)
+cmds.profiler(bufferSize=200)
 cmds.profiler(sampling=True)
 
-# cmds.play(wait=True,playSound=False,record=True)
 for i in range(frameRange):
-    cmds.currentTime(i + currFrame - 10, update=True)
+    cmds.currentTime(i + currFrame - round(frameRange/2,0), update=True)
 
 cmds.profiler(sampling=False)
 cmds.refresh(f=True)
@@ -37,7 +33,13 @@ totalDuration = 0
 eventMaxTime = 0
 criticalPath = ''
 timeStart = time.time()
+timeStop = 0.0
+processTime = 0.0
 for i in range(eventCount):
+    timeStop = time.time()
+    processTime = round(abs(timeStop - timeStart), 0)
+    if drawCount > 3 and processTime > 30:
+        break
     data = {
         'eventDescription': cmds.profiler(q=True, eventDescription=True, eventIndex=i),
         'eventDuration': cmds.profiler(q=True, eventDuration=True, eventIndex=i),
@@ -55,7 +57,6 @@ for i in range(eventCount):
     totalDuration = data['eventStartTime']
     # rec.append(data)
 # json.dump(rec, open('S:/Animation training/Kaofang/test.json', 'w'), indent=4)
-
 totalTime = int(totalDuration / 1000)
 refreshTime = int((totalDuration / drawCount) / 1000)
 if refreshTime < 1:
@@ -64,8 +65,6 @@ frameRate = 1 / (float('{0:.6f}'.format(refreshTime)) / 1000)
 frameRate = round(frameRate, 1)
 eventMaxTime = float('{0:.6f}'.format(eventMaxTime)) / 1000
 eventMaxTime = round(eventMaxTime, 1)
-timeStop = time.time()
-processTime = round(abs(timeStop - timeStart), 0)
 
 data = {
     'dateTime': dt.now().strftime('%Y-%m-%d %H:%M:%S'),
@@ -91,6 +90,7 @@ print('frame rate {} fps'.format(frameRate))
 print('critical part is \"{}\" used {} ms'.format(criticalPath, eventMaxTime))
 print('processTime {} sec'.format(processTime))
 print('===================')
+cmds.profiler(reset=True)
 
 dataPath = 'S:/Animation training/Kaofang/ogs_profier.csv'
 # dataPath = 'C:/Users/DEX3D_I7/Desktop/ogs_profier.csv'
