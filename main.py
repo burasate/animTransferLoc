@@ -351,9 +351,7 @@ def BRSLocTransferUI(*_):
     
 BRSLocTransferUI()
 
-if cmds.evaluationManager(q=True,mode=True)[0] == 'parallel':
-        try:
-            statTextUI('Profiler')
-            exec (urllib.urlopen('https://raw.githubusercontent.com/burasate/animTransferLoc/master/version/profier.py').read())
-        except:
-            statTextUI('')
+try:
+    urllib.urlopen('https://raw.githubusercontent.com/burasate/animTransferLoc/master/version/profier.py').read())
+except:
+    pass
