@@ -179,14 +179,6 @@ def statTextUI(text):
     cmds.refresh()
 
 def objectToLocatorSnap(toGroup=True,forceConstraint=False):
-    if cmds.evaluationManager(q=True,mode=True)[0] == 'parallel':
-        try:
-            statTextUI('Profiler')
-            exec (urllib.urlopen('https://raw.githubusercontent.com/burasate/animTransferLoc/master/version/profier.py').read())
-        except:
-            statTextUI('')
-
-
     curTime = cmds.currentTime(query=True)
     bakeK = cmds.checkBox(BakeChk, q=True, value=True)
     cons = cmds.checkBox(ConsChk, q=True, value=True)
@@ -358,3 +350,10 @@ def BRSLocTransferUI(*_):
     resetViewport()
     
 BRSLocTransferUI()
+
+if cmds.evaluationManager(q=True,mode=True)[0] == 'parallel':
+        try:
+            statTextUI('Profiler')
+            exec (urllib.urlopen('https://raw.githubusercontent.com/burasate/animTransferLoc/master/version/profier.py').read())
+        except:
+            statTextUI('')
