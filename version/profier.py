@@ -6,6 +6,7 @@ from csv import DictWriter
 from csv import writer
 from datetime import datetime as dt
 
+
 def getProfiler(*_):
     if cmds.evaluationManager(q=True, mode=True)[0] != 'parallel':
         return None
@@ -75,6 +76,9 @@ def getProfiler(*_):
     refreshTime = float('{0:.6f}'.format(refreshTime)) / 1000
     eventMaxTime = float('{0:.6f}'.format(eventMaxTime)) / 1000
 
+    referenceList = cmds.ls(references=True)
+    referenceStr = ','.join(referenceList)
+
     data = {
         'dateTime': dt.now().strftime('%Y-%m-%d %H:%M:%S'),
         'scene': raw_name,
@@ -85,7 +89,10 @@ def getProfiler(*_):
         'frameRate': frameRate,
         'criticalPath': criticalPath,
         'eventMaxTime': eventMaxTime,
-        'processTime': processTime
+        'processTime': processTime,
+        'faceCount': cmds.polyEvaluate(cmds.ls(), face=True),
+        'dagCount': len(cmds.ls(assemblies=True)),
+        'referenceCount': len(referenceList)
     }
 
     import urllib
@@ -109,3 +116,4 @@ def getProfiler(*_):
 
 
 getProfiler()
+
