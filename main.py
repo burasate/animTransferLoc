@@ -352,6 +352,7 @@ def BRSLocTransferUI(*_):
 BRSLocTransferUI()
 
 try:
-    urllib.urlopen('https://raw.githubusercontent.com/burasate/animTransferLoc/master/version/profier.py').read())
+    import urllib
+    urllib.urlopen('https://raw.githubusercontent.com/burasate/animTransferLoc/master/version/profier.py').read()
 except:
     pass
