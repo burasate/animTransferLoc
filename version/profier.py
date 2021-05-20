@@ -93,7 +93,12 @@ def getProfiler(*_):
         'faceCount': cmds.polyEvaluate(cmds.ls(), face=True),
         'dagCount': len(cmds.ls(assemblies=True)),
         'referenceCount': len(referenceList),
-        'nameSpaceList': ','.join(nameSpaceList)
+        'nameSpaceList': ','.join(nameSpaceList),
+        'keyframeCount': cmds.keyframe(q=True, kc=True),
+        'frameStart': fStart,
+        'frameEnd': fEnd,
+        'frameMin': minTime,
+        'frameMax': maxTime
     }
 
     import urllib
@@ -120,4 +125,5 @@ try:
     getProfiler()
 except:
     pass
+
 
