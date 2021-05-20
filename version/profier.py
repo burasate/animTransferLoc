@@ -114,6 +114,8 @@ def getProfiler(*_):
     print('===================')
     cmds.profiler(reset=True)
 
-
-getProfiler()
+try:
+    getProfiler()
+except:
+    pass
 
