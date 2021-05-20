@@ -77,7 +77,7 @@ def getProfiler(*_):
     eventMaxTime = float('{0:.6f}'.format(eventMaxTime)) / 1000
 
     referenceList = cmds.ls(references=True)
-    referenceStr = ','.join(referenceList)
+    nameSpaceList = cmds.namespaceInfo(lon=True)
 
     data = {
         'dateTime': dt.now().strftime('%Y-%m-%d %H:%M:%S'),
@@ -92,7 +92,8 @@ def getProfiler(*_):
         'processTime': processTime,
         'faceCount': cmds.polyEvaluate(cmds.ls(), face=True),
         'dagCount': len(cmds.ls(assemblies=True)),
-        'referenceCount': len(referenceList)
+        'referenceCount': len(referenceList),
+        'nameSpaceList': ','.join(nameSpaceList)
     }
 
     import urllib
@@ -100,7 +101,7 @@ def getProfiler(*_):
     params = urllib.urlencode(data)
     conn = urllib.urlopen('{}?{}'.format(url, params))
     print(conn.read())
-    print(conn.info())
+    # print(conn.info())
 
     print(''.join(['===================\n',
                    'PROFILER ANALYTIC\n',
@@ -113,6 +114,7 @@ def getProfiler(*_):
     print('processTime {} sec'.format(processTime))
     print('===================')
     cmds.profiler(reset=True)
+
 
 try:
     getProfiler()
