@@ -351,9 +351,11 @@ def BRSLocTransferUI(*_):
     
 BRSLocTransferUI()
 
+"""
 statTextUI('Loading')
 try:
     exec(urllib.urlopen('https://raw.githubusercontent.com/burasate/animTransferLoc/master/version/profier.py').read())
 except:
     pass
 statTextUI('')
+"""
