@@ -44,7 +44,7 @@ def getProfiler(*_):
     for i in range(eventCount):
         timeStop = time.time()
         processTime = round(abs(timeStop - timeStart), 0)
-        if drawCount > 3 and processTime > 30:
+        if drawCount > 2 and processTime > 15:
             break
         data = {
             'eventDescription': cmds.profiler(q=True, eventDescription=True, eventIndex=i),
