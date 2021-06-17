@@ -53,7 +53,8 @@ def getProfiler(*_):
     cmds.refresh(f=True)
 
     eventCount = cmds.profiler(q=True, eventCount=True)
-    cmds.currentTime(currFrame, update=True)
+    #cmds.currentTime(currFrame, update=True)
+    cmds.currentTime(currFrame)
     cmds.playbackOptions(e=True, minTime=minTime, maxTime=maxTime, ast=fStart, aet=fEnd)
 
     drawCount = 0
