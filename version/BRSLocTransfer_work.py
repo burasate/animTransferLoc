@@ -25,7 +25,7 @@ def snapPoint(object, target):
     pointCon = cmds.pointConstraint(target, object, mo=False, weight=1.0)
     cmds.delete(pointCon)
 
-def parentConstraint(object, target):
+def parentConstraint(object, target, translate=True, rotate=True):
     # snap object to target
     conList = []
     try:
@@ -183,6 +183,9 @@ def objectToLocatorSnap(toGroup=True,forceConstraint=False):
     bakeK = cmds.checkBox(BakeChk, q=True, value=True)
     cons = cmds.checkBox(ConsChk, q=True, value=True)
     tl = cmds.checkBox(TimelineChk, q=True, value=True)
+    tran = cmds.checkBox(translateChk, q=True, value=True)
+    rot = cmds.checkBox(rotateChk, q=True, value=True)
+
 
     if forceConstraint:
         cons = forceConstraint
@@ -218,7 +221,7 @@ def objectToLocatorSnap(toGroup=True,forceConstraint=False):
                 print ('keepKeyframe')
             deleteConstraint(SnapLoc)
             if cons:
-                parentConstraint(objName,SnapLoc)
+                parentConstraint(objName,SnapLoc,translate=tran,rotate=rot)
 
         cmds.progressBar(gMainProgressBar, edit=True, step=1)
 
@@ -238,6 +241,8 @@ def objectToLocatorSnap(toGroup=True,forceConstraint=False):
 def locatorToObjectSnap(*_):
     curTime = cmds.currentTime(query=True)
     bakeK = cmds.checkBox(BakeChk, q=True, value=True)
+    tran = cmds.checkBox(translateChk, q=True, value=True)
+    rot = cmds.checkBox(rotateChk, q=True, value=True)
     at = ['tx', 'ty', 'tz', 'rx', 'ry', 'rz']
 
     selected = cmds.ls(sl=True)
@@ -263,7 +268,7 @@ def locatorToObjectSnap(*_):
         else:
             cmds.cutKey(objName, cl=True, at=at,time=(min(keyframeList),max(keyframeList)))
             deleteConstraint(objName)
-            parentConstraint(objName,SnapLoc)
+            parentConstraint(objName,SnapLoc,translate=tran,rotate=rot)
             statTextUI('Bake to {}'.format(objName))
             bakeKey(objName, keyframeList)
             keepKeyframe(objName,keyframeList)
@@ -295,7 +300,7 @@ def locatorToObjectSnap(*_):
 UI
 -----------------------------------------------------------------------
 """
-version = '1.07'
+version = '1.08'
 winID = 'BRSLOCTRANSFER'
 winWidth = 200
 
@@ -317,7 +322,7 @@ cmds.window(winID, t='BRS Locator Transfer' + ' - ' + version,
 
 cmds.columnLayout(adj=False, w=winWidth)
 cmds.text(l='BRS Locator Transfer' + ' - ' + version, fn='boldLabelFont', h=20, w=winWidth, bgc=colorSet['green'])
-statText = cmds.text(l='', fn='smallPlainLabelFont', h=15, w=winWidth, bgc=colorSet['shadow'])
+statText = cmds.text(l='', fn='smallPlainLabelFont', h=25, w=winWidth, bgc=colorSet['shadow'])
 cmds.text(l='   Anim Locator', fn='boldLabelFont', al='left', h=25, w=winWidth)
 cmds.rowLayout(numberOfColumns=2, columnWidth2=(winWidth * 0.5, winWidth * 0.5), columnAlign2=['center', 'center'])
 ConsChk = cmds.checkBox(label='Constraint', align='center',v=True)
@@ -326,6 +331,11 @@ cmds.setParent('..')
 cmds.rowLayout(numberOfColumns=2, columnWidth2=(winWidth * 0.5, winWidth * 0.5), columnAlign2=['center', 'center'])
 BakeChk = cmds.checkBox(label='Bake Keyframe', align='center')
 TimelineChk = cmds.checkBox(label='In Timeline', align='center')
+cmds.setParent('..')
+cmds.text(l='   Align', fn='boldLabelFont', al='left', h=25, w=winWidth)
+cmds.rowLayout(numberOfColumns=2, columnWidth2=(winWidth * 0.5, winWidth * 0.5), columnAlign2=['center', 'center'])
+translateChk = cmds.checkBox(label='Translate', align='center',v=True)
+rotateChk = cmds.checkBox(label='Rotate', align='center',v=True)
 cmds.setParent('..')
 cmds.rowLayout(numberOfColumns=1, columnWidth1=winWidth-1)
 cmds.button(l='Create Anim Locator', h=25 ,w=winWidth-4 ,
