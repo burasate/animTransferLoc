@@ -160,7 +160,7 @@ def getMimicLocator(objectName,locName=locSuffix):
 
     return locator
 
-def keepKeyframe(objectList,keyframeList):
+def keepKeyframe(objectList,keyframeList,breakdownList=[]):
     newKeyframeList = []
     for k in keyframeList:
         k = round(k,0)
@@ -169,6 +169,11 @@ def keepKeyframe(objectList,keyframeList):
         if not float(k) in newKeyframeList:
             cmds.cutKey(objectList,time=(float(k),float(k)))
     #print (newKeyframeList)
+
+def setKeyBreakdown(objectList,breakdownList=[]):
+    for f in breakdownList:
+        #cmds.keyframe(objectList, q=True, breakdown=True)
+        cmds.setKeyframe(objectList, breakdown=1, time=f)
 
 def deleteConstraint(objectName):
     con = cmds.listRelatives(objectName, type='constraint')
@@ -206,6 +211,7 @@ def objectToLocatorSnap(toGroup=True,forceConstraint=False):
     for objName in selected:
         #print(objName)
         keyframeList = getAllKeyframe(objName)
+        breakdownList = cmds.keyframe(objName, q=True, breakdown=True)
         #print(keyframeList)
 
         if len(keyframeList) > 1:
@@ -218,6 +224,7 @@ def objectToLocatorSnap(toGroup=True,forceConstraint=False):
             bakeKey(SnapLoc,keyframeList,inTimeline=tl)
             if bakeK == False:
                 keepKeyframe(SnapLoc,keyframeList)
+                setKeyBreakdown(SnapLoc, breakdownList=breakdownList)
                 print ('keepKeyframe')
             deleteConstraint(SnapLoc)
             if cons:
@@ -262,6 +269,7 @@ def locatorToObjectSnap(*_):
 
         try:
             keyframeList = getAllKeyframe(SnapLoc)
+            breakdownList = cmds.keyframe(SnapLoc, q=True, breakdown=True)
             cmds.select(SnapLoc)
         except:
             pass
@@ -272,6 +280,7 @@ def locatorToObjectSnap(*_):
             statTextUI('Bake to {}'.format(objName))
             bakeKey(objName, keyframeList)
             keepKeyframe(objName,keyframeList)
+            setKeyBreakdown(objName, breakdownList=breakdownList)
             cmds.delete(SnapLoc)
 
             if cmds.listRelatives(BRSAnimLocGrp,children=True) == None:
@@ -357,6 +366,7 @@ cmds.text(l='Created by Burasate Uttha', h=20, al='left', fn='smallPlainLabelFon
 
 def BRSLocTransferUI(*_):
     cmds.showWindow(winID)
+    cmds.window(winID,e=True,h=200)
     resetViewport()
     
 BRSLocTransferUI()
