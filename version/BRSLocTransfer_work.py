@@ -160,7 +160,7 @@ def getMimicLocator(objectName,locName=locSuffix):
 
     return locator
 
-def keepKeyframe(objectList,keyframeList,breakdownList=[]):
+def keepKeyframe(objectList,keyframeList):
     newKeyframeList = []
     for k in keyframeList:
         k = round(k,0)
@@ -171,9 +171,9 @@ def keepKeyframe(objectList,keyframeList,breakdownList=[]):
     #print (newKeyframeList)
 
 def setKeyBreakdown(objectList,breakdownList=[]):
-    for f in breakdownList:
-        cmds.keyframe(objectList, e=True, breakdown=True, time=(f,))
-        #cmds.setKeyframe(objectList, breakdown=1, time=f)
+	if breakdownList != None:
+		for f in breakdownList:
+		    cmds.keyframe(objectList, e=True, breakdown=True, time=(f,))
 
 def deleteConstraint(objectName):
     con = cmds.listRelatives(objectName, type='constraint')
