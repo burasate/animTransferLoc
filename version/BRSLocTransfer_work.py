@@ -172,8 +172,8 @@ def keepKeyframe(objectList,keyframeList,breakdownList=[]):
 
 def setKeyBreakdown(objectList,breakdownList=[]):
     for f in breakdownList:
-        #cmds.keyframe(objectList, q=True, breakdown=True)
-        cmds.setKeyframe(objectList, breakdown=1, time=f)
+        cmds.keyframe(objectList, e=True, breakdown=True, time=(f,))
+        #cmds.setKeyframe(objectList, breakdown=1, time=f)
 
 def deleteConstraint(objectName):
     con = cmds.listRelatives(objectName, type='constraint')
