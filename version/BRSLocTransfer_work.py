@@ -356,7 +356,7 @@ cmds.columnLayout(adj=False, w=winWidth)
 cmds.text(l='BRS Locator Transfer' + ' - ' + version, fn='boldLabelFont', h=20, w=winWidth, bgc=colorSet['green'])
 statText = cmds.text(l='', fn='smallPlainLabelFont', h=25, w=winWidth, bgc=colorSet['shadow'])
 
-cmds.frameLayout(label='Anim Locator', w=winWidth, collapsable=True, collapse=False)
+cmds.frameLayout(label='Anim Locator', w=winWidth, collapsable=True, collapse=False, bgc=colorSet['shadow'])
 cmds.columnLayout( adjustableColumn=True )
 # cmds.text(l='   Anim Locator', fn='boldLabelFont', al='left', h=25, w=winWidth)
 cmds.rowLayout(numberOfColumns=2, columnWidth2=(winWidth * 0.5, winWidth * 0.5), columnAlign2=['center', 'center'])
@@ -370,7 +370,7 @@ cmds.setParent('..')
 cmds.setParent('..')
 cmds.setParent('..')
 
-cmds.frameLayout(label='Align', w=winWidth, collapsable=True, collapse=True)
+cmds.frameLayout(label='Align', w=winWidth, collapsable=True, collapse=True, bgc=colorSet['shadow'])
 cmds.columnLayout( adjustableColumn=True )
 # cmds.text(l='   Snap', fn='boldLabelFont', al='left', h=25, w=winWidth)
 cmds.rowLayout(numberOfColumns=2, columnWidth2=(winWidth * 0.5, winWidth * 0.5), columnAlign2=['center', 'center'])
@@ -390,7 +390,7 @@ cmds.button(l='Apply Anim Locator', h=25, w=winWidth - 2, c=locatorToObjectSnap,
 #cmds.setParent('..')
 cmds.setParent('..')
 
-cmds.frameLayout(label='Redirection', w=winWidth, collapsable=True, collapse=True, marginHeight=1)
+cmds.frameLayout(label='Redirection', w=winWidth, collapsable=True, collapse=True, bgc=colorSet['shadow'])
 cmds.columnLayout( adjustableColumn=True )
 # cmds.text(l='   Redirection', fn='boldLabelFont', al='left', h=25, w=winWidth)
 # cmds.rowLayout(numberOfColumns=1, columnWidth1=winWidth-1)
@@ -404,11 +404,9 @@ cmds.setParent('..')
 
 cmds.text(l='Created by Burasate Uttha', h=20, al='left', fn='smallPlainLabelFont')
 
-
 def BRSLocTransferUI(*_):
     cmds.showWindow(winID)
     cmds.window(winID, e=True, h=100, w=100)
     resetViewport()
-
 
 BRSLocTransferUI()
