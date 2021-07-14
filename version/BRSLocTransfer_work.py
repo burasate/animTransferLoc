@@ -28,16 +28,18 @@ def snapPoint(object, target):
 def parentConstraint(object, target, translate=True, rotate=True):
     # snap object to target
     conList = []
-    try:
-        pointC = cmds.pointConstraint(target, object, weight=1.0, mo=False)
-    except:
-        pass
-    else : conList.append(pointC)
-    try:
-        orientC = cmds.orientConstraint(target, object, weight=1.0, mo=False)
-    except:
-        pass
-    else: conList.append(orientC)
+    if translate:
+        try:
+            pointC = cmds.pointConstraint(target, object, weight=1.0, mo=False)
+        except:
+            pass
+        else : conList.append(pointC)
+    if rotate:
+        try:
+            orientC = cmds.orientConstraint(target, object, weight=1.0, mo=False)
+        except:
+            pass
+        else: conList.append(orientC)
     return conList
 
 def createBRSAnimLocGrp(snapObj):
