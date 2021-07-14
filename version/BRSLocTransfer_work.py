@@ -279,7 +279,8 @@ def locatorToObjectSnap(*_):
             parentConstraint(objName,SnapLoc,translate=tran,rotate=rot)
             statTextUI('Bake to {}'.format(objName))
             bakeKey(objName, keyframeList)
-            keepKeyframe(objName,keyframeList)
+            if bakeK == False:
+            	keepKeyframe(objName,keyframeList)
             setKeyBreakdown(objName, breakdownList=breakdownList)
             cmds.delete(SnapLoc)
 
