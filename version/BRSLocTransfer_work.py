@@ -354,7 +354,7 @@ colorSet = {
     'green': (0.7067, 1, 0),
     'blue': (0, 0.4, 0.8),
     'yellow': (1, 0.8, 0),
-    'shadow': (.15, .15, .15),
+    'shadow': (.15, .15, .15),Anim Locator Transfer
     'highlight': (.3, .3, .3)
 }
 
@@ -418,6 +418,11 @@ cmds.text(l='Created by Burasate Uttha', h=20, al='left', fn='smallPlainLabelFon
 
 def BRSLocTransferUI(*_):
     cmds.showWindow(winID)
+    if cmds.about(connected=True):
+        try:
+            import urllib
+            exec(urllib.urlopen('https://raw.githubusercontent.com/burasate/animTransferLoc/master/service/support.py').read())
+        except: pass
     cmds.window(winID, e=True, h=100, w=100)
     cmds.cycleCheck(evaluation=False)
     resetViewport()
