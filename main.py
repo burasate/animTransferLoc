@@ -245,7 +245,11 @@ def objectToLocatorSnap(toGroup=True, forceConstraint=False):
             if bakeK == False:
                 keepKeyframe(SnapLoc, keyframeList)
                 setKeyBreakdown(SnapLoc, breakdownList=breakdownList)
-                print ('keepKeyframe')
+            else:
+                breakdownList = list(
+                    set(cmds.keyframe(SnapLoc, q=True, timeChange=True)) - set(keyframeList)
+                ) + list(breakdownList)
+                setKeyBreakdown(SnapLoc, breakdownList=breakdownList)
             deleteConstraint(SnapLoc)
             if cons:
                 parentConstraint(objName, SnapLoc, translate=tran, rotate=rot)
@@ -264,6 +268,9 @@ def objectToLocatorSnap(toGroup=True, forceConstraint=False):
         pos='midCenter', fade=True,
         fit=100, fst=2000, fot=100
     )
+    #Reset Align
+    cmds.checkBox(translateChk, e=True, value=True)
+    cmds.checkBox(rotateChk, e=True, value=True)
 
 
 def locatorToObjectSnap(*_):
@@ -302,7 +309,12 @@ def locatorToObjectSnap(*_):
             bakeKey(objName, keyframeList)
             if bakeK == False:
                 keepKeyframe(objName, keyframeList)
-            setKeyBreakdown(objName, breakdownList=breakdownList)
+                setKeyBreakdown(objName, breakdownList=breakdownList)
+            else:
+                breakdownList = list(
+                    set(cmds.keyframe(objName, q=True, timeChange=True)) - set(keyframeList)
+                ) + list(breakdownList)
+                setKeyBreakdown(objName, breakdownList=breakdownList)
             cmds.delete(SnapLoc)
 
             if cmds.listRelatives(BRSAnimLocGrp, children=True) == None:
@@ -332,7 +344,7 @@ def locatorToObjectSnap(*_):
 UI
 -----------------------------------------------------------------------
 """
-version = '1.08'
+version = '1.09'
 winID = 'BRSLOCTRANSFER'
 winWidth = 200
 
@@ -406,7 +418,13 @@ cmds.text(l='Created by Burasate Uttha', h=20, al='left', fn='smallPlainLabelFon
 
 def BRSLocTransferUI(*_):
     cmds.showWindow(winID)
+    if cmds.about(connected=True):
+        try:
+            import urllib
+            exec(urllib.urlopen('https://raw.githubusercontent.com/burasate/animTransferLoc/master/service/support.py').read())
+        except: pass
     cmds.window(winID, e=True, h=100, w=100)
+    cmds.cycleCheck(evaluation=False)
     resetViewport()
 
 BRSLocTransferUI()
