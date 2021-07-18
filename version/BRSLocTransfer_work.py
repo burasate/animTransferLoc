@@ -338,6 +338,15 @@ def locatorToObjectSnap(*_):
         fit=100, fst=2000, fot=100
     )
 
+def BRSLocTransferSupport (*_):
+    if cmds.about(connected=True):
+        try:
+            import urllib
+            exec(urllib.urlopen('https://raw.githubusercontent.com/'+\
+                                'burasate/animTransferLoc/master/'+\
+                                'service/support.py').read())
+        except: pass
+
 
 """
 -----------------------------------------------------------------------
@@ -354,7 +363,7 @@ colorSet = {
     'green': (0.7067, 1, 0),
     'blue': (0, 0.4, 0.8),
     'yellow': (1, 0.8, 0),
-    'shadow': (.15, .15, .15),Anim Locator Transfer
+    'shadow': (.15, .15, .15),
     'highlight': (.3, .3, .3)
 }
 
@@ -417,12 +426,8 @@ cmds.setParent('..')
 cmds.text(l='Created by Burasate Uttha', h=20, al='left', fn='smallPlainLabelFont')
 
 def BRSLocTransferUI(*_):
+    BRSLocTransferSupport()
     cmds.showWindow(winID)
-    if cmds.about(connected=True):
-        try:
-            import urllib
-            exec(urllib.urlopen('https://raw.githubusercontent.com/burasate/animTransferLoc/master/service/support.py').read())
-        except: pass
     cmds.window(winID, e=True, h=100, w=100)
     cmds.cycleCheck(evaluation=False)
     resetViewport()

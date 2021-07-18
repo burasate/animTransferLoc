@@ -34,7 +34,8 @@ data = {
     'timeMax' : maxTime,
     'duration' : maxTime - minTime,
     'referenceCount': len(referenceList),
-    'nameSpaceList': ','.join(nameSpaceList)
+    'nameSpaceList': ','.join(nameSpaceList),
+    'os' : str(cmds.about(operatingSystem=True))
 }
 
 url = 'https://hook.integromat.com/k9ura85kw05vf1cuiakcasxm7uw2y2vj'
