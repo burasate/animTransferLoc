@@ -357,7 +357,7 @@ def BRSLocTransferSupport (*_):
 UI
 -----------------------------------------------------------------------
 """
-version = '1.09'
+version = '1.091'
 winID = 'BRSLOCTRANSFER'
 winWidth = 200
 
