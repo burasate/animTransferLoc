@@ -235,6 +235,8 @@ def objectToLocatorSnap(toGroup=True, forceConstraint=False):
         # print(objName)
         keyframeList = getAllKeyframe(objName)
         breakdownList = cmds.keyframe(objName, q=True, breakdown=True)
+        if breakdownList == None:
+            breakdownList = []
         # print(keyframeList)
 
         if len(keyframeList) > 1:
@@ -301,6 +303,8 @@ def locatorToObjectSnap(*_):
         try:
             keyframeList = getAllKeyframe(SnapLoc)
             breakdownList = cmds.keyframe(SnapLoc, q=True, breakdown=True)
+            if breakdownList == None:
+                breakdownList = []
             cmds.select(SnapLoc)
         except:
             pass
