@@ -4,6 +4,7 @@ create mimic translate and rotate animation
 """
 
 import urllib,os
+import maya.cmds as cmds
 import maya.mel as mel
 
 def formatPath(path):
