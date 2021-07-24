@@ -138,8 +138,10 @@ def bakeKey(objectList, keyframeList, inTimeline=False):
         cmds.ogs(pause=True)  # Turn on Viewport 2.0
 
 
-def getMimicLocator(objectName, locName=locSuffix):
+def getMimicLocator(objectName, locName=locSuffix, rotOrder = 'xzy'):
     anno = cmds.checkBox(AnnoChk, q=True, value=True)
+    rotOrderList = ['xyz', 'yzx', 'zxy', 'xzy', 'yxz', 'zyx']
+    rotOrderIndex = rotOrderList.index(rotOrder)
     LocName = objectName + locName
     # delete exist locator
     try:
@@ -154,6 +156,7 @@ def getMimicLocator(objectName, locName=locSuffix):
     cmds.setAttr(LocName + '.overrideColorRGB', 0.465, 1, 0.0)
     cmds.setAttr(LocName + '.useOutlinerColor', 1)
     cmds.setAttr(LocName + '.outlinerColor', 0.7067, 1, 0)
+    cmds.setAttr(LocName + '.rotateOrder', rotOrderIndex)
     parentConstraint(locator, objectName)
 
     annoText = objectName
@@ -353,7 +356,7 @@ def BRSLocTransferSupport (*_):
 UI
 -----------------------------------------------------------------------
 """
-version = '1.09'
+version = '1.10'
 winID = 'BRSLOCTRANSFER'
 winWidth = 200
 
@@ -426,7 +429,7 @@ cmds.setParent('..')
 cmds.text(l='Created by Burasate Uttha', h=20, al='left', fn='smallPlainLabelFont')
 
 def BRSLocTransferUI(*_):
-    BRSLocTransferSupport()
+    #BRSLocTransferSupport()
     cmds.showWindow(winID)
     cmds.window(winID, e=True, h=100, w=100)
     cmds.cycleCheck(evaluation=False)
