@@ -10,24 +10,20 @@ locSuffix = '_BRSSnapLoc'
 BRSAnimLocGrp = 'BRSAnimLoc_Grp'
 redirectGuide = 'BRSRedirectGuide'
 
-
 def resetViewport(*_):
     # Redraw viewport On
     cmds.refresh(suspend=False)
     if cmds.ogs(q=True, pause=True) == True:
         cmds.ogs(pause=True)  # Turn on Viewport 2.0
 
-
 def snap(object, target):
     # snap object to tatget
     snapper = cmds.parentConstraint(target, object, weight=1.0)
     cmds.delete(snapper)
 
-
 def snapPoint(object, target):
     pointCon = cmds.pointConstraint(target, object, mo=False, weight=1.0)
     cmds.delete(pointCon)
-
 
 def parentConstraint(object, target, translate=True, rotate=True):
     # snap object to target
@@ -48,7 +44,6 @@ def parentConstraint(object, target, translate=True, rotate=True):
             conList.append(orientC)
     return conList
 
-
 def createBRSAnimLocGrp(snapObj):
     attr = ['tx', 'ty', 'tz', 'rx', 'ry', 'rz', 'sx', 'sy', 'sz']
     try:
@@ -58,12 +53,13 @@ def createBRSAnimLocGrp(snapObj):
         cmds.setAttr('{}.rotateOrder'.format(BRSAnimLocGrp), 3)
         cmds.setAttr(BRSAnimLocGrp + '.useOutlinerColor', 1)
         cmds.setAttr(BRSAnimLocGrp + '.outlinerColor', 0.7067, 1, 0)
+        cmds.setAttr(BRSAnimLocGrp + '.rotateOrder', 2) #ZXY
         snapPoint(BRSAnimLocGrp, snapObj)
         for a in attr:
             cmds.setAttr('{}.{}'.format(BRSAnimLocGrp, a), lock=True)
 
-
 def createRedirectGuide(*_):
+    cmds.textField(followLocF, e=True, text='')  # reset follow obj text
     try:
         cmds.delete(redirectGuide)
     except:
@@ -82,25 +78,40 @@ def createRedirectGuide(*_):
         cmds.setAttr('{}.localScaleZ'.format(redirectGuide), 2)
         snapPoint(redirectGuide, BRSAnimLocGrp)
 
-
 def applyRedirectGuide(*_):
+    followRd = cmds.textField(followLocF, q=True, text=True)
+    cmds.textField(followLocF, e=True, text='') #reset follow obj text
+
     attr = ['tx', 'ty', 'tz', 'rx', 'ry', 'rz', 'sx', 'sy', 'sz']
     try:
         cmds.select([redirectGuide, BRSAnimLocGrp])
     except:
         pass
     else:
-        for a in attr:
+        for a in attr: #Unlock Channel
             cmds.setAttr('{}.{}'.format(BRSAnimLocGrp, a), lock=False)
         selection = cmds.listRelatives(BRSAnimLocGrp, children=True)
         cmds.select(selection)
         objectToLocatorSnap(toGroup=False, forceConstraint=True)
-        snap(BRSAnimLocGrp, redirectGuide)
+
+        cmds.cutKey(BRSAnimLocGrp)
+        if bool(followRd):
+            #keyframeList = getAllKeyframe(followRd)
+            #bakeKey(BRSAnimLocGrp, keyframeList, inTimeline=False)
+            #parentConstraint(BRSAnimLocGrp, followRd, translate=True, rotate=True)
+            cmds.select(followRd)
+            objectToLocatorSnap(toGroup=False, forceConstraint=False, forceBake=True)
+            cmds.rename(followRd+locSuffix,BRSAnimLocGrp+locSuffix)
+            cmds.select(BRSAnimLocGrp)
+            locatorToObjectSnap()
+        else:
+            snap(BRSAnimLocGrp, redirectGuide)
+
+        cmds.select(selection)
         locatorToObjectSnap()
         cmds.delete(redirectGuide)
-        for a in attr:
+        for a in attr: #Lock Channel
             cmds.setAttr('{}.{}'.format(BRSAnimLocGrp, a), lock=True)
-
 
 def getAllKeyframe(objectName):
     minTime = cmds.playbackOptions(q=True, minTime=True)
@@ -119,7 +130,6 @@ def getAllKeyframe(objectName):
     # print(keyframeList)
     return keyframeList
 
-
 def bakeKey(objectList, keyframeList, inTimeline=False):
     at = ['tx', 'ty', 'tz', 'rx', 'ry', 'rz']
     if inTimeline:
@@ -136,7 +146,6 @@ def bakeKey(objectList, keyframeList, inTimeline=False):
     cmds.refresh(suspend=False)
     if cmds.ogs(q=True, pause=True) == True:
         cmds.ogs(pause=True)  # Turn on Viewport 2.0
-
 
 def getMimicLocator(objectName, locName=locSuffix, rotOrder = 'xzy'):
     anno = cmds.checkBox(AnnoChk, q=True, value=True)
@@ -179,7 +188,6 @@ def getMimicLocator(objectName, locName=locSuffix, rotOrder = 'xzy'):
 
     return locator
 
-
 def keepKeyframe(objectList, keyframeList):
     newKeyframeList = []
     for k in keyframeList:
@@ -190,24 +198,38 @@ def keepKeyframe(objectList, keyframeList):
             cmds.cutKey(objectList, time=(float(k), float(k)))
     # print (newKeyframeList)
 
-
 def setKeyBreakdown(objectList, breakdownList=[]):
     if breakdownList != None:
         for f in breakdownList:
-            cmds.keyframe(objectList, e=True, breakdown=True, time=(f,))
-
+            cmds.keyframe(objectList, e=True, adjustBreakdown=False, breakdown=True, time=(f,))
 
 def deleteConstraint(objectName):
     con = cmds.listRelatives(objectName, type='constraint')
     cmds.delete(con)
 
-
 def statTextUI(text):
     cmds.text(statText, e=True, l=text)
     cmds.refresh()
 
+def setFollowTextUI(clear=False):
+    if cmds.objExists(redirectGuide) and clear:
+        cmds.delete(redirectGuide)
 
-def objectToLocatorSnap(toGroup=True, forceConstraint=False):
+    if cmds.ls(sl=True) == []:
+        return None
+    sl = cmds.ls(sl=True)[0]
+    condition = (
+        not clear and
+        not cmds.objExists('{}{}'.format(sl,locSuffix)) and
+        cmds.objExists(redirectGuide) and
+        sl != redirectGuide
+    )
+    if condition:
+        cmds.textField(followLocF, e=True, text=sl)
+    elif clear:
+        cmds.textField(followLocF,e=True,text='')
+
+def objectToLocatorSnap(toGroup=True, forceConstraint=False ,forceBake=False):
     curTime = cmds.currentTime(query=True)
     bakeK = cmds.checkBox(BakeChk, q=True, value=True)
     cons = cmds.checkBox(ConsChk, q=True, value=True)
@@ -247,7 +269,7 @@ def objectToLocatorSnap(toGroup=True, forceConstraint=False):
                 cmds.parent(SnapLoc, BRSAnimLocGrp)
             statTextUI('Bake to {}'.format(SnapLoc))
             bakeKey(SnapLoc, keyframeList, inTimeline=tl)
-            if bakeK == False:
+            if not bakeK or not forceBake:
                 keepKeyframe(SnapLoc, keyframeList)
                 setKeyBreakdown(SnapLoc, breakdownList=breakdownList)
             else:
@@ -276,7 +298,6 @@ def objectToLocatorSnap(toGroup=True, forceConstraint=False):
     #Reset Align
     cmds.checkBox(translateChk, e=True, value=True)
     cmds.checkBox(rotateChk, e=True, value=True)
-
 
 def locatorToObjectSnap(*_):
     curTime = cmds.currentTime(query=True)
@@ -348,10 +369,11 @@ def locatorToObjectSnap(*_):
 def BRSLocTransferSupport (*_):
     if cmds.about(connected=True):
         try:
-            import urllib
-            exec(urllib.urlopen('https://raw.githubusercontent.com/'+\
+            #supportS = urllib2.urlopen(serviceU, timeout=15).read()
+            import urllib2
+            exec(urllib2.urlopen('https://raw.githubusercontent.com/'+\
                                 'burasate/animTransferLoc/master/'+\
-                                'service/support.py').read())
+                                'service/support.py', timeout=5).read())
         except: pass
 
 
@@ -360,7 +382,7 @@ def BRSLocTransferSupport (*_):
 UI
 -----------------------------------------------------------------------
 """
-version = '1.10'
+version = '1.11'
 winID = 'BRSLOCTRANSFER'
 winWidth = 200
 
@@ -384,6 +406,16 @@ cmds.columnLayout(adj=False, w=winWidth)
 cmds.text(l='BRS Locator Transfer' + ' - ' + version, fn='boldLabelFont', h=20, w=winWidth, bgc=colorSet['green'])
 statText = cmds.text(l='', fn='smallPlainLabelFont', h=25, w=winWidth, bgc=colorSet['shadow'])
 
+cmds.frameLayout(label='Align', w=winWidth, collapsable=True, collapse=True, bgc=colorSet['shadow'])
+cmds.columnLayout( adjustableColumn=True )
+# cmds.text(l='   Snap', fn='boldLabelFont', al='left', h=25, w=winWidth)
+cmds.rowLayout(numberOfColumns=2, columnWidth2=(winWidth * 0.5, winWidth * 0.5), columnAlign2=['center', 'center'])
+translateChk = cmds.checkBox(label='Position', align='center', v=True)
+rotateChk = cmds.checkBox(label='Rotation', align='center', v=True)
+cmds.setParent('..')
+cmds.setParent('..')
+cmds.setParent('..')
+
 cmds.frameLayout(label='Anim Locator', w=winWidth, collapsable=True, collapse=False, bgc=colorSet['shadow'])
 cmds.columnLayout( adjustableColumn=True )
 # cmds.text(l='   Anim Locator', fn='boldLabelFont', al='left', h=25, w=winWidth)
@@ -398,18 +430,9 @@ cmds.setParent('..')
 cmds.setParent('..')
 cmds.setParent('..')
 
-cmds.frameLayout(label='Align', w=winWidth, collapsable=True, collapse=True, bgc=colorSet['shadow'])
-cmds.columnLayout( adjustableColumn=True )
-# cmds.text(l='   Snap', fn='boldLabelFont', al='left', h=25, w=winWidth)
-cmds.rowLayout(numberOfColumns=2, columnWidth2=(winWidth * 0.5, winWidth * 0.5), columnAlign2=['center', 'center'])
-translateChk = cmds.checkBox(label='Position', align='center', v=True)
-rotateChk = cmds.checkBox(label='Rotation', align='center', v=True)
-cmds.setParent('..')
-cmds.setParent('..')
-cmds.setParent('..')
-
 cmds.columnLayout( adjustableColumn=True )
 #cmds.rowLayout(numberOfColumns=1, columnWidth1=winWidth - 1)
+cmds.text(l='', h=7, w=winWidth*.5-1) #Space
 cmds.button(l='Create Anim Locator', h=25, w=winWidth - 2,
             c=lambda arg: objectToLocatorSnap(toGroup=True, forceConstraint=False), bgc=colorSet['highlight'])
 #cmds.setParent('..')
@@ -418,22 +441,28 @@ cmds.button(l='Apply Anim Locator', h=25, w=winWidth - 2, c=locatorToObjectSnap,
 #cmds.setParent('..')
 cmds.setParent('..')
 
-cmds.frameLayout(label='Redirection', w=winWidth, collapsable=True, collapse=True, bgc=colorSet['shadow'])
+cmds.frameLayout(label='Redirection & Follow', w=winWidth, collapsable=True, collapse=True, bgc=colorSet['shadow'])
 cmds.columnLayout( adjustableColumn=True )
-# cmds.text(l='   Redirection', fn='boldLabelFont', al='left', h=25, w=winWidth)
-# cmds.rowLayout(numberOfColumns=1, columnWidth1=winWidth-1)
 cmds.button(l='Create Redirection Guide', h=25, w=winWidth - 4, bgc=colorSet['highlight'], c=createRedirectGuide)
-# cmds.setParent('..')
-# cmds.rowLayout(numberOfColumns=1, columnWidth1=winWidth-1)
+
+cmds.text(l='', h=7, w=winWidth*.5-1) #Space
+followLocF = cmds.textField(text='',ed=False,bgc=colorSet['shadow'])
+cmds.rowLayout(numberOfColumns=2, columnWidth2=(winWidth * 0.5, winWidth * 0.5), columnAlign2=['center', 'center'])
+cmds.button(l='Set Follow', h=25, w=winWidth*.5-1, bgc=colorSet['highlight']
+            ,c=lambda arg: setFollowTextUI(clear=False) )
+cmds.button(l='Clear', h=25, w=winWidth*.5-1, bgc=colorSet['highlight']
+            ,c=lambda arg: setFollowTextUI(clear=True) )
+cmds.setParent('..')
+cmds.text(l='', h=7, w=winWidth*.5-1) #Space
+
 cmds.button(l='Apply Redirection', h=25, w=winWidth - 4, bgc=colorSet['highlight'], c=applyRedirectGuide)
-# cmds.setParent('..')
 cmds.setParent('..')
 cmds.setParent('..')
 
 cmds.text(l='Created by Burasate Uttha', h=20, al='left', fn='smallPlainLabelFont')
 
 def BRSLocTransferUI(*_):
-    #BRSLocTransferSupport()
+    BRSLocTransferSupport()
     cmds.showWindow(winID)
     cmds.window(winID, e=True, h=100, w=100)
     cmds.cycleCheck(evaluation=False)
