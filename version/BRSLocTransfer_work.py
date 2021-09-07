@@ -269,7 +269,7 @@ def objectToLocatorSnap(toGroup=True, forceConstraint=False ,forceBake=False):
                 cmds.parent(SnapLoc, BRSAnimLocGrp)
             statTextUI('Bake to {}'.format(SnapLoc))
             bakeKey(SnapLoc, keyframeList, inTimeline=tl)
-            if not bakeK or not forceBake:
+            if not bakeK and not forceBake:
                 keepKeyframe(SnapLoc, keyframeList)
                 setKeyBreakdown(SnapLoc, breakdownList=breakdownList)
             else:
@@ -382,7 +382,7 @@ def BRSLocTransferSupport (*_):
 UI
 -----------------------------------------------------------------------
 """
-version = '1.11'
+version = '1.12'
 winID = 'BRSLOCTRANSFER'
 winWidth = 200
 
