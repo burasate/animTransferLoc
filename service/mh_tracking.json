@@ -1040,16 +1040,16 @@
         "work_hour": 0.3
     },
     "ANM_SH0270": {
-        "anim_note": "hand key animate\n\nF.HERO \u0e19\u0e31\u0e48\u0e07\u0e1a\u0e19\u0e01\u0e23\u0e30\u0e42\u0e1b\u0e23\u0e07\u0e23\u0e16\u0e21\u0e2d\u0e07\u0e14\u0e39\u0e1b\u0e36\u0e01\u0e18\u0e19\u0e1a\u0e31\u0e15\u0e23",
-        "anim_note_eng": "Hand Key Animate\n\nF.Hero sitting on the skirt, looking at the banknote",
+        "anim_note": "hand key animate\nF.HERO \u0e19\u0e31\u0e48\u0e07\u0e1a\u0e19\u0e01\u0e23\u0e30\u0e42\u0e1b\u0e23\u0e07\u0e23\u0e16\u0e21\u0e2d\u0e07\u0e14\u0e39\u0e1b\u0e36\u0e01\u0e18\u0e19\u0e1a\u0e31\u0e15\u0e23\n\u0e1b\u0e23\u0e31\u0e1a\u0e21\u0e38\u0e21\u0e01\u0e25\u0e49\u0e2d\u0e07\u0e15\u0e32\u0e21 cutting drone shot",
+        "anim_note_eng": "Hand Key Animate\nF.Hero sitting on the skirt, looking at the banknote\nAdjust the camera angle according to Cutting Drone Shot",
         "animation_name": "ANM_SH0270_FH_Desert02_3675_3733",
         "approve": 0,
         "assignee": "Kaofang",
         "audio_offset": -1958,
         "audio_source": "cutting2reference.wav",
         "character": 1,
-        "comment": "",
-        "comment_eng": "",
+        "comment": "\u0e1b\u0e23\u0e31\u0e1a\u0e21\u0e38\u0e21\u0e01\u0e25\u0e49\u0e2d\u0e07\u0e15\u0e32\u0e21 cutting drone shot",
+        "comment_eng": "Adjust the camera angle according to Cutting Drone Shot",
         "date_finish": "",
         "do_nothing": 0.54,
         "face_lib_end": 2108,
@@ -1128,8 +1128,8 @@
         "audio_offset": -2092,
         "audio_source": "cutting2reference.wav",
         "character": 1,
-        "comment": "add cloth overlap",
-        "comment_eng": "Add Cloth Overlap",
+        "comment": "add cloth overlap\n\u0e1b\u0e23\u0e31\u0e1a\u0e21\u0e38\u0e21\u0e01\u0e25\u0e49\u0e2d\u0e07\u0e15\u0e32\u0e21 cutting drone shot",
+        "comment_eng": "Add Cloth Overlap\nAdjust the camera angle according to Cutting Drone Shot",
         "date_finish": "",
         "do_nothing": 0,
         "face_lib_end": 2215,
@@ -1240,8 +1240,8 @@
         "work_hour": 0.3
     },
     "ANM_SH0320": {
-        "anim_note": "mocap clean up\n\nMINNIE \u0e40\u0e14\u0e34\u0e19\u0e43\u0e19\u0e17\u0e38\u0e48\u0e07\u0e2b\u0e0d\u0e49\u0e32\u0e01\u0e25\u0e32\u0e07\u0e27\u0e31\u0e19",
-        "anim_note_eng": "Mocap Clean Up\n\nMinnie walk in the lunch mepart",
+        "anim_note": "mocap clean up\nMINNIE \u0e40\u0e14\u0e34\u0e19\u0e43\u0e19\u0e17\u0e38\u0e48\u0e07\u0e2b\u0e0d\u0e49\u0e32\u0e01\u0e25\u0e32\u0e07\u0e27\u0e31\u0e19\n\u0e1b\u0e23\u0e31\u0e1a\u0e21\u0e38\u0e21\u0e01\u0e25\u0e49\u0e2d\u0e07\u0e15\u0e32\u0e21 cutting",
+        "anim_note_eng": "Mocap Clean Up\nMinnie walk in the lunch mepart\nAdjust the camera angle according to cutting",
         "animation_name": "ANM_SH0320_MN_Fuji01_0795_0869",
         "approve": 0,
         "assignee": "Kaofang",
@@ -1320,8 +1320,8 @@
         "work_hour": 0.2
     },
     "ANM_SH0340": {
-        "anim_note": "mocap clean up\n\nMINNIE \u0e40\u0e14\u0e34\u0e19\u0e23\u0e49\u0e2d\u0e07\u0e25\u0e34\u0e1b\u0e0b\u0e34\u0e49\u0e07\u0e43\u0e19\u0e17\u0e38\u0e48\u0e07\u0e2b\u0e0d\u0e49\u0e32\u0e01\u0e25\u0e32\u0e07\u0e27\u0e31\u0e19",
-        "anim_note_eng": "Mocap Clean Up\n\nMinnie walks lipching in the lunch mepart.",
+        "anim_note": "mocap clean up\nMINNIE \u0e40\u0e14\u0e34\u0e19\u0e23\u0e49\u0e2d\u0e07\u0e25\u0e34\u0e1b\u0e0b\u0e34\u0e49\u0e07\u0e43\u0e19\u0e17\u0e38\u0e48\u0e07\u0e2b\u0e0d\u0e49\u0e32\u0e01\u0e25\u0e32\u0e07\u0e27\u0e31\u0e19\n\u0e1b\u0e23\u0e31\u0e1a\u0e21\u0e38\u0e21\u0e01\u0e25\u0e49\u0e2d\u0e07\u0e15\u0e32\u0e21 cutting",
+        "anim_note_eng": "Mocap Clean Up\nMinnie walks lipching in the lunch mepart.\nAdjust the camera angle according to cutting",
         "animation_name": "ANM_SH0340_MN_Fuji01_0471_0520",
         "approve": 0,
         "assignee": "Mint",
@@ -1600,8 +1600,8 @@
         "work_hour": 0.3
     },
     "ANM_SH0410": {
-        "anim_note": "mocap clean up\nguitar hand key animate\n\nF.HERO \u0e23\u0e49\u0e2d\u0e07\u0e25\u0e34\u0e1b\u0e0b\u0e34\u0e49\u0e07 \u0e41\u0e25\u0e30 URBOYTJ \u0e40\u0e25\u0e48\u0e19\u0e01\u0e35\u0e15\u0e49\u0e32\u0e23\u0e4c\u0e19\u0e31\u0e48\u0e07\u0e2d\u0e22\u0e39\u0e48\r\n\u0e1a\u0e19\u0e15\u0e31\u0e27\u0e2b\u0e19\u0e31\u0e07\u0e2a\u0e37\u0e2d MONEY HONEY",
-        "anim_note_eng": "Mocap Clean Up\nGuitar Hand Key Animate\n\nF.Hero, singing, lipping, urboytj, play guitar, sitting\r\nOn the Money Honey text",
+        "anim_note": "mocap clean up\nguitar hand key animate\nF.HERO \u0e23\u0e49\u0e2d\u0e07\u0e25\u0e34\u0e1b\u0e0b\u0e34\u0e49\u0e07 \u0e41\u0e25\u0e30 URBOYTJ \u0e40\u0e25\u0e48\u0e19\u0e01\u0e35\u0e15\u0e49\u0e32\u0e23\u0e4c\u0e19\u0e31\u0e48\u0e07\u0e2d\u0e22\u0e39\u0e48\n\u0e1a\u0e19\u0e15\u0e31\u0e27\u0e2b\u0e19\u0e31\u0e07\u0e2a\u0e37\u0e2d MONEY HONEY\n\u0e1b\u0e23\u0e31\u0e1a\u0e21\u0e38\u0e21\u0e01\u0e25\u0e49\u0e2d\u0e07\u0e15\u0e32\u0e21 cutting",
+        "anim_note_eng": "Mocap Clean Up\nGuitar Hand Key Animate\nF.Hero, singing, lipping, urboytj, play guitar, sitting\nOn the Money Honey text\nAdjust the camera angle according to cutting",
         "animation_name": "ANM_SH0410_TJFH_Desert02_3025_3097",
         "approve": 0,
         "assignee": "Kaofang",
@@ -1640,8 +1640,8 @@
         "work_hour": 0.6
     },
     "ANM_SH0420": {
-        "anim_note": "mocap clean up\nguitar hand key animate\n\nF.HERO \u0e23\u0e49\u0e2d\u0e07\u0e25\u0e34\u0e1b\u0e0b\u0e34\u0e49\u0e07 URBOYTJ \u0e40\u0e25\u0e48\u0e19\u0e01\u0e35\u0e15\u0e49\u0e32\u0e23\u0e4c",
-        "anim_note_eng": "Mocap Clean Up\nGuitar Hand Key Animate\n\nF.Hero, singing, lipping, urboytj, play guitar",
+        "anim_note": "mocap clean up\nguitar hand key animate\nF.HERO \u0e23\u0e49\u0e2d\u0e07\u0e25\u0e34\u0e1b\u0e0b\u0e34\u0e49\u0e07 URBOYTJ \u0e40\u0e25\u0e48\u0e19\u0e01\u0e35\u0e15\u0e49\u0e32\u0e23\u0e4c\n\u0e1b\u0e23\u0e31\u0e1a\u0e21\u0e38\u0e21\u0e01\u0e25\u0e49\u0e2d\u0e07\u0e15\u0e32\u0e21 cutting",
+        "anim_note_eng": "Mocap Clean Up\nGuitar Hand Key Animate\nF.Hero, singing, lipping, urboytj, play guitar\nAdjust the camera angle according to cutting",
         "animation_name": "ANM_SH0420_TJFH_Desert02_0935_0996",
         "approve": 0,
         "assignee": "Kaofang",
@@ -1800,8 +1800,8 @@
         "work_hour": 0.3
     },
     "ANM_SH0460": {
-        "anim_note": "mocap clean up\nguitar hand key animate\n\n\nF.HERO \u0e23\u0e49\u0e2d\u0e07\u0e25\u0e34\u0e1b\u0e0b\u0e34\u0e49\u0e07 URBOYTJ \u0e40\u0e25\u0e48\u0e19\u0e01\u0e35\u0e15\u0e49\u0e32\u0e23\u0e4c",
-        "anim_note_eng": "Mocap Clean Up\nGuitar Hand Key Animate\n\n\nF.Hero, singing, lipping, urboytj, play guitar",
+        "anim_note": "mocap clean up\nguitar hand key animate\nF.HERO \u0e23\u0e49\u0e2d\u0e07\u0e25\u0e34\u0e1b\u0e0b\u0e34\u0e49\u0e07 URBOYTJ \u0e40\u0e25\u0e48\u0e19\u0e01\u0e35\u0e15\u0e49\u0e32\u0e23\u0e4c\n\u0e1b\u0e23\u0e31\u0e1a\u0e21\u0e38\u0e21\u0e01\u0e25\u0e49\u0e2d\u0e07\u0e15\u0e32\u0e21 cutting",
+        "anim_note_eng": "Mocap Clean Up\nGuitar Hand Key Animate\nF.Hero, singing, lipping, urboytj, play guitar\nAdjust the camera angle according to cutting",
         "animation_name": "ANM_SH0460_TJFH_Desert02_3307_3379",
         "approve": 0,
         "assignee": "Kaofang",
@@ -1960,8 +1960,8 @@
         "work_hour": 0.4
     },
     "ANM_SH0500": {
-        "anim_note": "mocap clean up\nguitar hand key animate",
-        "anim_note_eng": "Mocap Clean Up\nGuitar Hand Key Animate",
+        "anim_note": "mocap clean up\nguitar hand key animate\n\u0e1b\u0e23\u0e31\u0e1a\u0e21\u0e38\u0e21\u0e01\u0e25\u0e49\u0e2d\u0e07\u0e15\u0e32\u0e21 cutting",
+        "anim_note_eng": "Mocap Clean Up\nGuitar Hand Key Animate\nAdjust the camera angle according to cutting",
         "animation_name": "ANM_SH0500_TJFH_Desert05_0555_0618",
         "approve": 0,
         "assignee": "Note",
@@ -2080,8 +2080,8 @@
         "work_hour": 0.0
     },
     "ANM_SH0530": {
-        "anim_note": "mocap clean up\nguitar hand key animate",
-        "anim_note_eng": "Mocap Clean Up\nGuitar Hand Key Animate",
+        "anim_note": "mocap clean up\nguitar hand key animate\n\u0e1b\u0e23\u0e31\u0e1a\u0e21\u0e38\u0e21\u0e01\u0e25\u0e49\u0e2d\u0e07\u0e15\u0e32\u0e21 cutting",
+        "anim_note_eng": "Mocap Clean Up\nGuitar Hand Key Animate\nAdjust the camera angle according to cutting",
         "animation_name": "ANM_SH0530_TJFH_Desert04_0151_0211",
         "approve": 0,
         "assignee": "Kaofang",
@@ -2128,8 +2128,8 @@
         "audio_offset": -3699,
         "audio_source": "cutting2reference.wav",
         "character": 2,
-        "comment": "\u0e1b\u0e23\u0e31\u0e1a\u0e01\u0e25\u0e49\u0e2d\u0e07\u0e15\u0e32\u0e21 cutting",
-        "comment_eng": "Adjust the camera according to cutting",
+        "comment": "\u0e1b\u0e23\u0e31\u0e1a\u0e01\u0e25\u0e49\u0e2d\u0e07\u0e15\u0e32\u0e21 cutting\n\u0e01\u0e25\u0e49\u0e2d\u0e07\u0e21\u0e35 close up  cut  \u0e40\u0e02\u0e49\u0e32\u0e44\u0e1b\u0e2b\u0e32 TJ",
+        "comment_eng": "Adjust the camera according to cutting\nThe camera has Close Up Cut to TJ.",
         "date_finish": "",
         "do_nothing": 0,
         "face_lib_end": 3945,
@@ -2160,8 +2160,8 @@
         "work_hour": 1.3
     },
     "ANM_SH0550": {
-        "anim_note": "mocap clean up\nguitar hand key animate\n\nURBOYTJ \u0e2b\u0e31\u0e19\u0e44\u0e1b\u0e15\u0e1a\u0e44\u0e2b\u0e25\u0e48\u0e1b\u0e25\u0e2d\u0e1a\u0e43\u0e08 F.HERO",
-        "anim_note_eng": "Mocap Clean Up\nGuitar Hand Key Animate\n\nUrboytj turned to slap the shoulder consolation f.Hero",
+        "anim_note": "mocap clean up\nguitar hand key animate\nURBOYTJ \u0e2b\u0e31\u0e19\u0e44\u0e1b\u0e15\u0e1a\u0e44\u0e2b\u0e25\u0e48\u0e1b\u0e25\u0e2d\u0e1a\u0e43\u0e08 F.HERO\n\u0e1b\u0e23\u0e31\u0e1a\u0e01\u0e25\u0e49\u0e2d\u0e07\u0e15\u0e32\u0e21 cutting",
+        "anim_note_eng": "Mocap Clean Up\nGuitar Hand Key Animate\nUrboytj turned to slap the shoulder consolation f.Hero\nAdjust the camera according to cutting",
         "animation_name": "ANM_SH0550_TJFH_Desert05_1318_1392",
         "approve": 0,
         "assignee": "Kaofang",
@@ -2720,8 +2720,8 @@
         "work_hour": 0.8
     },
     "ANM_SH0690": {
-        "anim_note": "mocap clean up\nguitar hand key animate\n\nF.HERO \u0e42\u0e22\u0e01\u0e15\u0e32\u0e21\u0e40\u0e1e\u0e25\u0e07 URBOYTJ \u0e40\u0e25\u0e48\u0e19\u0e01\u0e35\u0e15\u0e49\u0e32\u0e23\u0e4c \u0e23\u0e49\u0e2d\u0e07\u0e25\u0e34\u0e1b\r\n\u0e0b\u0e34\u0e49\u0e07",
-        "anim_note_eng": "Mocap Clean Up\nGuitar Hand Key Animate\n\nF.Hero Rocker by Urboytj Music Play Guitar Crying Lip\r\nSeng",
+        "anim_note": "mocap clean up\nguitar hand key animate\nF.HERO \u0e42\u0e22\u0e01\u0e15\u0e32\u0e21\u0e40\u0e1e\u0e25\u0e07 URBOYTJ \u0e40\u0e25\u0e48\u0e19\u0e01\u0e35\u0e15\u0e49\u0e32\u0e23\u0e4c \u0e23\u0e49\u0e2d\u0e07\u0e25\u0e34\u0e1b\n\u0e0b\u0e34\u0e49\u0e07\n\u0e1b\u0e23\u0e31\u0e1a\u0e01\u0e25\u0e49\u0e2d\u0e07\u0e15\u0e32\u0e21 cutting",
+        "anim_note_eng": "Mocap Clean Up\nGuitar Hand Key Animate\nF.Hero Rocker by Urboytj Music Play Guitar Crying Lip\nSeng\nAdjust the camera according to cutting",
         "animation_name": "ANM_SH0690_TJFH_Desert02_4709_4759",
         "approve": 0,
         "assignee": "Meen",
@@ -2888,8 +2888,8 @@
         "audio_offset": -5176,
         "audio_source": "cutting2reference.wav",
         "character": 2,
-        "comment": "F.Hero \u0e0a\u0e32\u0e22\u0e40\u0e2a\u0e37\u0e49\u0e2d\u0e2a\u0e31\u0e48\u0e19  \u0e43\u0e2a\u0e48 overlap",
-        "comment_eng": "F.Hero male shirt vibrating overlap",
+        "comment": "F.Hero \u0e0a\u0e32\u0e22\u0e40\u0e2a\u0e37\u0e49\u0e2d\u0e2a\u0e31\u0e48\u0e19  \u0e43\u0e2a\u0e48 overlap\n\u0e1b\u0e23\u0e31\u0e1a\u0e01\u0e25\u0e49\u0e2d\u0e07\u0e15\u0e32\u0e21 cutting\n\u0e40\u0e14\u0e35\u0e4b\u0e22\u0e27\u0e40\u0e0a\u0e47\u0e04\u0e01\u0e31\u0e1a\u0e17\u0e32\u0e07\u0e17\u0e35\u0e21\u0e27\u0e48\u0e32\u0e08\u0e30\u0e21\u0e35\u0e41\u0e2d\u0e19\u0e34\u0e40\u0e21\u0e0a\u0e31\u0e48\u0e19\u0e2d\u0e30\u0e44\u0e23\u0e40\u0e1e\u0e34\u0e48\u0e21\u0e40\u0e15\u0e34\u0e21\u0e43\u0e19\u0e0b\u0e35\u0e19",
+        "comment_eng": "F.Hero male shirt vibrating overlap\nAdjust the camera according to cutting\nWait, check with the team that there will be additional animations in the scene.",
         "date_finish": "",
         "do_nothing": 0,
         "face_lib_end": 5403,
