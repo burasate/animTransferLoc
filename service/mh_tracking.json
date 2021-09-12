@@ -3,13 +3,13 @@
         "anim_note": "guitar close up\nhand key animate\nmocap clean up\n\nF.HERO \u0e40\u0e25\u0e48\u0e19\u0e01\u0e35\u0e15\u0e49\u0e32\u0e23\u0e4c",
         "anim_note_eng": "Guitar Close Up\nHand Key Animate\nMocap Clean Up\n\nF.Hero playing guitar",
         "animation_name": "ANM_SH0010_TJFH_Space01_0189_0320",
-        "approve": 0,
+        "approve": 2.45,
         "assignee": "Kaofang",
         "audio_offset": 25,
         "audio_source": "cutting2reference.wav",
         "character": 2,
-        "comment": "\u0e41\u0e01\u0e49\u0e21\u0e37\u0e2d\u0e08\u0e31\u0e1a\u0e04\u0e2d\u0e23\u0e4c\u0e14\n\u0e23\u0e2d comfirm \u0e01\u0e25\u0e49\u0e2d\u0e07\nreplace guitar",
-        "comment_eng": "Solve the chord\nWaiting Comfirm Camera\nReplace Guitar",
+        "comment": "",
+        "comment_eng": "",
         "date_finish": "",
         "do_nothing": 0,
         "face_lib_end": 198,
@@ -17,13 +17,13 @@
         "frame_character": 262,
         "frame_duration": 131,
         "in_progress": 0,
-        "last_ma": "",
+        "last_ma": "ANM_SH0010_20210912_185607.ma",
         "mocap_file_path": "D:/Project_maya/MoneyHoney/mocap/TJFH_Space01.fbx",
         "mocap_frame_offset": -88,
         "mocap_frame_start": 189,
         "mocap_frame_stop": 320,
         "mocap_name": "TJFH_Space01",
-        "need fix": 2.45,
+        "need fix": 0,
         "percentage_of_total": 2.45,
         "post_roll": 5,
         "pre_roll": 5,
@@ -33,23 +33,23 @@
         "shot_name": "ANM_SH0010",
         "source_frame_end": 207,
         "source_frame_start": 76,
-        "status": "need fix",
+        "status": "approve",
         "thumbnail": "",
         "video_offset": -25,
         "video_source": "cutting2reference.mp4",
-        "work_hour": 1.0
+        "work_hour": 0.0
     },
     "ANM_SH0020": {
         "anim_note": "hand key animate\nmocap clean up\nguitar \n\nF.HERO \u0e40\u0e25\u0e48\u0e19\u0e01\u0e35\u0e15\u0e49\u0e32\u0e23\u0e4c\u0e1a\u0e19\u0e14\u0e32\u0e27\u0e40\u0e04\u0e23\u0e32\u0e30\u0e2b\u0e4c\u0e17\u0e35\u0e48\u0e01\u0e33\u0e25\u0e31\u0e07\u0e2b\u0e21\u0e38\u0e19 \u0e43\u0e19\u0e01\u0e32\n\u0e41\u0e25\u0e04\u0e0b\u0e35\u0e48\u0e2d\u0e31\u0e19\u0e40\u0e27\u0e34\u0e49\u0e07\u0e27\u0e49\u0e32\u0e07",
         "anim_note_eng": "Hand Key Animate\nMocap Clean Up\nGuitar\n\nF.Hero plays the guitar on the planet that is rotating in\nLaxy",
         "animation_name": "ANM_SH0020_TJFH_Space01_0321_0402",
-        "approve": 0,
+        "approve": 1.51,
         "assignee": "Kaofang",
         "audio_offset": -107,
         "audio_source": "cutting2reference.wav",
         "character": 2,
-        "comment": "\u0e40\u0e0a\u0e47\u0e04\u0e15\u0e33\u0e41\u0e2b\u0e19\u0e48\u0e07\u0e01\u0e25\u0e49\u0e2d\u0e07\u0e01\u0e31\u0e1a ue team \n\u0e40\u0e0a\u0e47\u0e04\u0e27\u0e48\u0e32\u0e40\u0e1b\u0e47\u0e19\u0e0a\u0e2d\u0e17\u0e40\u0e14\u0e35\u0e22\u0e27\u0e01\u0e31\u0e19\u0e01\u0e31\u0e1a SH0030 \u0e2b\u0e23\u0e37\u0e2d\u0e40\u0e1b\u0e25\u0e48\u0e32\nreplace guitar",
-        "comment_eng": "Check the camera position with UE TEAM.\nCheck that is the same shot as SH0030 or not.\nReplace Guitar",
+        "comment": "",
+        "comment_eng": "",
         "date_finish": "",
         "do_nothing": 0,
         "face_lib_end": 280,
@@ -57,13 +57,13 @@
         "frame_character": 162,
         "frame_duration": 81,
         "in_progress": 0,
-        "last_ma": "ANM_SH0020_20210910_205941.ma",
+        "last_ma": "ANM_SH0020_20210910_212124.ma",
         "mocap_file_path": "D:/Project_maya/MoneyHoney/mocap/TJFH_Space01.fbx",
         "mocap_frame_offset": -220,
         "mocap_frame_start": 321,
         "mocap_frame_stop": 402,
         "mocap_name": "TJFH_Space01",
-        "need fix": 1.51,
+        "need fix": 0,
         "percentage_of_total": 1.51,
         "post_roll": 5,
         "pre_roll": 5,
@@ -73,23 +73,23 @@
         "shot_name": "ANM_SH0020",
         "source_frame_end": 289,
         "source_frame_start": 208,
-        "status": "need fix",
+        "status": "approve",
         "thumbnail": "",
         "video_offset": 107,
         "video_source": "cutting2reference.mp4",
-        "work_hour": 0.6
+        "work_hour": 0.0
     },
     "ANM_SH0030": {
         "anim_note": "hand key animate\nmocap clean up\nguitar \n\n\u0e14\u0e32\u0e27\u0e40\u0e04\u0e23\u0e32\u0e30\u0e2b\u0e4c\u0e2b\u0e21\u0e38\u0e19\u0e21\u0e32\u0e40\u0e2b\u0e47\u0e19 URBOYTJ \u0e19\u0e31\u0e48\u0e07\u0e2d\u0e22\u0e39\u0e48\u0e14\u0e49\u0e32\u0e19\u0e2b\u0e25\u0e31\u0e07\nF.HERO \u0e17\u0e35\u0e48\u0e01\u0e33\u0e25\u0e31\u0e07\u0e40\u0e25\u0e48\u0e19\u0e01\u0e35\u0e15\u0e49\u0e32\u0e23\u0e4c",
         "anim_note_eng": "Hand Key Animate\nMocap Clean Up\nGuitar\n\nThe planet came to see Urboytj sitting in the back.\nF.Hero who is playing guitar",
         "animation_name": "ANM_SH0030_TJFH_Space01_0403_0498",
-        "approve": 0,
+        "approve": 1.77,
         "assignee": "Kaofang",
         "audio_offset": -189,
         "audio_source": "cutting2reference.wav",
         "character": 2,
-        "comment": "\u0e40\u0e0a\u0e47\u0e04\u0e27\u0e48\u0e32\u0e40\u0e1b\u0e47\u0e19\u0e0a\u0e2d\u0e17\u0e40\u0e14\u0e35\u0e22\u0e27\u0e01\u0e31\u0e19\u0e01\u0e31\u0e1a SH0020\nreplace guitar",
-        "comment_eng": "Check that is the same shot with SH0020\nReplace Guitar",
+        "comment": "",
+        "comment_eng": "",
         "date_finish": "",
         "do_nothing": 0,
         "face_lib_end": 376,
@@ -97,13 +97,13 @@
         "frame_character": 190,
         "frame_duration": 95,
         "in_progress": 0,
-        "last_ma": "",
+        "last_ma": "ANM_SH0030_20210913_010046.ma",
         "mocap_file_path": "D:/Project_maya/MoneyHoney/mocap/TJFH_Space01.fbx",
         "mocap_frame_offset": -302,
         "mocap_frame_start": 403,
         "mocap_frame_stop": 498,
         "mocap_name": "TJFH_Space01",
-        "need fix": 1.77,
+        "need fix": 0,
         "percentage_of_total": 1.77,
         "post_roll": 5,
         "pre_roll": 5,
@@ -113,11 +113,11 @@
         "shot_name": "ANM_SH0030",
         "source_frame_end": 385,
         "source_frame_start": 290,
-        "status": "need fix",
+        "status": "approve",
         "thumbnail": "",
         "video_offset": 189,
         "video_source": "cutting2reference.mp4",
-        "work_hour": 0.7
+        "work_hour": 0.0
     },
     "ANM_SH0040": {
         "anim_note": "mocap clean up\nfix pose\nguitar \n\nF.HERO \u0e40\u0e25\u0e48\u0e19\u0e01\u0e35\u0e15\u0e49\u0e32\u0e23\u0e4c URBOYTJ \u0e23\u0e49\u0e2d\u0e07\u0e25\u0e34\u0e1b\u0e0b\u0e34\u0e49\u0e07",
@@ -136,14 +136,14 @@
         "face_lib_start": 377,
         "frame_character": 196,
         "frame_duration": 98,
-        "in_progress": 0,
-        "last_ma": "",
+        "in_progress": 1.83,
+        "last_ma": "ANM_SH0040_20210913_011207.ma",
         "mocap_file_path": "D:/Project_maya/MoneyHoney/mocap/TJFH_Space01.fbx",
         "mocap_frame_offset": -772,
         "mocap_frame_start": 873,
         "mocap_frame_stop": 971,
         "mocap_name": "TJFH_Space01",
-        "need fix": 1.83,
+        "need fix": 0,
         "percentage_of_total": 1.83,
         "post_roll": 5,
         "pre_roll": 5,
@@ -153,11 +153,11 @@
         "shot_name": "ANM_SH0040",
         "source_frame_end": 484,
         "source_frame_start": 386,
-        "status": "need fix",
+        "status": "in review",
         "thumbnail": "",
         "video_offset": 285,
         "video_source": "cutting2reference.mp4",
-        "work_hour": 0.7
+        "work_hour": 0.0
     },
     "ANM_SH0050": {
         "anim_note": "mocap clean up\nfix pose\nguitar \n\nF.HERO \u0e40\u0e25\u0e48\u0e19\u0e01\u0e35\u0e15\u0e49\u0e32\u0e23\u0e4c URBOYTJ \u0e23\u0e49\u0e2d\u0e07\u0e25\u0e34\u0e1b\u0e0b\u0e34\u0e49\u0e07",
@@ -176,14 +176,14 @@
         "face_lib_start": 476,
         "frame_character": 268,
         "frame_duration": 134,
-        "in_progress": 0,
+        "in_progress": 2.5,
         "last_ma": "",
         "mocap_file_path": "D:/Project_maya/MoneyHoney/mocap/TJFH_Space01.fbx",
         "mocap_frame_offset": -497,
         "mocap_frame_start": 598,
         "mocap_frame_stop": 732,
         "mocap_name": "TJFH_Space01",
-        "need fix": 2.5,
+        "need fix": 0,
         "percentage_of_total": 2.5,
         "post_roll": 5,
         "pre_roll": 5,
@@ -193,11 +193,11 @@
         "shot_name": "ANM_SH0050",
         "source_frame_end": 619,
         "source_frame_start": 485,
-        "status": "need fix",
+        "status": "in review",
         "thumbnail": "",
         "video_offset": 384,
         "video_source": "cutting2reference.mp4",
-        "work_hour": 1.0
+        "work_hour": 0.0
     },
     "ANM_SH0060": {
         "anim_note": "mocap clean up\nfix pose\nguitar \n\nF.HERO \u0e40\u0e25\u0e48\u0e19\u0e01\u0e35\u0e15\u0e49\u0e32\u0e23\u0e4c URBOYTJ \u0e23\u0e49\u0e2d\u0e07\u0e25\u0e34\u0e1b\u0e0b\u0e34\u0e49\u0e07",
@@ -216,14 +216,14 @@
         "face_lib_start": 611,
         "frame_character": 184,
         "frame_duration": 92,
-        "in_progress": 0,
+        "in_progress": 1.72,
         "last_ma": "",
         "mocap_file_path": "D:/Project_maya/MoneyHoney/mocap/TJFH_Space01.fbx",
         "mocap_frame_offset": -632,
         "mocap_frame_start": 733,
         "mocap_frame_stop": 825,
         "mocap_name": "TJFH_Space01",
-        "need fix": 1.72,
+        "need fix": 0,
         "percentage_of_total": 1.72,
         "post_roll": 5,
         "pre_roll": 5,
@@ -233,11 +233,11 @@
         "shot_name": "ANM_SH0060",
         "source_frame_end": 712,
         "source_frame_start": 620,
-        "status": "need fix",
+        "status": "in review",
         "thumbnail": "",
         "video_offset": 519,
         "video_source": "cutting2reference.mp4",
-        "work_hour": 0.7
+        "work_hour": 0.0
     },
     "ANM_SH0070": {
         "anim_note": "mocap clean up\nfix pose\nguitar ",
@@ -256,14 +256,14 @@
         "face_lib_start": 704,
         "frame_character": 426,
         "frame_duration": 213,
-        "in_progress": 0,
+        "in_progress": 3.98,
         "last_ma": "",
         "mocap_file_path": "D:/Project_maya/MoneyHoney/mocap/TJFH_Space01.fbx",
         "mocap_frame_offset": -2421,
         "mocap_frame_start": 2522,
         "mocap_frame_stop": 2735,
         "mocap_name": "TJFH_Space01",
-        "need fix": 3.98,
+        "need fix": 0,
         "percentage_of_total": 3.98,
         "post_roll": 5,
         "pre_roll": 5,
@@ -273,11 +273,11 @@
         "shot_name": "ANM_SH0070",
         "source_frame_end": 926,
         "source_frame_start": 713,
-        "status": "need fix",
+        "status": "in review",
         "thumbnail": "",
         "video_offset": 612,
         "video_source": "cutting2reference.mp4",
-        "work_hour": 1.6
+        "work_hour": 0.0
     },
     "ANM_SH0080": {
         "anim_note": "mocap clean up\n\nMINNIE \u0e40\u0e14\u0e34\u0e19\u0e40\u0e25\u0e48\u0e19\u0e2d\u0e22\u0e39\u0e48\u0e43\u0e19\u0e17\u0e38\u0e48\u0e07\u0e2b\u0e0d\u0e49\u0e32\u0e15\u0e2d\u0e19\u0e01\u0e25\u0e32\u0e07\u0e27\u0e31\u0e19",
@@ -317,7 +317,7 @@
         "thumbnail": "",
         "video_offset": 826,
         "video_source": "cutting2reference.mp4",
-        "work_hour": 0.3
+        "work_hour": 0.2
     },
     "ANM_SH0090": {
         "anim_note": "mocap clean up\nfix pose\nguitar \n\nF.HERO \u0e40\u0e25\u0e48\u0e19\u0e01\u0e35\u0e15\u0e49\u0e32\u0e23\u0e4c URBOYTJ \u0e23\u0e49\u0e2d\u0e07\u0e25\u0e34\u0e1b\u0e0b\u0e34\u0e49\u0e07",
@@ -336,14 +336,14 @@
         "face_lib_start": 992,
         "frame_character": 126,
         "frame_duration": 63,
-        "in_progress": 0,
+        "in_progress": 1.18,
         "last_ma": "",
         "mocap_file_path": "D:/Project_maya/MoneyHoney/mocap/TJFH_Space01.fbx",
         "mocap_frame_offset": -3448,
         "mocap_frame_start": 3549,
         "mocap_frame_stop": 3612,
         "mocap_name": "TJFH_Space01",
-        "need fix": 1.18,
+        "need fix": 0,
         "percentage_of_total": 1.18,
         "post_roll": 5,
         "pre_roll": 5,
@@ -353,11 +353,11 @@
         "shot_name": "ANM_SH0090",
         "source_frame_end": 1064,
         "source_frame_start": 1001,
-        "status": "need fix",
+        "status": "in progress",
         "thumbnail": "",
         "video_offset": 900,
         "video_source": "cutting2reference.mp4",
-        "work_hour": 0.5
+        "work_hour": 0.4
     },
     "ANM_SH0100": {
         "anim_note": "mocap clean up\nfix pose\nguitar ",
@@ -376,14 +376,14 @@
         "face_lib_start": 1056,
         "frame_character": 118,
         "frame_duration": 59,
-        "in_progress": 0,
+        "in_progress": 1.1,
         "last_ma": "ANM_SH0100_20210907_195509.ma",
         "mocap_file_path": "D:/Project_maya/MoneyHoney/mocap/TJFH_Space01.fbx",
         "mocap_frame_offset": -959,
         "mocap_frame_start": 1060,
         "mocap_frame_stop": 1119,
         "mocap_name": "TJFH_Space01",
-        "need fix": 1.1,
+        "need fix": 0,
         "percentage_of_total": 1.1,
         "post_roll": 5,
         "pre_roll": 5,
@@ -393,7 +393,7 @@
         "shot_name": "ANM_SH0100",
         "source_frame_end": 1124,
         "source_frame_start": 1065,
-        "status": "need fix",
+        "status": "in progress",
         "thumbnail": "",
         "video_offset": 964,
         "video_source": "cutting2reference.mp4",
@@ -416,14 +416,14 @@
         "face_lib_start": 1116,
         "frame_character": 106,
         "frame_duration": 53,
-        "in_progress": 0,
+        "in_progress": 0.99,
         "last_ma": "",
         "mocap_file_path": "D:/Project_maya/MoneyHoney/mocap/TJFH_Space01.fbx",
         "mocap_frame_offset": -4238,
         "mocap_frame_start": 4339,
         "mocap_frame_stop": 4392,
         "mocap_name": "TJFH_Space01",
-        "need fix": 0.99,
+        "need fix": 0,
         "percentage_of_total": 0.99,
         "post_roll": 5,
         "pre_roll": 5,
@@ -433,11 +433,11 @@
         "shot_name": "ANM_SH0110",
         "source_frame_end": 1178,
         "source_frame_start": 1125,
-        "status": "need fix",
+        "status": "in progress",
         "thumbnail": "",
         "video_offset": 1024,
         "video_source": "cutting2reference.mp4",
-        "work_hour": 0.4
+        "work_hour": 0.3
     },
     "ANM_SH0120": {
         "anim_note": "mocap clean up\nsteering wheel\n\nURBOYTJ \u0e23\u0e49\u0e2d\u0e07\u0e25\u0e34\u0e1b\u0e0b\u0e34\u0e49\u0e07 \u0e02\u0e31\u0e1a\u0e23\u0e16\u0e40\u0e1b\u0e34\u0e14\u0e1b\u0e23\u0e30\u0e17\u0e38\u0e19\u0e1a\u0e19\u0e16\u0e19\u0e19\u0e23\u0e34\u0e21\r\n\u0e0a\u0e32\u0e22\u0e2b\u0e32\u0e14\u0e22\u0e32\u0e21\u0e1e\u0e25\u0e1a\u0e04\u0e48\u0e33\u0e1e\u0e23\u0e49\u0e2d\u0e21\u0e01\u0e31\u0e1a\u0e21\u0e35\u0e18\u0e19\u0e1a\u0e31\u0e15\u0e23\u0e1b\u0e25\u0e34\u0e27\u0e2d\u0e2d\u0e01\u0e08\u0e32\u0e01\u0e23\u0e16\r\n\u0e08\u0e33\u0e19\u0e27\u0e19\u0e21\u0e32\u0e01",
@@ -456,14 +456,14 @@
         "face_lib_start": 1170,
         "frame_character": 61,
         "frame_duration": 61,
-        "in_progress": 0,
+        "in_progress": 0.57,
         "last_ma": "",
         "mocap_file_path": "D:/Project_maya/MoneyHoney/mocap/TJ_CityPop02.fbx",
         "mocap_frame_offset": -208,
         "mocap_frame_start": 309,
         "mocap_frame_stop": 370,
         "mocap_name": "TJ_CityPop02",
-        "need fix": 0.57,
+        "need fix": 0,
         "percentage_of_total": 0.57,
         "post_roll": 5,
         "pre_roll": 5,
@@ -473,7 +473,7 @@
         "shot_name": "ANM_SH0120",
         "source_frame_end": 1240,
         "source_frame_start": 1179,
-        "status": "need fix",
+        "status": "in progress",
         "thumbnail": "",
         "video_offset": 1078,
         "video_source": "cutting2reference.mp4",
@@ -484,26 +484,26 @@
         "anim_note_eng": "Mocap Clean Up\nSteering Wheel\n\nCamera update\nTJ_TEST01_693_750\n\nUrboytj driving the convertible on the beach road guard\nTwilight with banknotes, leaving a lot of cars",
         "animation_name": "ANM_SH0130_TJ_Test01_0693_0750",
         "approve": 0,
-        "assignee": "Mint",
+        "assignee": "Kaofang",
         "audio_offset": -1140,
         "audio_source": "cutting2reference.wav",
         "character": 1,
-        "comment": "replace new car rig\ncar animate\ncash animate",
-        "comment_eng": "Replace New Car Rig\nCar Animate\nCash Animate",
+        "comment": "replace new car rig\ncar animate\n\u0e01\u0e25\u0e49\u0e2d\u0e07\u0e40\u0e25\u0e35\u0e22\u0e19\u0e41\u0e1a\u0e1a\u0e15\u0e32\u0e21 \u0e17\u0e35\u0e48\u0e19\u0e35\u0e48\n\\mocap\\ANM_Camera\\TJ_TEST01_693_750\\",
+        "comment_eng": "Replace New Car Rig\nCar Animate\nImitate the camera here\nMOCAP ANM_CAMERA TJ_TEST01_693_750",
         "date_finish": "",
         "do_nothing": 0,
         "face_lib_end": 1289,
         "face_lib_start": 1232,
         "frame_character": 57,
         "frame_duration": 57,
-        "in_progress": 0,
+        "in_progress": 0.53,
         "last_ma": "",
         "mocap_file_path": "D:/Project_maya/MoneyHoney/mocap/TJ_Test01.fbx",
         "mocap_frame_offset": -592,
         "mocap_frame_start": 693,
         "mocap_frame_stop": 750,
         "mocap_name": "TJ_Test01",
-        "need fix": 0.53,
+        "need fix": 0,
         "percentage_of_total": 0.53,
         "post_roll": 5,
         "pre_roll": 5,
@@ -513,7 +513,7 @@
         "shot_name": "ANM_SH0130",
         "source_frame_end": 1298,
         "source_frame_start": 1241,
-        "status": "need fix",
+        "status": "in progress",
         "thumbnail": "",
         "video_offset": 1140,
         "video_source": "cutting2reference.mp4",
@@ -528,22 +528,22 @@
         "audio_offset": -1198,
         "audio_source": "cutting2reference.wav",
         "character": 1,
-        "comment": "replace new car rig\r\ncar animate\r\ncash animate",
-        "comment_eng": "Replace New Car Rig\r\nCar Animate\r\nCash Animate",
+        "comment": "replace new car rig\ncar animate\n-\u0e01\u0e25\u0e49\u0e2d\u0e07\u0e40\u0e25\u0e35\u0e22\u0e19\u0e41\u0e1a\u0e1a\u0e15\u0e32\u0e21 \u0e17\u0e35\u0e48\u0e19\u0e35\u0e48\n\\mocap\\ANM_Camera\\TJ_TEST01_1213_1259\\",
+        "comment_eng": "Replace New Car Rig\nCar Animate\n- Camera imitation as here\nMOCAP ANM_CAMERA TJ_TEST01_1213_1259",
         "date_finish": "",
         "do_nothing": 0,
         "face_lib_end": 1335,
         "face_lib_start": 1290,
         "frame_character": 45,
         "frame_duration": 45,
-        "in_progress": 0,
-        "last_ma": "",
+        "in_progress": 0.42,
+        "last_ma": "ANM_SH0140_20210912_222950.ma",
         "mocap_file_path": "D:/Project_maya/MoneyHoney/mocap/TJ_Test03.fbx",
         "mocap_frame_offset": -1112,
         "mocap_frame_start": 1213,
         "mocap_frame_stop": 1258,
         "mocap_name": "TJ_Test03",
-        "need fix": 0.42,
+        "need fix": 0,
         "percentage_of_total": 0.42,
         "post_roll": 5,
         "pre_roll": 5,
@@ -553,11 +553,11 @@
         "shot_name": "ANM_SH0140",
         "source_frame_end": 1344,
         "source_frame_start": 1299,
-        "status": "need fix",
+        "status": "in review",
         "thumbnail": "",
         "video_offset": 1198,
         "video_source": "cutting2reference.mp4",
-        "work_hour": 0.2
+        "work_hour": 0.0
     },
     "ANM_SH0150": {
         "anim_note": "URBOYTJ \u0e23\u0e30\u0e2b\u0e27\u0e48\u0e32\u0e07\u0e02\u0e31\u0e1a\u0e23\u0e16\u0e2b\u0e31\u0e19\u0e44\u0e1b\u0e21\u0e2d\u0e07\u0e40\u0e1a\u0e32\u0e30\u0e14\u0e49\u0e32\u0e19\u0e02\u0e49\u0e32\u0e07",
@@ -568,22 +568,22 @@
         "audio_offset": -1244,
         "audio_source": "cutting2reference.wav",
         "character": 1,
-        "comment": "\u0e41\u0e01\u0e49\u0e01\u0e25\u0e49\u0e2d\u0e07\nclose up \u0e44\u0e1b\u0e17\u0e35\u0e48\u0e17\u0e35\u0e48\u0e19\u0e31\u0e48\u0e07\u0e02\u0e49\u0e32\u0e07\u0e04\u0e19\u0e02\u0e31\u0e1a\nreplace new car rig\r\ncash animate",
-        "comment_eng": "Solve the camera\nClose up to the driver's seat\nReplace New Car Rig\r\nCash Animate",
+        "comment": "\u0e41\u0e01\u0e49\u0e01\u0e25\u0e49\u0e2d\u0e07\nclose up \u0e44\u0e1b\u0e17\u0e35\u0e48\u0e17\u0e35\u0e48\u0e19\u0e31\u0e48\u0e07\u0e02\u0e49\u0e32\u0e07\u0e04\u0e19\u0e02\u0e31\u0e1a\nreplace new car rig",
+        "comment_eng": "Solve the camera\nClose up to the driver's seat\nReplace New Car Rig",
         "date_finish": "",
         "do_nothing": 0,
         "face_lib_end": 1379,
         "face_lib_start": 1336,
         "frame_character": 43,
         "frame_duration": 43,
-        "in_progress": 0,
-        "last_ma": "",
+        "in_progress": 0.4,
+        "last_ma": "ANM_SH0150_20210913_005412.ma",
         "mocap_file_path": "D:/Project_maya/MoneyHoney/mocap/TJ_Test03.fbx",
         "mocap_frame_offset": -1158,
         "mocap_frame_start": 1259,
         "mocap_frame_stop": 1302,
         "mocap_name": "TJ_Test03",
-        "need fix": 0.4,
+        "need fix": 0,
         "percentage_of_total": 0.4,
         "post_roll": 5,
         "pre_roll": 5,
@@ -593,11 +593,11 @@
         "shot_name": "ANM_SH0150",
         "source_frame_end": 1388,
         "source_frame_start": 1345,
-        "status": "need fix",
+        "status": "in review",
         "thumbnail": "",
         "video_offset": 1244,
         "video_source": "cutting2reference.mp4",
-        "work_hour": 0.2
+        "work_hour": 0.0
     },
     "ANM_SH0160": {
         "anim_note": "mocap clean up\nsteering wheel\n\nURBOYTJ \u0e08\u0e2d\u0e14\u0e23\u0e16\u0e22\u0e37\u0e19\u0e14\u0e39\u0e27\u0e34\u0e27\u0e1e\u0e23\u0e30\u0e2d\u0e32\u0e17\u0e34\u0e15\u0e22\u0e4c\u0e15\u0e01\u0e23\u0e34\u0e21\u0e17\u0e30\u0e40\u0e25",
@@ -608,22 +608,22 @@
         "audio_offset": -1288,
         "audio_source": "cutting2reference.wav",
         "character": 1,
-        "comment": "replace new car rig\ncar animate\ncash animate",
-        "comment_eng": "Replace New Car Rig\nCar Animate\nCash Animate",
+        "comment": "replace new car rig\ncar animate",
+        "comment_eng": "Replace New Car Rig\nCar Animate",
         "date_finish": "",
         "do_nothing": 0,
         "face_lib_end": 1449,
         "face_lib_start": 1380,
         "frame_character": 69,
         "frame_duration": 69,
-        "in_progress": 0,
-        "last_ma": "",
+        "in_progress": 0.64,
+        "last_ma": "ANM_SH0160_20210912_230334.ma",
         "mocap_file_path": "D:/Project_maya/MoneyHoney/mocap/TJ_CityPop02.fbx",
         "mocap_frame_offset": -687,
         "mocap_frame_start": 788,
         "mocap_frame_stop": 857,
         "mocap_name": "TJ_CityPop02",
-        "need fix": 0.64,
+        "need fix": 0,
         "percentage_of_total": 0.64,
         "post_roll": 5,
         "pre_roll": 5,
@@ -633,11 +633,11 @@
         "shot_name": "ANM_SH0160",
         "source_frame_end": 1458,
         "source_frame_start": 1389,
-        "status": "need fix",
+        "status": "in review",
         "thumbnail": "",
         "video_offset": 1288,
         "video_source": "cutting2reference.mp4",
-        "work_hour": 0.3
+        "work_hour": 0.0
     },
     "ANM_SH0170": {
         "anim_note": "mocap clean up",
@@ -656,14 +656,14 @@
         "face_lib_start": 1450,
         "frame_character": 47,
         "frame_duration": 47,
-        "in_progress": 0,
-        "last_ma": "",
+        "in_progress": 0.44,
+        "last_ma": "ANM_SH0170_20210912_230814.ma",
         "mocap_file_path": "D:/Project_maya/MoneyHoney/mocap/TJ_Test01.fbx",
         "mocap_frame_offset": -5402,
         "mocap_frame_start": 5503,
         "mocap_frame_stop": 5550,
         "mocap_name": "TJ_Test01",
-        "need fix": 0.44,
+        "need fix": 0,
         "percentage_of_total": 0.44,
         "post_roll": 5,
         "pre_roll": 5,
@@ -673,11 +673,11 @@
         "shot_name": "ANM_SH0170",
         "source_frame_end": 1506,
         "source_frame_start": 1459,
-        "status": "need fix",
+        "status": "in review",
         "thumbnail": "",
         "video_offset": 1358,
         "video_source": "cutting2reference.mp4",
-        "work_hour": 0.2
+        "work_hour": 0.0
     },
     "ANM_SH0180": {
         "anim_note": "mocap clean up",
@@ -736,14 +736,14 @@
         "face_lib_start": 1586,
         "frame_character": 67,
         "frame_duration": 67,
-        "in_progress": 0,
-        "last_ma": "",
+        "in_progress": 0.63,
+        "last_ma": "ANM_SH0190_20210912_231020.ma",
         "mocap_file_path": "D:/Project_maya/MoneyHoney/mocap/TJ_Test03.fbx",
         "mocap_frame_offset": -3608,
         "mocap_frame_start": 3709,
         "mocap_frame_stop": 3776,
         "mocap_name": "TJ_Test03",
-        "need fix": 0.63,
+        "need fix": 0,
         "percentage_of_total": 0.63,
         "post_roll": 5,
         "pre_roll": 5,
@@ -753,11 +753,11 @@
         "shot_name": "ANM_SH0190",
         "source_frame_end": 1662,
         "source_frame_start": 1595,
-        "status": "need fix",
+        "status": "in review",
         "thumbnail": "",
         "video_offset": 1494,
         "video_source": "cutting2reference.mp4",
-        "work_hour": 0.3
+        "work_hour": 0.0
     },
     "ANM_SH0200": {
         "anim_note": "mocap clean up\nsteering wheel\n\n\r\nURBOYTJ \u0e23\u0e49\u0e2d\u0e07\u0e25\u0e34\u0e1b\u0e0b\u0e34\u0e49\u0e07\r\nTransition \u0e18\u0e19\u0e1a\u0e31\u0e15\u0e23\u0e1b\u0e25\u0e34\u0e27\u0e21\u0e32\u0e1b\u0e34\u0e14\u0e01\u0e25\u0e49\u0e2d\u0e07",
@@ -768,8 +768,8 @@
         "audio_offset": -1562,
         "audio_source": "cutting2reference.wav",
         "character": 1,
-        "comment": "-\u0e2d\u0e31\u0e1e\u0e40\u0e14\u0e17\u0e01\u0e25\u0e49\u0e2d\u0e07\nTJ_TEST01_0996_10089_CAM1\n-\u0e01\u0e23\u0e30\u0e0a\u0e31\u0e1a\u0e25\u0e34\u0e1b\u0e0b\u0e34\u0e07\u0e04\u0e4c \u0e41\u0e01\u0e49\u0e21\u0e37\u0e2d\u0e44\u0e2b\u0e25\n-replace new car rig\n-car animate\n-cash animate",
-        "comment_eng": "- Update camera\nTj_test01_0996_10089_cam1\n- tightening lip sync\n-replace New Car Rig\n-Car Animate\n-Cash Animate",
+        "comment": "-\u0e01\u0e25\u0e49\u0e2d\u0e07\u0e40\u0e25\u0e35\u0e22\u0e19\u0e41\u0e1a\u0e1a\u0e15\u0e32\u0e21 \u0e17\u0e35\u0e48\u0e19\u0e35\u0e48\n\\mocap\\ANM_Camera\\TJ_TEST01_0996_10089_CAM1\\\n-\u0e01\u0e23\u0e30\u0e0a\u0e31\u0e1a\u0e25\u0e34\u0e1b\u0e0b\u0e34\u0e07\u0e04\u0e4c \u0e41\u0e01\u0e49\u0e21\u0e37\u0e2d\u0e44\u0e2b\u0e25\n-replace new car rig\n-car animate",
+        "comment_eng": "- Camera imitation as here\nMOCAP ANM_CAMERA TJ_TEST01_0996_10089_cam1\n- tightening lip sync\n-replace New Car Rig\n-Car Animate",
         "date_finish": "",
         "do_nothing": 0,
         "face_lib_end": 1747,
@@ -777,7 +777,7 @@
         "frame_character": 93,
         "frame_duration": 93,
         "in_progress": 0.87,
-        "last_ma": "",
+        "last_ma": "ANM_SH0200_20210913_002906.ma",
         "mocap_file_path": "D:/Project_maya/MoneyHoney/mocap/TJ_Test01.fbx",
         "mocap_frame_offset": -895,
         "mocap_frame_start": 996,
@@ -793,11 +793,11 @@
         "shot_name": "ANM_SH0200",
         "source_frame_end": 1756,
         "source_frame_start": 1663,
-        "status": "in progress",
+        "status": "in review",
         "thumbnail": "",
         "video_offset": 1562,
         "video_source": "cutting2reference.mp4",
-        "work_hour": 0.3
+        "work_hour": 0.0
     },
     "ANM_SH0210": {
         "anim_note": "mocap clean up\n\nF.HERO \u0e22\u0e37\u0e19\u0e1a\u0e19\u0e23\u0e16\u0e23\u0e49\u0e2d\u0e07\u0e25\u0e34\u0e1b\u0e0b\u0e34\u0e49\u0e07\u0e17\u0e48\u0e32\u0e21\u0e01\u0e25\u0e32\u0e07\u0e17\u0e30\u0e40\u0e25\u0e17\u0e23\u0e32\u0e22\u0e2d\u0e31\u0e19\n\u0e42\u0e14\u0e14\u0e40\u0e14\u0e35\u0e48\u0e22\u0e27\u0e17\u0e35\u0e48\u0e21\u0e35\u0e02\u0e2d\u0e07\u0e41\u0e1a\u0e23\u0e14\u0e4c\u0e40\u0e19\u0e21\u0e08\u0e21\u0e2d\u0e22\u0e39\u0e48\u0e43\u0e19\u0e01\u0e2d\u0e07\u0e17\u0e23\u0e32\u0e22",
@@ -816,14 +816,14 @@
         "face_lib_start": 1748,
         "frame_character": 29,
         "frame_duration": 29,
-        "in_progress": 0,
-        "last_ma": "ANM_SH0210_20210908_081445.ma",
+        "in_progress": 0.27,
+        "last_ma": "ANM_SH0210_20210912_235425.ma",
         "mocap_file_path": "D:/Project_maya/MoneyHoney/mocap/FH_Desert_Test01.fbx",
         "mocap_frame_offset": -1608,
         "mocap_frame_start": 1709,
         "mocap_frame_stop": 1738,
         "mocap_name": "FH_Desert_Test01",
-        "need fix": 0.27,
+        "need fix": 0,
         "percentage_of_total": 0.27,
         "post_roll": 5,
         "pre_roll": 5,
@@ -833,11 +833,11 @@
         "shot_name": "ANM_SH0210",
         "source_frame_end": 1786,
         "source_frame_start": 1757,
-        "status": "need fix",
+        "status": "in review",
         "thumbnail": "",
         "video_offset": 1656,
         "video_source": "cutting2reference.mp4",
-        "work_hour": 0.1
+        "work_hour": 0.0
     },
     "ANM_SH0220": {
         "anim_note": "",
@@ -856,14 +856,14 @@
         "face_lib_start": 1778,
         "frame_character": 25,
         "frame_duration": 25,
-        "in_progress": 0,
-        "last_ma": "ANM_SH0220_20210908_102557.ma",
+        "in_progress": 0.23,
+        "last_ma": "ANM_SH0220_20210912_235416.ma",
         "mocap_file_path": "D:/Project_maya/MoneyHoney/mocap/FH_Desert_Test01.fbx",
         "mocap_frame_offset": -1638,
         "mocap_frame_start": 1739,
         "mocap_frame_stop": 1764,
         "mocap_name": "FH_Desert_Test01",
-        "need fix": 0.23,
+        "need fix": 0,
         "percentage_of_total": 0.23,
         "post_roll": 5,
         "pre_roll": 5,
@@ -873,11 +873,11 @@
         "shot_name": "ANM_SH0220",
         "source_frame_end": 1812,
         "source_frame_start": 1787,
-        "status": "need fix",
+        "status": "in review",
         "thumbnail": "",
         "video_offset": 1686,
         "video_source": "cutting2reference.mp4",
-        "work_hour": 0.1
+        "work_hour": 0.0
     },
     "ANM_SH0230": {
         "anim_note": "mocap clean up\n\nF.HERO \u0e22\u0e37\u0e19\u0e1a\u0e19\u0e23\u0e16\u0e23\u0e49\u0e2d\u0e07\u0e25\u0e34\u0e1b\u0e0b\u0e34\u0e49\u0e07\u0e17\u0e48\u0e32\u0e21\u0e01\u0e25\u0e32\u0e07\u0e17\u0e30\u0e40\u0e25\u0e17\u0e23\u0e32\u0e22\u0e2d\u0e31\u0e19\n\u0e42\u0e14\u0e14\u0e40\u0e14\u0e35\u0e48\u0e22\u0e27\u0e17\u0e35\u0e48\u0e21\u0e35\u0e02\u0e2d\u0e07\u0e41\u0e1a\u0e23\u0e14\u0e4c\u0e40\u0e19\u0e21\u0e08\u0e21\u0e2d\u0e22\u0e39\u0e48\u0e43\u0e19\u0e01\u0e2d\u0e07\u0e17\u0e23\u0e32\u0e22",
@@ -1037,7 +1037,7 @@
         "thumbnail": "",
         "video_offset": 1888,
         "video_source": "cutting2reference.mp4",
-        "work_hour": 0.3
+        "work_hour": 0.2
     },
     "ANM_SH0270": {
         "anim_note": "hand key animate\nF.HERO \u0e19\u0e31\u0e48\u0e07\u0e1a\u0e19\u0e01\u0e23\u0e30\u0e42\u0e1b\u0e23\u0e07\u0e23\u0e16\u0e21\u0e2d\u0e07\u0e14\u0e39\u0e1b\u0e36\u0e01\u0e18\u0e19\u0e1a\u0e31\u0e15\u0e23\n\u0e1b\u0e23\u0e31\u0e1a\u0e21\u0e38\u0e21\u0e01\u0e25\u0e49\u0e2d\u0e07\u0e15\u0e32\u0e21 cutting drone shot",
@@ -1117,7 +1117,7 @@
         "thumbnail": "",
         "video_offset": 2017,
         "video_source": "cutting2reference.mp4",
-        "work_hour": 0.3
+        "work_hour": 0.2
     },
     "ANM_SH0290": {
         "anim_note": "mocap clean up\n\nF.HERO \u0e23\u0e49\u0e2d\u0e07\u0e25\u0e34\u0e1b\u0e0b\u0e34\u0e49\u0e07\u0e2b\u0e19\u0e49\u0e32\u0e23\u0e16",
@@ -1237,7 +1237,7 @@
         "thumbnail": "",
         "video_offset": 2152,
         "video_source": "cutting2reference.mp4",
-        "work_hour": 0.3
+        "work_hour": 0.2
     },
     "ANM_SH0320": {
         "anim_note": "mocap clean up\nMINNIE \u0e40\u0e14\u0e34\u0e19\u0e43\u0e19\u0e17\u0e38\u0e48\u0e07\u0e2b\u0e0d\u0e49\u0e32\u0e01\u0e25\u0e32\u0e07\u0e27\u0e31\u0e19\n\u0e1b\u0e23\u0e31\u0e1a\u0e21\u0e38\u0e21\u0e01\u0e25\u0e49\u0e2d\u0e07\u0e15\u0e32\u0e21 cutting",
@@ -1277,7 +1277,7 @@
         "thumbnail": "",
         "video_offset": 2229,
         "video_source": "cutting2reference.mp4",
-        "work_hour": 0.3
+        "work_hour": 0.2
     },
     "ANM_SH0330": {
         "anim_note": "mocap clean up\n\nMINNIE \u0e40\u0e14\u0e34\u0e19\u0e43\u0e19\u0e17\u0e38\u0e48\u0e07\u0e2b\u0e0d\u0e49\u0e32\u0e01\u0e25\u0e32\u0e07\u0e27\u0e31\u0e19",
@@ -1376,14 +1376,14 @@
         "face_lib_start": 2496,
         "frame_character": 85,
         "frame_duration": 85,
-        "in_progress": 0,
+        "in_progress": 0.79,
         "last_ma": "",
         "mocap_file_path": "D:/Project_maya/MoneyHoney/mocap/TJ_Test03.fbx",
         "mocap_frame_offset": -3679,
         "mocap_frame_start": 3780,
         "mocap_frame_stop": 3865,
         "mocap_name": "TJ_Test03",
-        "need fix": 0.79,
+        "need fix": 0,
         "percentage_of_total": 0.79,
         "post_roll": 5,
         "pre_roll": 5,
@@ -1393,11 +1393,11 @@
         "shot_name": "ANM_SH0350",
         "source_frame_end": 2590,
         "source_frame_start": 2505,
-        "status": "need fix",
+        "status": "in review",
         "thumbnail": "",
         "video_offset": 2404,
         "video_source": "cutting2reference.mp4",
-        "work_hour": 0.3
+        "work_hour": 0.0
     },
     "ANM_SH0360": {
         "anim_note": " ",
@@ -1477,7 +1477,7 @@
         "thumbnail": "",
         "video_offset": 2608,
         "video_source": "cutting2reference.mp4",
-        "work_hour": 0.2
+        "work_hour": 0.1
     },
     "ANM_SH0380": {
         "anim_note": "mocap clean up\nF.HERO \u0e22\u0e37\u0e19\u0e23\u0e49\u0e2d\u0e07\u0e25\u0e34\u0e1b\u0e0b\u0e34\u0e49\u0e07\u0e1a\u0e19\u0e23\u0e16",
@@ -1528,8 +1528,8 @@
         "audio_offset": -2689,
         "audio_source": "cutting2reference.wav",
         "character": 1,
-        "comment": "\u0e1b\u0e23\u0e31\u0e1a\u0e01\u0e25\u0e49\u0e2d\u0e07\u0e43\u0e2b\u0e49\u0e40\u0e2b\u0e47\u0e19\u0e40\u0e15\u0e47\u0e21\u0e15\u0e31\u0e27\u0e40\u0e1e\u0e37\u0e48\u0e2d\u0e14\u0e39\u0e41\u0e2d\u0e19\u0e34\u0e40\u0e21\u0e0a\u0e31\u0e48\u0e19\u0e02\u0e2d\u0e07\u0e43\u0e1a\u0e2b\u0e19\u0e49\u0e32",
-        "comment_eng": "Adjust the camera to see the full body to see the animation of the face.",
+        "comment": "",
+        "comment_eng": "",
         "date_finish": "",
         "do_nothing": 0,
         "face_lib_end": 2819,
@@ -1617,7 +1617,7 @@
         "frame_character": 144,
         "frame_duration": 72,
         "in_progress": 0,
-        "last_ma": "",
+        "last_ma": "ANM_SH0410_20210912_001149.ma",
         "mocap_file_path": "D:/Project_maya/MoneyHoney/mocap/TJFH_Desert02.fbx",
         "mocap_frame_offset": -2924,
         "mocap_frame_start": 3025,
@@ -1677,7 +1677,7 @@
         "thumbnail": "",
         "video_offset": 2880,
         "video_source": "cutting2reference.mp4",
-        "work_hour": 0.5
+        "work_hour": 0.4
     },
     "ANM_SH0430": {
         "anim_note": "mocap clean up\n\nMINNIE \u0e40\u0e14\u0e34\u0e19\u0e40\u0e25\u0e48\u0e19\u0e2d\u0e22\u0e39\u0e48\u0e43\u0e19\u0e17\u0e38\u0e48\u0e07\u0e2b\u0e0d\u0e49\u0e32",
@@ -1797,7 +1797,7 @@
         "thumbnail": "",
         "video_offset": 3011,
         "video_source": "cutting2reference.mp4",
-        "work_hour": 0.3
+        "work_hour": 0.2
     },
     "ANM_SH0460": {
         "anim_note": "mocap clean up\nguitar hand key animate\nF.HERO \u0e23\u0e49\u0e2d\u0e07\u0e25\u0e34\u0e1b\u0e0b\u0e34\u0e49\u0e07 URBOYTJ \u0e40\u0e25\u0e48\u0e19\u0e01\u0e35\u0e15\u0e49\u0e32\u0e23\u0e4c\n\u0e1b\u0e23\u0e31\u0e1a\u0e21\u0e38\u0e21\u0e01\u0e25\u0e49\u0e2d\u0e07\u0e15\u0e32\u0e21 cutting",
@@ -1817,7 +1817,7 @@
         "frame_character": 144,
         "frame_duration": 72,
         "in_progress": 1.34,
-        "last_ma": "",
+        "last_ma": "ANM_SH0460_20210912_170709.ma",
         "mocap_file_path": "D:/Project_maya/MoneyHoney/mocap/TJFH_Desert02.fbx",
         "mocap_frame_offset": -3206,
         "mocap_frame_start": 3307,
@@ -1833,17 +1833,17 @@
         "shot_name": "ANM_SH0460",
         "source_frame_end": 3252,
         "source_frame_start": 3180,
-        "status": "in progress",
+        "status": "in review",
         "thumbnail": "",
         "video_offset": 3079,
         "video_source": "cutting2reference.mp4",
-        "work_hour": 0.5
+        "work_hour": 0.0
     },
     "ANM_SH0470": {
         "anim_note": "mocap clean up\nguitar hand key animate",
         "anim_note_eng": "Mocap Clean Up\nGuitar Hand Key Animate",
         "animation_name": "ANM_SH0470_TJFH_Desert02_3577_3723",
-        "approve": 2.73,
+        "approve": 0,
         "assignee": "Kaofang",
         "audio_offset": -3152,
         "audio_source": "cutting2reference.wav",
@@ -1856,8 +1856,8 @@
         "face_lib_start": 3244,
         "frame_character": 292,
         "frame_duration": 146,
-        "in_progress": 0,
-        "last_ma": "ANM_SH0470_20210911_181550.ma",
+        "in_progress": 2.73,
+        "last_ma": "ANM_SH0470_20210912_180147.ma",
         "mocap_file_path": "D:/Project_maya/MoneyHoney/mocap/TJFH_Desert02.fbx",
         "mocap_frame_offset": -3476,
         "mocap_frame_start": 3577,
@@ -1873,7 +1873,7 @@
         "shot_name": "ANM_SH0470",
         "source_frame_end": 3399,
         "source_frame_start": 3253,
-        "status": "approve",
+        "status": "in review",
         "thumbnail": "",
         "video_offset": 3152,
         "video_source": "cutting2reference.mp4",
@@ -1888,8 +1888,8 @@
         "audio_offset": -3299,
         "audio_source": "cutting2reference.wav",
         "character": 2,
-        "comment": "",
-        "comment_eng": "",
+        "comment": "replace  new guitar rig\ninside guitar intersect",
+        "comment_eng": "Replace New Guitar Rig\nInside Guitar Intersect",
         "date_finish": "",
         "do_nothing": 0,
         "face_lib_end": 3414,
@@ -1897,7 +1897,7 @@
         "frame_character": 46,
         "frame_duration": 23,
         "in_progress": 0.43,
-        "last_ma": "",
+        "last_ma": "ANM_SH0480_20210912_025916.ma",
         "mocap_file_path": "D:/Project_maya/MoneyHoney/mocap/TJFH_Desert02.fbx",
         "mocap_frame_offset": -397,
         "mocap_frame_start": 498,
@@ -1931,12 +1931,12 @@
         "comment": "",
         "comment_eng": "",
         "date_finish": "",
-        "do_nothing": 0.86,
+        "do_nothing": 0,
         "face_lib_end": 3461,
         "face_lib_start": 3415,
         "frame_character": 92,
         "frame_duration": 46,
-        "in_progress": 0,
+        "in_progress": 0.86,
         "last_ma": "",
         "mocap_file_path": "D:/Project_maya/MoneyHoney/mocap/TJFH_Desert02.fbx",
         "mocap_frame_offset": -3647,
@@ -1953,11 +1953,11 @@
         "shot_name": "ANM_SH0490",
         "source_frame_end": 3470,
         "source_frame_start": 3424,
-        "status": "-",
+        "status": "in review",
         "thumbnail": "",
         "video_offset": 3323,
         "video_source": "cutting2reference.mp4",
-        "work_hour": 0.3
+        "work_hour": 0.0
     },
     "ANM_SH0500": {
         "anim_note": "mocap clean up\nguitar hand key animate\n\u0e1b\u0e23\u0e31\u0e1a\u0e21\u0e38\u0e21\u0e01\u0e25\u0e49\u0e2d\u0e07\u0e15\u0e32\u0e21 cutting",
@@ -1997,7 +1997,7 @@
         "thumbnail": "",
         "video_offset": 3370,
         "video_source": "cutting2reference.mp4",
-        "work_hour": 0.5
+        "work_hour": 0.4
     },
     "ANM_SH0510": {
         "anim_note": "mocap clean up\nguitar hand key animate",
@@ -2077,7 +2077,7 @@
         "thumbnail": "",
         "video_offset": 3505,
         "video_source": "cutting2reference.mp4",
-        "work_hour": 1.0
+        "work_hour": 0.9
     },
     "ANM_SH0530": {
         "anim_note": "mocap clean up\nguitar hand key animate\n\u0e1b\u0e23\u0e31\u0e1a\u0e21\u0e38\u0e21\u0e01\u0e25\u0e49\u0e2d\u0e07\u0e15\u0e32\u0e21 cutting",
@@ -2157,7 +2157,7 @@
         "thumbnail": "",
         "video_offset": 3699,
         "video_source": "cutting2reference.mp4",
-        "work_hour": 1.2
+        "work_hour": 1.0
     },
     "ANM_SH0550": {
         "anim_note": "mocap clean up\nguitar hand key animate\nURBOYTJ \u0e2b\u0e31\u0e19\u0e44\u0e1b\u0e15\u0e1a\u0e44\u0e2b\u0e25\u0e48\u0e1b\u0e25\u0e2d\u0e1a\u0e43\u0e08 F.HERO\n\u0e1b\u0e23\u0e31\u0e1a\u0e01\u0e25\u0e49\u0e2d\u0e07\u0e15\u0e32\u0e21 cutting",
@@ -2197,7 +2197,7 @@
         "thumbnail": "",
         "video_offset": 3854,
         "video_source": "cutting2reference.mp4",
-        "work_hour": 0.6
+        "work_hour": 0.5
     },
     "ANM_SH0560": {
         "anim_note": "mocap clean up\n\nMINNIE \u0e23\u0e49\u0e2d\u0e07\u0e25\u0e34\u0e1b\u0e0b\u0e34\u0e49\u0e07\u0e17\u0e48\u0e32\u0e21\u0e01\u0e25\u0e32\u0e07\u0e17\u0e38\u0e48\u0e07\u0e2b\u0e0d\u0e49\u0e32\u0e22\u0e32\u0e21\u0e04\u0e48\u0e33\u0e04\u0e37\u0e19",
@@ -2237,7 +2237,7 @@
         "thumbnail": "",
         "video_offset": 3929,
         "video_source": "cutting2reference.mp4",
-        "work_hour": 0.2
+        "work_hour": 0.1
     },
     "ANM_SH0570": {
         "anim_note": "mocap clean up\n\nMINNIE \u0e40\u0e14\u0e34\u0e19\u0e04\u0e49\u0e19\u0e2b\u0e32\u0e1a\u0e32\u0e07\u0e2a\u0e34\u0e48\u0e07",
@@ -2277,7 +2277,7 @@
         "thumbnail": "",
         "video_offset": 3975,
         "video_source": "cutting2reference.mp4",
-        "work_hour": 0.3
+        "work_hour": 0.2
     },
     "ANM_SH0580": {
         "anim_note": "mocap clean up",
@@ -2317,7 +2317,7 @@
         "thumbnail": "",
         "video_offset": 4043,
         "video_source": "cutting2reference.mp4",
-        "work_hour": 0.4
+        "work_hour": 0.3
     },
     "ANM_SH0590": {
         "anim_note": "mocap clean up",
@@ -2357,7 +2357,7 @@
         "thumbnail": "",
         "video_offset": 4149,
         "video_source": "cutting2reference.mp4",
-        "work_hour": 0.5
+        "work_hour": 0.4
     },
     "ANM_SH0600": {
         "anim_note": "mocap clean up\n\nF.HERO URBOYTJ MINNIE \u0e40\u0e15\u0e49\u0e19",
@@ -2397,7 +2397,7 @@
         "thumbnail": "",
         "video_offset": 4286,
         "video_source": "cutting2reference.mp4",
-        "work_hour": 0.6
+        "work_hour": 0.5
     },
     "ANM_SH0610": {
         "anim_note": "mocap clean up\nMINNIE \u0e23\u0e49\u0e2d\u0e07\u0e25\u0e34\u0e1b\u0e0b\u0e34\u0e49\u0e07",
@@ -2437,7 +2437,7 @@
         "thumbnail": "",
         "video_offset": 4343,
         "video_source": "cutting2reference.mp4",
-        "work_hour": 0.3
+        "work_hour": 0.2
     },
     "ANM_SH0620": {
         "anim_note": "mocap clean up",
@@ -2496,14 +2496,14 @@
         "face_lib_start": 4587,
         "frame_character": 108,
         "frame_duration": 54,
-        "in_progress": 0,
-        "last_ma": "ANM_SH0630_20210907_232029.ma",
+        "in_progress": 1.01,
+        "last_ma": "ANM_SH0630_20210913_000648.ma",
         "mocap_file_path": "D:/Project_maya/MoneyHoney/mocap/TJFH_Desert02.fbx",
         "mocap_frame_offset": -2709,
         "mocap_frame_start": 2810,
         "mocap_frame_stop": 2864,
         "mocap_name": "TJFH_Desert02",
-        "need fix": 1.01,
+        "need fix": 0,
         "percentage_of_total": 1.01,
         "post_roll": 5,
         "pre_roll": 5,
@@ -2513,11 +2513,11 @@
         "shot_name": "ANM_SH0630",
         "source_frame_end": 4650,
         "source_frame_start": 4596,
-        "status": "need fix",
+        "status": "in review",
         "thumbnail": "",
         "video_offset": 4495,
         "video_source": "cutting2reference.mp4",
-        "work_hour": 0.4
+        "work_hour": 0.0
     },
     "ANM_SH0640": {
         "anim_note": "mocap clean up",
@@ -2557,7 +2557,7 @@
         "thumbnail": "",
         "video_offset": 4550,
         "video_source": "cutting2reference.mp4",
-        "work_hour": 0.3
+        "work_hour": 0.2
     },
     "ANM_SH0650": {
         "anim_note": "mocap clean up\n\nF.HERO URBOYTJ MINNIE \u0e40\u0e15\u0e49\u0e19",
@@ -2677,7 +2677,7 @@
         "thumbnail": "",
         "video_offset": 4706,
         "video_source": "cutting2reference.mp4",
-        "work_hour": 0.3
+        "work_hour": 0.2
     },
     "ANM_SH0680": {
         "anim_note": "mocap clean up\n\nF.HERO URBOYTJ MINNIE \u0e40\u0e15\u0e49\u0e19",
@@ -2717,19 +2717,19 @@
         "thumbnail": "",
         "video_offset": 4779,
         "video_source": "cutting2reference.mp4",
-        "work_hour": 0.7
+        "work_hour": 0.6
     },
     "ANM_SH0690": {
         "anim_note": "mocap clean up\nguitar hand key animate\nF.HERO \u0e42\u0e22\u0e01\u0e15\u0e32\u0e21\u0e40\u0e1e\u0e25\u0e07 URBOYTJ \u0e40\u0e25\u0e48\u0e19\u0e01\u0e35\u0e15\u0e49\u0e32\u0e23\u0e4c \u0e23\u0e49\u0e2d\u0e07\u0e25\u0e34\u0e1b\n\u0e0b\u0e34\u0e49\u0e07\n\u0e1b\u0e23\u0e31\u0e1a\u0e01\u0e25\u0e49\u0e2d\u0e07\u0e15\u0e32\u0e21 cutting",
         "anim_note_eng": "Mocap Clean Up\nGuitar Hand Key Animate\nF.Hero Rocker by Urboytj Music Play Guitar Crying Lip\nSeng\nAdjust the camera according to cutting",
         "animation_name": "ANM_SH0690_TJFH_Desert02_4709_4759",
-        "approve": 0,
+        "approve": 0.93,
         "assignee": "Meen",
         "audio_offset": -4846,
         "audio_source": "cutting2reference.wav",
         "character": 2,
-        "comment": "replace guitar",
-        "comment_eng": "Replace Guitar",
+        "comment": "",
+        "comment_eng": "",
         "date_finish": "",
         "do_nothing": 0,
         "face_lib_end": 4988,
@@ -2737,13 +2737,13 @@
         "frame_character": 100,
         "frame_duration": 50,
         "in_progress": 0,
-        "last_ma": "",
+        "last_ma": "ANM_SH0690_20210913_000650.ma",
         "mocap_file_path": "D:/Project_maya/MoneyHoney/mocap/TJFH_Desert02.fbx",
         "mocap_frame_offset": -4608,
         "mocap_frame_start": 4709,
         "mocap_frame_stop": 4759,
         "mocap_name": "TJFH_Desert02",
-        "need fix": 0.93,
+        "need fix": 0,
         "percentage_of_total": 0.93,
         "post_roll": 5,
         "pre_roll": 5,
@@ -2753,11 +2753,11 @@
         "shot_name": "ANM_SH0690",
         "source_frame_end": 4997,
         "source_frame_start": 4947,
-        "status": "need fix",
+        "status": "approve",
         "thumbnail": "",
         "video_offset": 4846,
         "video_source": "cutting2reference.mp4",
-        "work_hour": 0.4
+        "work_hour": 0.0
     },
     "ANM_SH0700": {
         "anim_note": "mocap clean up\n\nMINNIE \u0e40\u0e14\u0e34\u0e19\u0e21\u0e32\u0e40\u0e08\u0e2d\u0e01\u0e31\u0e1a\u0e2b\u0e25\u0e38\u0e21\u0e40\u0e23\u0e37\u0e2d\u0e07\u0e41\u0e2a\u0e07\u0e41\u0e25\u0e30\u0e19\u0e31\u0e48\u0e07\u0e25\u0e07\u0e14\u0e39",
@@ -2816,14 +2816,14 @@
         "face_lib_start": 5046,
         "frame_character": 204,
         "frame_duration": 102,
-        "in_progress": 0,
-        "last_ma": "ANM_SH0710_20210908_230608.ma",
+        "in_progress": 1.9,
+        "last_ma": "ANM_SH0710_20210913_000652.ma",
         "mocap_file_path": "D:/Project_maya/MoneyHoney/mocap/TJFH_Desert05.fbx",
         "mocap_frame_offset": -1369,
         "mocap_frame_start": 1470,
         "mocap_frame_stop": 1572,
         "mocap_name": "TJFH_Desert05",
-        "need fix": 1.9,
+        "need fix": 0,
         "percentage_of_total": 1.9,
         "post_roll": 5,
         "pre_roll": 5,
@@ -2833,11 +2833,11 @@
         "shot_name": "ANM_SH0710",
         "source_frame_end": 5157,
         "source_frame_start": 5055,
-        "status": "need fix",
+        "status": "in review",
         "thumbnail": "",
         "video_offset": 4954,
         "video_source": "cutting2reference.mp4",
-        "work_hour": 0.8
+        "work_hour": 0.0
     },
     "ANM_SH0720": {
         "anim_note": "mocap clean up\n\nMINNIE \u0e40\u0e14\u0e34\u0e19\u0e21\u0e32\u0e19\u0e31\u0e48\u0e07\u0e25\u0e07\u0e14\u0e39\u0e2b\u0e25\u0e38\u0e21\u0e40\u0e23\u0e37\u0e2d\u0e07\u0e41\u0e2a\u0e07\u0e41\u0e25\u0e30\u0e40\u0e2d\u0e37\u0e49\u0e2d\u0e21\u0e21\u0e37\u0e2d\u0e44\u0e1b\r\n\u0e2b\u0e22\u0e34\u0e1a\u0e1a\u0e32\u0e07\u0e2d\u0e22\u0e48\u0e32\u0e07",
@@ -2896,14 +2896,14 @@
         "face_lib_start": 5268,
         "frame_character": 270,
         "frame_duration": 135,
-        "in_progress": 0,
-        "last_ma": "ANM_SH0730_20210910_221558.ma",
+        "in_progress": 2.52,
+        "last_ma": "ANM_SH0730_20210913_000643.ma",
         "mocap_file_path": "D:/Project_maya/MoneyHoney/mocap/TJFH_Desert05.fbx",
         "mocap_frame_offset": -1613,
         "mocap_frame_start": 1714,
         "mocap_frame_stop": 1849,
         "mocap_name": "TJFH_Desert05",
-        "need fix": 2.52,
+        "need fix": 0,
         "percentage_of_total": 2.52,
         "post_roll": 5,
         "pre_roll": 5,
@@ -2913,11 +2913,11 @@
         "shot_name": "ANM_SH0730",
         "source_frame_end": 5412,
         "source_frame_start": 5277,
-        "status": "need fix",
+        "status": "in review",
         "thumbnail": "",
         "video_offset": 5176,
         "video_source": "cutting2reference.mp4",
-        "work_hour": 1.0
+        "work_hour": 0.0
     },
     "ANM_SH0740": {
         "anim_note": "mocap clean up\nMINNIE \u0e40\u0e14\u0e34\u0e19\u0e21\u0e32\u0e19\u0e31\u0e48\u0e07\u0e25\u0e07\u0e14\u0e39\u0e2b\u0e25\u0e38\u0e21\u0e40\u0e23\u0e37\u0e2d\u0e07\u0e41\u0e2a\u0e07\u0e41\u0e25\u0e30\u0e40\u0e2d\u0e37\u0e49\u0e2d\u0e21\u0e21\u0e37\u0e2d\u0e44\u0e1b\n\u0e2b\u0e22\u0e34\u0e1a\u0e1a\u0e32\u0e07\u0e2d\u0e22\u0e48\u0e32\u0e07\nMINNIE \u0e2b\u0e22\u0e34\u0e1a\u0e15\u0e38\u0e4a\u0e01\u0e15\u0e32 F.HERO \u0e41\u0e25\u0e30 \u0e15\u0e38\u0e4a\u0e01\u0e15\u0e32 URBOYTJ\n\u0e02\u0e36\u0e49\u0e19\u0e21\u0e32\u0e01\u0e2d\u0e14",
@@ -2957,7 +2957,7 @@
         "thumbnail": "",
         "video_offset": 5312,
         "video_source": "cutting2reference.mp4",
-        "work_hour": 3.5
+        "work_hour": 3.0
     },
     "ANM_SH0750": {
         "anim_note": "mocap clean up\nF.HERO URBOYTJ MINNIE \u0e40\u0e15\u0e49\u0e19",
@@ -2997,7 +2997,7 @@
         "thumbnail": "",
         "video_offset": 5654,
         "video_source": "cutting2reference.mp4",
-        "work_hour": 0.5
+        "work_hour": 0.4
     },
     "ANM_SH0760": {
         "anim_note": "mocap clean up\nF.HERO URBOYTJ MINNIE \u0e40\u0e15\u0e49\u0e19",
@@ -3037,7 +3037,7 @@
         "thumbnail": "",
         "video_offset": 5696,
         "video_source": "cutting2reference.mp4",
-        "work_hour": 0.5
+        "work_hour": 0.4
     },
     "ANM_SH0770": {
         "anim_note": "mocap clean up\nF.HERO URBOYTJ MINNIE \u0e40\u0e15\u0e49\u0e19",
@@ -3077,7 +3077,7 @@
         "thumbnail": "",
         "video_offset": 5738,
         "video_source": "cutting2reference.mp4",
-        "work_hour": 0.8
+        "work_hour": 0.7
     },
     "ANM_SH0780": {
         "anim_note": "mocap clean up\n\nF.HERO URBOYTJ MINNIE \u0e40\u0e15\u0e49\u0e19",
@@ -3117,7 +3117,7 @@
         "thumbnail": "",
         "video_offset": 5809,
         "video_source": "cutting2reference.mp4",
-        "work_hour": 0.4
+        "work_hour": 0.3
     },
     "ANM_SH0790": {
         "anim_note": "mocap clean up\n\nF.HERO URBOYTJ MINNIE \u0e40\u0e15\u0e49\u0e19",
@@ -3157,7 +3157,7 @@
         "thumbnail": "",
         "video_offset": 5842,
         "video_source": "cutting2reference.mp4",
-        "work_hour": 0.7
+        "work_hour": 0.6
     },
     "ANM_SH0800": {
         "anim_note": "mocap clean up\n\nF.HERO URBOYTJ MINNIE \u0e40\u0e15\u0e49\u0e19",
@@ -3237,7 +3237,7 @@
         "thumbnail": "",
         "video_offset": 5934,
         "video_source": "cutting2reference.mp4",
-        "work_hour": 1.3
+        "work_hour": 1.1
     },
     "ANM_SH0820": {
         "anim_note": "mocap clean up\n\nF.HERO URBOYTJ MINNIE \u0e40\u0e15\u0e49\u0e19",
@@ -3277,7 +3277,7 @@
         "thumbnail": "",
         "video_offset": 6052,
         "video_source": "cutting2reference.mp4",
-        "work_hour": 0.5
+        "work_hour": 0.4
     },
     "ANM_SH0830": {
         "anim_note": "mocap clean up\n\nF.HERO URBOYTJ MINNIE \u0e40\u0e15\u0e49\u0e19",
@@ -3317,6 +3317,6 @@
         "thumbnail": "",
         "video_offset": 6096,
         "video_source": "cutting2reference.mp4",
-        "work_hour": 1.8
+        "work_hour": 1.6
     }
 }
