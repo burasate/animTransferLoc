@@ -80,8 +80,8 @@
         "work_hour": 0.0
     },
     "ANM_SH0030": {
-        "anim_note": "hand key animate\nmocap clean up\nguitar \n\n\u0e14\u0e32\u0e27\u0e40\u0e04\u0e23\u0e32\u0e30\u0e2b\u0e4c\u0e2b\u0e21\u0e38\u0e19\u0e21\u0e32\u0e40\u0e2b\u0e47\u0e19 URBOYTJ \u0e19\u0e31\u0e48\u0e07\u0e2d\u0e22\u0e39\u0e48\u0e14\u0e49\u0e32\u0e19\u0e2b\u0e25\u0e31\u0e07\nF.HERO \u0e17\u0e35\u0e48\u0e01\u0e33\u0e25\u0e31\u0e07\u0e40\u0e25\u0e48\u0e19\u0e01\u0e35\u0e15\u0e49\u0e32\u0e23\u0e4c",
-        "anim_note_eng": "Hand Key Animate\nMocap Clean Up\nGuitar\n\nThe planet came to see Urboytj sitting in the back.\nF.Hero who is playing guitar",
+        "anim_note": "TEASER CUT\nhand key animate\nmocap clean up\nguitar \n\n\u0e14\u0e32\u0e27\u0e40\u0e04\u0e23\u0e32\u0e30\u0e2b\u0e4c\u0e2b\u0e21\u0e38\u0e19\u0e21\u0e32\u0e40\u0e2b\u0e47\u0e19 URBOYTJ \u0e19\u0e31\u0e48\u0e07\u0e2d\u0e22\u0e39\u0e48\u0e14\u0e49\u0e32\u0e19\u0e2b\u0e25\u0e31\u0e07\nF.HERO \u0e17\u0e35\u0e48\u0e01\u0e33\u0e25\u0e31\u0e07\u0e40\u0e25\u0e48\u0e19\u0e01\u0e35\u0e15\u0e49\u0e32\u0e23\u0e4c",
+        "anim_note_eng": "Teaser Cut\nHand Key Animate\nMocap Clean Up\nGuitar\n\nThe planet came to see Urboytj sitting in the back.\nF.Hero who is playing guitar",
         "animation_name": "ANM_SH0030_TJFH_Space01_0403_0498",
         "approve": 1.77,
         "assignee": "Kaofang",
@@ -280,8 +280,8 @@
         "work_hour": 0.0
     },
     "ANM_SH0080": {
-        "anim_note": "mocap clean up\n\nMINNIE \u0e40\u0e14\u0e34\u0e19\u0e40\u0e25\u0e48\u0e19\u0e2d\u0e22\u0e39\u0e48\u0e43\u0e19\u0e17\u0e38\u0e48\u0e07\u0e2b\u0e0d\u0e49\u0e32\u0e15\u0e2d\u0e19\u0e01\u0e25\u0e32\u0e07\u0e27\u0e31\u0e19",
-        "anim_note_eng": "Mocap Clean Up\n\nMinnie walks in the meadow in the daytime",
+        "anim_note": "TEASER CUT\nmocap clean up\nMINNIE \u0e40\u0e14\u0e34\u0e19\u0e40\u0e25\u0e48\u0e19\u0e2d\u0e22\u0e39\u0e48\u0e43\u0e19\u0e17\u0e38\u0e48\u0e07\u0e2b\u0e0d\u0e49\u0e32\u0e15\u0e2d\u0e19\u0e01\u0e25\u0e32\u0e07\u0e27\u0e31\u0e19",
+        "anim_note_eng": "Teaser Cut\nMocap Clean Up\nMinnie walks in the meadow in the daytime",
         "animation_name": "ANM_SH0080_MN_Fuji01_1034_1107",
         "approve": 0,
         "assignee": "Kaofang",
@@ -320,8 +320,8 @@
         "work_hour": 0.0
     },
     "ANM_SH0090": {
-        "anim_note": "mocap clean up\nfix pose\nguitar \n\nF.HERO \u0e40\u0e25\u0e48\u0e19\u0e01\u0e35\u0e15\u0e49\u0e32\u0e23\u0e4c URBOYTJ \u0e23\u0e49\u0e2d\u0e07\u0e25\u0e34\u0e1b\u0e0b\u0e34\u0e49\u0e07",
-        "anim_note_eng": "Mocap Clean Up\nFix Pose\nGuitar\n\nF.Hero Play Guitar Urboytj Lipching",
+        "anim_note": "TEASER CUT\nmocap clean up\nfix pose\nguitar \n\nF.HERO \u0e40\u0e25\u0e48\u0e19\u0e01\u0e35\u0e15\u0e49\u0e32\u0e23\u0e4c URBOYTJ \u0e23\u0e49\u0e2d\u0e07\u0e25\u0e34\u0e1b\u0e0b\u0e34\u0e49\u0e07",
+        "anim_note_eng": "Teaser Cut\nMocap Clean Up\nFix Pose\nGuitar\n\nF.Hero Play Guitar Urboytj Lipching",
         "animation_name": "ANM_SH0090_TJFH_Space01_3549_3612",
         "approve": 1.18,
         "assignee": "Kaofang",
@@ -360,8 +360,8 @@
         "work_hour": 0.0
     },
     "ANM_SH0100": {
-        "anim_note": "mocap clean up\nfix pose\nguitar ",
-        "anim_note_eng": "Mocap Clean Up\nFix Pose\nGuitar",
+        "anim_note": "TEASER CUT\nmocap clean up\nfix pose\nguitar ",
+        "anim_note_eng": "Teaser Cut\nMocap Clean Up\nFix Pose\nGuitar",
         "animation_name": "ANM_SH0100_TJFH_Space01_1060_1119",
         "approve": 1.1,
         "assignee": "Kaofang",
@@ -680,8 +680,8 @@
         "work_hour": 0.0
     },
     "ANM_SH0180": {
-        "anim_note": "mocap clean up",
-        "anim_note_eng": "Mocap Clean Up",
+        "anim_note": "TEASER CUT\nmocap clean up",
+        "anim_note_eng": "Teaser Cut\nMocap Clean Up",
         "animation_name": "ANM_SH0180_TJ_CityPop01_2296_2383",
         "approve": 0.81,
         "assignee": "Kaofang",
@@ -1280,8 +1280,8 @@
         "work_hour": 0.2
     },
     "ANM_SH0330": {
-        "anim_note": "mocap clean up\n\nMINNIE \u0e40\u0e14\u0e34\u0e19\u0e43\u0e19\u0e17\u0e38\u0e48\u0e07\u0e2b\u0e0d\u0e49\u0e32\u0e01\u0e25\u0e32\u0e07\u0e27\u0e31\u0e19",
-        "anim_note_eng": "Mocap Clean Up\n\nMinnie walk in the lunch mepart",
+        "anim_note": "TEASER CUT\nmocap clean up\n\nMINNIE \u0e40\u0e14\u0e34\u0e19\u0e43\u0e19\u0e17\u0e38\u0e48\u0e07\u0e2b\u0e0d\u0e49\u0e32\u0e01\u0e25\u0e32\u0e07\u0e27\u0e31\u0e19",
+        "anim_note_eng": "Teaser Cut\nMocap Clean Up\n\nMinnie walk in the lunch mepart",
         "animation_name": "ANM_SH0330_MN_Fuji02_3624_3673",
         "approve": 0,
         "assignee": "Mint",
@@ -1320,16 +1320,16 @@
         "work_hour": 0.0
     },
     "ANM_SH0340": {
-        "anim_note": "mocap clean up\nMINNIE \u0e40\u0e14\u0e34\u0e19\u0e23\u0e49\u0e2d\u0e07\u0e25\u0e34\u0e1b\u0e0b\u0e34\u0e49\u0e07\u0e43\u0e19\u0e17\u0e38\u0e48\u0e07\u0e2b\u0e0d\u0e49\u0e32\u0e01\u0e25\u0e32\u0e07\u0e27\u0e31\u0e19\n\u0e1b\u0e23\u0e31\u0e1a\u0e21\u0e38\u0e21\u0e01\u0e25\u0e49\u0e2d\u0e07\u0e15\u0e32\u0e21 cutting",
-        "anim_note_eng": "Mocap Clean Up\nMinnie walks lipching in the lunch mepart.\nAdjust the camera angle according to cutting",
+        "anim_note": "TEASER CUT\nmocap clean up\nMINNIE \u0e40\u0e14\u0e34\u0e19\u0e23\u0e49\u0e2d\u0e07\u0e25\u0e34\u0e1b\u0e0b\u0e34\u0e49\u0e07\u0e43\u0e19\u0e17\u0e38\u0e48\u0e07\u0e2b\u0e0d\u0e49\u0e32\u0e01\u0e25\u0e32\u0e07\u0e27\u0e31\u0e19\n\u0e1b\u0e23\u0e31\u0e1a\u0e21\u0e38\u0e21\u0e01\u0e25\u0e49\u0e2d\u0e07\u0e15\u0e32\u0e21 cutting",
+        "anim_note_eng": "Teaser Cut\nMocap Clean Up\nMinnie walks lipching in the lunch mepart.\nAdjust the camera angle according to cutting",
         "animation_name": "ANM_SH0340_MN_Fuji01_0471_0520",
         "approve": 0,
         "assignee": "Mint",
         "audio_offset": -2354,
         "audio_source": "cutting2reference.wav",
         "character": 1,
-        "comment": "",
-        "comment_eng": "",
+        "comment": "please update new camera\nhttps://drive.google.com/open?id=1wR_E1qZEEdzEUkn-AiUkNcwssOs0pj2_",
+        "comment_eng": "PLEASE UPDATE NEW CAMERA\nhttps://drive.google.com/open?id=1WR_E1QZEEDZEUKN-AIUKNCWSSOS0PJ2_",
         "date_finish": "",
         "do_nothing": 0,
         "face_lib_end": 2495,
@@ -1400,8 +1400,8 @@
         "work_hour": 0.0
     },
     "ANM_SH0360": {
-        "anim_note": " ",
-        "anim_note_eng": "#VALUE!",
+        "anim_note": "TEASER CUT",
+        "anim_note_eng": "Teaser Cut",
         "animation_name": "ANM_SH0360_FH_Desert_Test02_5126_5243",
         "approve": 1.09,
         "assignee": "Note",
@@ -3217,7 +3217,7 @@
         "frame_character": 351,
         "frame_duration": 117,
         "in_progress": 3.28,
-        "last_ma": "",
+        "last_ma": "ANM_SH0810_20210915_192757.ma",
         "mocap_file_path": "D:/Project_maya/MoneyHoney/mocap/TJFHMN_Solid02.fbx",
         "mocap_frame_offset": -482,
         "mocap_frame_start": 583,
