@@ -824,7 +824,7 @@
         "anim_note": "mocap clean up\n\nF.HERO \u0e22\u0e37\u0e19\u0e1a\u0e19\u0e23\u0e16\u0e23\u0e49\u0e2d\u0e07\u0e25\u0e34\u0e1b\u0e0b\u0e34\u0e49\u0e07\u0e17\u0e48\u0e32\u0e21\u0e01\u0e25\u0e32\u0e07\u0e17\u0e30\u0e40\u0e25\u0e17\u0e23\u0e32\u0e22\u0e2d\u0e31\u0e19\n\u0e42\u0e14\u0e14\u0e40\u0e14\u0e35\u0e48\u0e22\u0e27\u0e17\u0e35\u0e48\u0e21\u0e35\u0e02\u0e2d\u0e07\u0e41\u0e1a\u0e23\u0e14\u0e4c\u0e40\u0e19\u0e21\u0e08\u0e21\u0e2d\u0e22\u0e39\u0e48\u0e43\u0e19\u0e01\u0e2d\u0e07\u0e17\u0e23\u0e32\u0e22",
         "anim_note_eng": "Mocap Clean Up\n\nF.Hero stands on the car, singing lips amidst the desert.\nIsolated with Brest Nemes in the sand pile",
         "animation_name": "ANM_SH0210_FH_Desert_Test01_1709_1764",
-        "approve": 0,
+        "approve": 0.51,
         "assignee": "Mint",
         "audio_offset": -1656,
         "audio_source": "cutting2reference.wav",
@@ -837,7 +837,7 @@
         "face_lib_start": 1748,
         "frame_character": 55,
         "frame_duration": 55,
-        "in_progress": 0.51,
+        "in_progress": 0,
         "last_ma": "ANM_SH0210_20210912_235425.ma",
         "mocap_file_path": "D:/Project_maya/MoneyHoney/mocap/FH_Desert_Test01.fbx",
         "mocap_frame_offset": -1608,
@@ -854,11 +854,11 @@
         "shot_name": "ANM_SH0210",
         "source_frame_end": 1812,
         "source_frame_start": 1757,
-        "status": "in progress",
+        "status": "approve",
         "thumbnail": "",
         "video_offset": 1656,
         "video_source": "cutting2reference.mp4",
-        "work_hour": "#NUM!"
+        "work_hour": 0.0
     },
     "ANM_SH0220": {
         "": "Mind export",
