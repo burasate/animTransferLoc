@@ -26,18 +26,24 @@ def snapPoint(object, target):
     cmds.delete(pointCon)
 
 def parentConstraint(object, target, translate=True, rotate=True):
-    # snap object to target
+    translate_at = {'translateX':'x','translateY':'y','translateZ':'z'}
+    rotate_at = {'rotateX':'x','rotateY':'y','rotateZ':'z'}
+    t_at = [a for a in cmds.listAttr(object,k=True) if a in list(translate_at)]
+    r_at = [a for a in cmds.listAttr(object,k=True) if a in list(rotate_at)]
+    skip_t_at = [translate_at[a] for a in list(translate_at) if not a in t_at]
+    skip_r_at = [rotate_at[a] for a in list(rotate_at) if not a in r_at]
+
     conList = []
     if translate:
         try:
-            pointC = cmds.pointConstraint(target, object, weight=1.0, mo=False)
+            pointC = cmds.pointConstraint(target, object, weight=1.0, mo=False, skip=skip_r_at)
         except:
             pass
         else:
             conList.append(pointC)
     if rotate:
         try:
-            orientC = cmds.orientConstraint(target, object, weight=1.0, mo=False)
+            orientC = cmds.orientConstraint(target, object, weight=1.0, mo=False, skip=skip_t_at)
         except:
             pass
         else:
@@ -382,7 +388,7 @@ def BRSLocTransferSupport (*_):
 UI
 -----------------------------------------------------------------------
 """
-version = '1.12'
+version = '1.13'
 winID = 'BRSLOCTRANSFER'
 winWidth = 200
 
