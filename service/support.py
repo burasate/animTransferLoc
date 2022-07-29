@@ -38,9 +38,10 @@ data = {
     'os' : str(cmds.about(operatingSystem=True))
 }
 
-url = 'https://hook.integromat.com/k9ura85kw05vf1cuiakcasxm7uw2y2vj'
-params = urllib.urlencode(data)
-conn = urllib.urlopen('{}?{}'.format(url, params))
+#url = 'https://hook.integromat.com/k9ura85kw05vf1cuiakcasxm7uw2y2vj'
+#params = urllib.urlencode(data)
+#conn = urllib.urlopen('{}?{}'.format(url, params))
+
 #print(conn.read())
 #print(conn.info())
 
