@@ -160,10 +160,8 @@ def getMimicLocator(objectName, locName=locSuffix, rotOrder = 'xzy'):
     rotOrderIndex = rotOrderList.index(rotOrder)
     LocName = objectName + locName
     # delete exist locator
-    try:
+    if cmds.objExists(LocName):
         cmds.delete(LocName)
-    except:
-        pass
 
     # create mimic locator
     locator = cmds.spaceLocator(n=LocName)
@@ -248,6 +246,9 @@ def objectToLocatorSnap(toGroup=True, forceConstraint=False ,forceBake=False):
         cons = forceConstraint
 
     selected = cmds.ls(sl=True)
+    if selected == None or selected == []:
+        cmds.error('no object select to Create Anim Locator')
+        return None
     # print (selected)
     if toGroup:
         createBRSAnimLocGrp(selected)
@@ -389,9 +390,9 @@ def BRSLocTransferSupport (*_):
 UI
 -----------------------------------------------------------------------
 """
-version = '1.13'
+version = '1.14'
 winID = 'BRSLOCTRANSFER'
-winWidth = 200
+winWidth = 190
 
 colorSet = {
     'bg': (.2, .2, .2),
@@ -423,7 +424,7 @@ cmds.setParent('..')
 cmds.setParent('..')
 cmds.setParent('..')
 
-cmds.frameLayout(label='Anim Locator', w=winWidth, collapsable=True, collapse=False, bgc=colorSet['shadow'])
+cmds.frameLayout(label='Option', w=winWidth, collapsable=True, collapse=False, bgc=colorSet['shadow'])
 cmds.columnLayout( adjustableColumn=True )
 # cmds.text(l='   Anim Locator', fn='boldLabelFont', al='left', h=25, w=winWidth)
 cmds.rowLayout(numberOfColumns=2, columnWidth2=(winWidth * 0.5, winWidth * 0.5), columnAlign2=['center', 'center'])
