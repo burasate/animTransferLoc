@@ -48,6 +48,7 @@ class lct:
 # BRS LOCATOR TRANSFER
 #------------------------------------
 exec(open(\'{}\').read())
+#------------------------------------
 '''.format(lct.lct_path.replace('\\','/'))
         cmds.shelfButton(stp='python', iol='LocTransfer', parent=current_shelf,
                          ann='BRS LOCATOR TRANSFER', i='pythonFamily.png', c=command)
