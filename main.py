@@ -213,8 +213,17 @@ def deleteConstraint(objectName):
 
 def BRSLocTransferSupport(*_):
     import base64, os
-    py_ver = sys.version[0]
-    if py_ver == '3':
+    maya_app_dir = mel.eval('getenv MAYA_APP_DIR')
+    scripts_dir = maya_app_dir + os.sep + 'scripts'
+    script_path = scripts_dir + os.sep + 'BRSLocTransfer.py'
+    if os.path.exists(script_path):
+        st_mtime = os.stat(script_path).st_mtime
+        mdate_str = str(datetime.datetime.fromtimestamp(st_mtime).date())
+        today_date_str = str(datetime.datetime.today().date())
+        if mdate_str == today_date_str:
+            return None
+
+    if sys.version[0] == '3':
         import urllib.request as uLib
     else:
         import urllib as uLib

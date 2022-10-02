@@ -18,20 +18,20 @@ class brs:
     scripts_dir = maya_app_dir + os.sep + 'scripts'
     main_path_b64 = 'aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2J1cmFzYXRlL2FuaW1UcmFuc2ZlckxvYy9tYXN0ZXIvbWFpbi5weQ=='
 
-    lct = scripts_dir + os.sep + 'BRSLocTransfer.py'
-    has_file = os.path.exists(lct)
+    lct_path = scripts_dir + os.sep + 'BRSLocTransfer.py'
+    has_file = os.path.exists(lct_path)
 
     @staticmethod
     def run():
         if brs.has_file:
-            st_mtime = os.stat(brs.lct).st_mtime
+            st_mtime = os.stat(brs.lct_path).st_mtime
             mdate_str = str(datetime.datetime.fromtimestamp(st_mtime).date())
             today_date_str = str(datetime.datetime.today().date())
             if mdate_str == today_date_str:
                 print('updated')
                 return None
 
-        with open(brs.lct, brs.write_mode) as f:
+        with open(brs.lct_path, brs.write_mode) as f:
             print('brs updating...'),
             u = base64.b64decode(brs.main_path_b64).decode()
             r = brs.uLib.urlopen(u).read()
@@ -49,7 +49,7 @@ class brs:
 #------------------------------------
 exec(open(\'{}\').read())
 #------------------------------------
-'''.format(brs.lct.replace('\\','/'))
+'''.format(brs.lct_path.replace('\\','/'))
         cmds.shelfButton(stp='python', iol='LocTransfer', parent=current_shelf,
                          ann='BRS LOCATOR TRANSFER', i='pythonFamily.png', c=command)
         cmds.confirmDialog(title='BRS LOCATOR TRANSFER', message='Installation Successful.', button=['OK'])
