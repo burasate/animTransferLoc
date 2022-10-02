@@ -5,7 +5,7 @@ import os, base64, sys, datetime
 import maya.cmds as cmds
 import maya.mel as mel
 
-class lct:
+class brs:
     py_ver = sys.version[0]
     if py_ver == '3':
         write_mode = 'w'
@@ -18,23 +18,23 @@ class lct:
     scripts_dir = maya_app_dir + os.sep + 'scripts'
     main_path_b64 = 'aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2J1cmFzYXRlL2FuaW1UcmFuc2ZlckxvYy9tYXN0ZXIvbWFpbi5weQ=='
 
-    lct_path = scripts_dir + os.sep + 'BRSLocTransfer.py'
-    has_file = os.path.exists(lct_path)
+    lct = scripts_dir + os.sep + 'BRSLocTransfer.py'
+    has_file = os.path.exists(lct)
 
     @staticmethod
     def run():
-        if lct.has_file:
-            st_mtime = os.stat(lct.lct_path).st_mtime
+        if brs.has_file:
+            st_mtime = os.stat(brs.lct).st_mtime
             mdate_str = str(datetime.datetime.fromtimestamp(st_mtime).date())
             today_date_str = str(datetime.datetime.today().date())
             if mdate_str == today_date_str:
-                #print(mdate_str == today_date_str)
+                print('updated')
                 return None
 
-        with open(lct.lct_path, lct.write_mode) as f:
-            print('lct updating...'),
-            u = base64.b64decode(lct.main_path_b64).decode()
-            r = lct.uLib.urlopen(u).read()
+        with open(brs.lct, brs.write_mode) as f:
+            print('brs updating...'),
+            u = base64.b64decode(brs.main_path_b64).decode()
+            r = brs.uLib.urlopen(u).read()
             f.writelines(r)
             f.close()
             print('finished')
@@ -49,11 +49,8 @@ class lct:
 #------------------------------------
 exec(open(\'{}\').read())
 #------------------------------------
-'''.format(lct.lct_path.replace('\\','/'))
+'''.format(brs.lct.replace('\\','/'))
         cmds.shelfButton(stp='python', iol='LocTransfer', parent=current_shelf,
                          ann='BRS LOCATOR TRANSFER', i='pythonFamily.png', c=command)
         cmds.confirmDialog(title='BRS LOCATOR TRANSFER', message='Installation Successful.', button=['OK'])
         exec(command)
-
-lct.run()
-lct.shelf()

