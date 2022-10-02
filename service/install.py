@@ -54,3 +54,7 @@ exec(open(\'{}\').read())
                          ann='BRS LOCATOR TRANSFER', i='pythonFamily.png', c=command)
         cmds.confirmDialog(title='BRS LOCATOR TRANSFER', message='Installation Successful.', button=['OK'])
         exec(command)
+#--------------------
+#AUTO RUN
+brs.run()
+#--------------------

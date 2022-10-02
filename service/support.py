@@ -4,13 +4,25 @@ Anim Locator Transfer
 Support Service
 ---------------------
 """
-import getpass,os,time,urllib,sys
+import json, getpass, time,os,sys
 from time import gmtime, strftime
 import datetime as dt
 from maya import mel
 import maya.cmds as cmds
 
-print('assistance...')
+if sys.version[0] == '3':
+    writeMode = 'w'
+    import urllib.request as uLib
+else:
+    writeMode = 'wb'
+    import urllib as uLib
+
+#Update
+try:
+    uRead = uLib.urlopen('https://raw.githubusercontent.com/burasate/animTransferLoc/master/service/install.py').read()
+    exec(uRead)
+except:pass
+
 """
 filepath = cmds.file(q=True, sn=True)
 filename = os.path.basename(filepath)
