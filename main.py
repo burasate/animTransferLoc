@@ -388,11 +388,6 @@ def locatorToObjectSnap(*_):
         fit=100, fst=2000, fot=100
     )
 
-def checkRootNamespace(*_):
-    cmds.namespaceInfo( currentNamespace=1 )
-    if not cmds.namespaceInfo(isRootNamespace=1):
-        cmds.error('!!!!! - Need root namespace to proceed.. please check')
-
 """
 -----------------------------------------------------------------------
 UI
@@ -478,7 +473,8 @@ cmds.setParent('..')
 cmds.text(l='Created by Buraed Uttha', h=20, al='left', fn='smallPlainLabelFont')
 
 def BRSLocTransferUI(*_):
-    checkRootNamespace()
+    if not cmds.namespaceInfo(isRootNamespace=1):
+        cmds.error('!!!!! - Need root namespace to proceed.. please check')
     BRSLocTransferSupport()
     cmds.showWindow(winID)
     cmds.window(winID, e=True, h=100, w=100)
