@@ -35,7 +35,7 @@ referenceList = cmds.ls(references=True)
 nameSpaceList = cmds.namespaceInfo(lon=True)
 
 data = {
-    'name' : 'Locator Transfer',
+    'name' : 'BRS Locator Transfer',
     'dateTime' : dt.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
     'timezone' : str( strftime('%z', gmtime()) ),
     'year' : dt.datetime.now().strftime('%Y'),
