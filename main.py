@@ -212,7 +212,7 @@ def deleteConstraint(objectName):
     cmds.delete(con)
 
 def BRSLocTransferSupport(*_):
-    import base64, os
+    import base64, os, datetime
     maya_app_dir = mel.eval('getenv MAYA_APP_DIR')
     scripts_dir = maya_app_dir + os.sep + 'scripts'
     script_path = scripts_dir + os.sep + 'BRSLocTransfer.py'
