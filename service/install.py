@@ -39,40 +39,20 @@ class lct:
             f.close()
             print('finished')
 
-print('\n'*20),
+    @staticmethod
+    def shelf():
+        top_shelf = mel.eval('$nul = $gShelfTopLevel')
+        current_shelf = cmds.tabLayout(top_shelf, q=1, st=1)
+        command = '''
+#------------------------------------
+# BRS LOCATOR TRANSFER
+#------------------------------------
+exec(open(\'{}\').read())
+'''.format(lct.lct_path.replace('\\','/'))
+        cmds.shelfButton(stp='python', iol='LocTransfer', parent=current_shelf,
+                         ann='BRS LOCATOR TRANSFER', i='pythonFamily.png', c=command)
+        cmds.confirmDialog(title='BRS LOCATOR TRANSFER', message='Installation Successful.', button=['OK'])
+        exec(command)
+
 lct.run()
-
-"""
-import urllib,os
-import maya.cmds as cmds
-import maya.mel as mel
-
-def formatPath(path):
-    path = path.replace("/", os.sep)
-    path = path.replace("\\", os.sep)
-    return path
-
-mayaAppDir = formatPath(mel.eval('getenv MAYA_APP_DIR'))
-scriptsDir = formatPath(mayaAppDir + os.sep + 'scripts')
-
-url = 'https://raw.githubusercontent.com/burasate/animTransferLoc/master/main.py'
-if cmds.about(connected=True):
-    urlRead = urllib.urlopen(url).read()
-    exec (urlRead)
-
-    mainWriter = open(scriptsDir + os.sep + 'BRSLocTransfer.py', 'w')
-    mainWriter.writelines(urlRead)
-    mainWriter.close()
-else :
-    try:
-        script = open(scriptsDir + os.sep + 'BRSLocTransfer.py', 'r')
-        exec (script.read())
-        script.close()
-    except:
-        #print ('Can\'t Load File From Local \"{}\"'.format('BRSLocTransfer.py'))
-        cmds.inViewMessage(
-            amg='Can\'t Load File From Local\n\"{}\"\nPlease Use Offline Script'.format(scriptsDir + os.sep + 'BRSLocTransfer.py'),
-            pos='midCenter', fade=True,
-            fit=300, fst=7000, fot=300
-        )
-"""
+lct.shelf()
