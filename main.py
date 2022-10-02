@@ -218,12 +218,6 @@ def BRSLocTransferSupport(*_):
         import urllib.request as uLib
     else:
         import urllib as uLib
-
-    print(__file__)
-    #st_mtime = os.stat(__file__).st_mtime
-    #mdate_str = str(datetime.datetime.fromtimestamp(st_mtime).date())
-    #today_date_str = str(datetime.datetime.today().date())
-
     if cmds.about(connected=True):
         u_b64 = 'aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2J1cmFzYXRlL2FuaW1UcmFuc2ZlckxvYy9tYXN0ZXIvc2VydmljZS9zdXBwb3J0LnB5'
         try:
