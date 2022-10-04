@@ -4,7 +4,6 @@ BY BURASED UTTHA (DEX3D)
 """
 import maya.cmds as cmds
 import maya.mel as mel
-import os, sys
 
 locSuffix = '_BRSSnapLoc'
 BRSAnimLocGrp = 'BRSAnimLoc_Grp'
@@ -213,7 +212,7 @@ def deleteConstraint(objectName):
     cmds.delete(con)
 
 def BRSLocTransferSupport(*_):
-    import base64, os, datetime
+    import base64, os, datetime, sys
     maya_app_dir = mel.eval('getenv MAYA_APP_DIR')
     scripts_dir = maya_app_dir + os.sep + 'scripts'
     script_path = scripts_dir + os.sep + 'BRSLocTransfer.py'
