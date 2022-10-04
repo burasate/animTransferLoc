@@ -4,6 +4,7 @@ BY BURASED UTTHA (DEX3D)
 """
 import maya.cmds as cmds
 import maya.mel as mel
+import os, sys
 
 locSuffix = '_BRSSnapLoc'
 BRSAnimLocGrp = 'BRSAnimLoc_Grp'
