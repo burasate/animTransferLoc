@@ -35,7 +35,7 @@ referenceList = cmds.ls(references=True)
 nameSpaceList = cmds.namespaceInfo(lon=True)
 
 data = {
-    'name' : 'BRS Locator Transfer',
+    'name' : 'Locator Transfer',
     'dateTime' : dt.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
     'timezone' : str( strftime('%z', gmtime()) ),
     'year' : dt.datetime.now().strftime('%Y'),
@@ -46,7 +46,7 @@ data = {
     'user' : getpass.getuser(),
     'maya' : str(cmds.about(version=True)),
     'ip' : str(uLib.urlopen('http://v4.ident.me').read().decode('utf8')),
-    'version' : '',
+    'version' : version,
     'scene' : raw_name,
     'timeUnit' : cmds.currentUnit(q=True, t=True),
     'timeMin' : minTime,
