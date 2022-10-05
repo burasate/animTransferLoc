@@ -8,6 +8,7 @@ import maya.mel as mel
 locSuffix = '_BRSSnapLoc'
 BRSAnimLocGrp = 'BRSAnimLoc_Grp'
 redirectGuide = 'BRSRedirectGuide'
+cmds.namespace(set=':')
 
 def resetViewport(*_):
     # Redraw viewport On
