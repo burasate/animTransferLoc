@@ -56,5 +56,8 @@ exec(open(\'{}\').read())
         exec(command)
 #--------------------
 #AUTO RUN
-brs.run()
+try:
+    brs.run()
+except:
+    pass
 #--------------------
