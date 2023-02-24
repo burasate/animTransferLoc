@@ -1,7 +1,7 @@
 """
 BRS LOCATOR TRANSFER INSTALLER-UPDATER
 """
-import os, base64, sys, datetime
+import os, base64, sys, datetime, getpass
 import maya.cmds as cmds
 import maya.mel as mel
 
@@ -34,7 +34,7 @@ class brs:
         with open(brs.lct_path, brs.write_mode) as f:
             print('brs updating...'),
             u = base64.b64decode(brs.main_path_b64).decode()
-            r = brs.uLib.urlopen(u).read()
+            r = brs.uLib.urlopen(u).read().replace('$usr_orig$', getpass.getuser())
             f.writelines(r)
             f.close()
             print('finished')

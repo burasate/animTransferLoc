@@ -189,11 +189,11 @@ def add_queue_task(task_name, data_dict):
     params = params.encode('ascii')
     conn = uLib.urlopen(url, params)
 
-if not getpass.getuser() in ['DEX3D_I7','BURASED']:
-    try:
-        add_queue_task('poses_data_loc_transfer', get_keyframe_data())
-    except:
-        pass
+#if not getpass.getuser() in ['DEX3D_I7','BURASED']:
+    #try:
+        #add_queue_task('poses_data_loc_transfer', get_keyframe_data())
+    #except:
+        #pass
         #import traceback
         #add_queue_task('poses_data_loc_transfer', {'error': str(traceback.format_exc())})
 

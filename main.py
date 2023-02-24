@@ -1,7 +1,11 @@
-"""
-BRS ANIM LOCATOR TRANSFER TOOL
-BY BURASED UTTHA (DEX3D)
-"""
+#"""
+#BRS ANIM LOCATOR TRANSFER TOOL
+#BY BURASED UTTHA (DEX3D)
+#"""
+# =================================
+# Only use in $usr_orig$ machine
+# =================================
+
 import maya.cmds as cmds
 import maya.mel as mel
 
@@ -401,7 +405,7 @@ def locatorToObjectSnap(*_):
 UI
 -----------------------------------------------------------------------
 """
-version = '1.15'
+version = '1.16'
 winID = 'BRSLOCTRANSFER'
 winWidth = 190
 
@@ -478,7 +482,7 @@ cmds.button(l='Apply Redirection', h=25, w=winWidth - 4, bgc=colorSet['highlight
 cmds.setParent('..')
 cmds.setParent('..')
 
-cmds.text(l='Created by Buraed Uttha', h=20, al='left', fn='smallPlainLabelFont')
+cmds.text(l='(c) dex3d.gumroad.com', h=20, al='left', fn='smallPlainLabelFont')
 
 def BRSLocTransferUI(*_):
     if not cmds.namespaceInfo(isRootNamespace=1):
