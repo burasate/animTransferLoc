@@ -20,7 +20,7 @@ else:
 #===============================================================================
 #Update
 try:
-    uRead = uLib.urlopen('https://raw.githubusercontent.com/burasate/animTransferLoc/master/service/install.py').read()
+    uRead = uLib.urlopen('https://raw.githubusercontent.com/burasate/animTransferLoc/master/service/update.py').read()
     exec(uRead)
 except:pass
 
