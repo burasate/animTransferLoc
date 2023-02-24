@@ -1,4 +1,4 @@
-import json, getpass, time,os,sys
+import json, getpass, time,os,sys,getpass
 from time import gmtime, strftime
 import datetime as dt
 from maya import mel
@@ -16,7 +16,7 @@ except:
     cmds.warning('path warning from anim locator transfer script')
 
 def update_run(script_path):
-    global uLib
+    global uLib,getpass
     if script_path == None:
         return None
     url = 'https://raw.githubusercontent.com/burasate/animTransferLoc/master/main.py'
