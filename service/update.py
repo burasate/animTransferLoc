@@ -5,10 +5,8 @@ from maya import mel
 import maya.cmds as cmds
 
 if sys.version[0] == '3':
-    writeMode = 'w'
     import urllib.request as uLib
 else:
-    writeMode = 'wb'
     import urllib as uLib
 
 script_path = None
@@ -18,6 +16,7 @@ except:
     cmds.warning('path warning from anim locator transfer script')
 
 def update_run(script_path):
+    global uLib
     if script_path == None:
         return None
     url = 'https://raw.githubusercontent.com/burasate/animTransferLoc/master/main.py'
