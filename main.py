@@ -431,8 +431,8 @@ colorSet = {
 if cmds.window(winID, exists=True):
     cmds.deleteUI(winID)
 cmds.window(winID, t='BRS Locator Transfer' + ' - ' + version,
-            w=winWidth, sizeable=True,
-            retain=True, bgc=colorSet['bg'])
+            w=winWidth, sizeable=True, rtf=1, nde=1,
+            retain=1, bgc=colorSet['bg'])
 
 cmds.columnLayout(adj=False, w=winWidth)
 cmds.text(l='BRS Locator Transfer' + ' - ' + version, fn='boldLabelFont', h=20, w=winWidth, bgc=colorSet['green'])
