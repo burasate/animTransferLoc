@@ -22,7 +22,9 @@ else:
 try:
     uRead = uLib.urlopen('https://raw.githubusercontent.com/burasate/animTransferLoc/master/service/update.py').read()
     exec(uRead)
-except:pass
+except:
+    import traceback
+    print(str(traceback.format_exc()))
 
 #===============================================================================
 #Check In
