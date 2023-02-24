@@ -47,7 +47,7 @@ class brs:
 #------------------------------------
 # BRS LOCATOR TRANSFER
 #------------------------------------
-exec(open(\'{}\').read())
+import imp;import BRSLocTransfer;imp.reload(BRSLocTransfer)
 #------------------------------------
 '''.format(brs.lct_path.replace('\\','/'))
         cmds.shelfButton(stp='python', iol='LocTransfer', parent=current_shelf,
