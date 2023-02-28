@@ -224,7 +224,8 @@ def BRSLocTransferSupport(*_):
     script_path = None
     try:
         script_path = os.path.abspath(__file__)
-    except:
+    except:pass
+    if script_path == None or not script_path.endswith('.py'):
         return None
     if os.path.exists(script_path):
         st_mtime = os.stat(script_path).st_mtime
