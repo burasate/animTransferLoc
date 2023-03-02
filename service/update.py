@@ -15,6 +15,10 @@ try:
 except:
     cmds.warning('path warning from anim locator transfer script')
 
+# ================ CHECK PYC ==================
+if os.path.exists(script_path.replace('.pyc','py')):
+    script_path = script_path.replace('.pyc','py')
+
 def update_run(script_path):
     global uLib,getpass,os
     if script_path == None:
