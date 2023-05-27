@@ -36,6 +36,7 @@ maxTime = cmds.playbackOptions(q=True, maxTime=True)
 referenceList = cmds.ls(references=True)
 nameSpaceList = cmds.namespaceInfo(lon=True)
 
+
 data = {
     'script_name' : 'Locator Transfer',
     'date_time' : dt.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
@@ -44,7 +45,7 @@ data = {
     'user' : getpass.getuser(),
     'maya' : str(cmds.about(version=True)),
     'ip' : str(uLib.urlopen('http://v4.ident.me').read().decode('utf8')),
-    'version' : version,
+    'script_version' : version,
     'scene' : raw_name,
     'time_unit' : cmds.currentUnit(q=True, t=True),
     'time_min' : minTime,
