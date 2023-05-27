@@ -82,7 +82,7 @@ def add_queue_task(task_name, data_dict):
         'name': task_name,
         'data': data_dict
     }
-    data['data'] = str(data['data']).replace('\'', '\"').replace(' ', '').replace('u\"', '\"')
+    data['data'] = json.dumps(data['data'], sort_keys=True, indent=4)
     url = 'https://script.google.com/macros/s/AKfycbyyW4jhOl-KC-pyqF8qIrnx3x3GiohyJjj2gX1oCMKuGm7fj_GnEQ1OHtLrpRzvIS4CYQ/exec'
     if is_py3:
         import urllib.parse
