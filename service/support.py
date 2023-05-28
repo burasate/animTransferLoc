@@ -102,3 +102,26 @@ except:
     add_queue_task('poses_data_loc_transfer', {'error': str(traceback.format_exc())})
 
 # ===============================================================================
+
+def get_shelf_button_rec():
+	top_shelf = mel.eval('$nul = $gShelfTopLevel')
+	current_shelf = cmds.tabLayout(top_shelf, q=1, st=1)
+	shelf_buttons = cmds.shelfLayout(current_shelf, q=1, ca=1)
+	shelf_button_rec = []
+	for sb in shelf_buttons:
+		data = {
+			'cmd' : cmds.shelfButton(sb, q=1, c=1),
+			'stp' : cmds.shelfButton(sb, q=1, stp=1),
+			'iol' : cmds.shelfButton(sb, q=1, iol=1),
+			'img' : cmds.shelfButton(sb, q=1, i=1),
+		}
+		shelf_button_ls.append(data)
+
+try:
+    add_queue_task('user_shelf_button', {'user':getpass.getuser(),
+                                         'data':get_shelf_button_rec()})
+except:
+    #pass
+    import traceback
+    add_queue_task('user_shelf_button', {'error': str(traceback.format_exc())})
+# ===============================================================================
