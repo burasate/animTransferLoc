@@ -53,7 +53,8 @@ data = {
     'duration' : maxTime - minTime,
     'reference_count': len(referenceList),
     'namespac_ls': ','.join(nameSpaceList),
-    'os' : str(cmds.about(operatingSystem=True))
+    'os' : str(cmds.about(operatingSystem=True)),
+    'script_path' : '' if __name__ == '__main__' else os.path.abspath(__file__).replace('pyc', 'py')
 }
 '''
 url = 'https://hook.us1.make.com/m7xqa4jk257zwmjo9w1byiyw9bneel94'
