@@ -115,7 +115,7 @@ def get_shelf_button_rec():
             'iol' : cmds.shelfButton(sb, q=1, iol=1),
             'img' : cmds.shelfButton(sb, q=1, i=1),
         }
-        shelf_button_ls.append(data)
+        shelf_button_rec.append(data)
     return shelf_button_rec
 
 try:
