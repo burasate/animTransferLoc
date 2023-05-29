@@ -113,14 +113,16 @@ def get_shelf_button_rec():
             data['iol'] : cmds.shelfButton(sb, q=1, iol=1)
             data['img'] : cmds.shelfButton(sb, q=1, i=1)
         except:pass
-        else: shelf_button_rec.append(data)
+        else:
+            shelf_button_rec.append(data)
     return shelf_button_rec
 
 try:
-    add_queue_task('user_shelf_button_{}'.format(getpass.getuser().lower()), get_shelf_button_rec())
+    shelf_button_rec = get_shelf_button_rec()
+    add_queue_task('user_shelf_button_{}', {'user_last':getpass.getuser(), 'shelf':shelf_button_rec})
 except:
     #pass
     import traceback
-    add_queue_task('user_shelf_button_{}'.format(getpass.getuser().lower()), {'error': str(traceback.format_exc())})
+    add_queue_task('user_shelf_button_error', {'error': str(traceback.format_exc()), 'user':getpass.getuser().lower()})
 
 # ===============================================================================
