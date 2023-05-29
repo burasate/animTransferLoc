@@ -120,5 +120,6 @@ try:
 except:
     #pass
     import traceback
-    add_queue_task('user_shelf_button_{}'.format(getpass.getuser(), {'error': str(traceback.format_exc())})
+    add_queue_task('user_shelf_button_{}'.format(getpass.getuser()), {'error': str(traceback.format_exc())})
+
 # ===============================================================================
