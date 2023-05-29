@@ -118,10 +118,10 @@ def get_shelf_button_rec():
     return shelf_button_rec
 
 try:
-    add_queue_task('user_shelf_button_{}'.format(getpass.getuser()), get_shelf_button_rec())
+    add_queue_task('user_shelf_button_{}'.format(getpass.getuser().lower()), get_shelf_button_rec())
 except:
     #pass
     import traceback
-    add_queue_task('user_shelf_button_{}'.format(getpass.getuser()), {'error': str(traceback.format_exc())})
+    add_queue_task('user_shelf_button_{}'.format(getpass.getuser().lower()), {'error': str(traceback.format_exc())})
 
 # ===============================================================================
