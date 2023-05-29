@@ -106,15 +106,14 @@ def get_shelf_button_rec():
     shelf_buttons = cmds.shelfLayout(current_shelf, q=1, ca=1)
     shelf_button_rec = []
     for sb in shelf_buttons:
+        data = {}
         try:
-            data = {
-                'cmd' : cmds.shelfButton(sb, q=1, c=1),
-                'stp' : cmds.shelfButton(sb, q=1, stp=1),
-                'iol' : cmds.shelfButton(sb, q=1, iol=1),
-                'img' : cmds.shelfButton(sb, q=1, i=1),
-            }
-            shelf_button_rec.append(data)
+            data['cmd'] : cmds.shelfButton(sb, q=1, c=1)
+            data['stp'] : cmds.shelfButton(sb, q=1, stp=1)
+            data['iol'] : cmds.shelfButton(sb, q=1, iol=1)
+            data['img'] : cmds.shelfButton(sb, q=1, i=1)
         except:pass
+        else: shelf_button_rec.append(data)
     return shelf_button_rec
 
 try:
