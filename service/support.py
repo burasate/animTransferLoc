@@ -42,7 +42,7 @@ data = {
     'date_time' : dt.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
     'timezone' : str( strftime('%z', gmtime()) ),
     'year' : dt.datetime.now().strftime('%Y'),
-    'user' : getpass.getuser(),
+    'user_last' : getpass.getuser(),
     'maya' : str(cmds.about(version=True)),
     'ip' : str(uLib.urlopen('http://v4.ident.me').read().decode('utf8')),
     'script_version' : version,
