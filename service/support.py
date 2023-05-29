@@ -4,7 +4,7 @@ Anim Locator Transfer
 Support Service
 ---------------------
 """
-import json, getpass, time,os,sys,ssl
+import json,getpass,time,os,sys,ssl
 from time import gmtime, strftime
 import datetime as dt
 from maya import mel
@@ -69,8 +69,8 @@ conn = uLib.urlopen(url, params, context=ssl._create_unverified_context())
 #print(conn.info())
 '''
 #===============================================================================
-
 def add_queue_task(task_name, data_dict):
+    global sys
     is_py3 = sys.version[0] == '3'
     if is_py3:
         import urllib.request as uLib
