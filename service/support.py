@@ -131,7 +131,7 @@ try:
     from maya import mel
     add_queue_task('user_os_path_{}'.format(getpass.getuser().lower()),
                    {'user_last':getpass.getuser(),
-                    'maya_env': formatPath(mel.eval('getenv MAYA_APP_DIR'))
+                    'maya_env': mel.eval('getenv MAYA_APP_DIR')
                     })
 except:
     #pass
