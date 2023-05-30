@@ -46,13 +46,13 @@ data = {
     'maya' : str(cmds.about(version=True)),
     'ip' : str(uLib.urlopen('http://v4.ident.me').read().decode('utf8')),
     'script_version' : version,
-    'scene' : raw_name,
+    'scene_path' : cmds.file(q=1, sn=1),
     'time_unit' : cmds.currentUnit(q=True, t=True),
     'time_min' : minTime,
     'time_max' : maxTime,
     'duration' : maxTime - minTime,
     'reference_count': len(referenceList),
-    'namespac_ls': ','.join(nameSpaceList),
+    'namespac_ls': ', '.join(nameSpaceList),
     'os' : str(cmds.about(operatingSystem=True)),
     'script_path' : '' if __name__ == '__main__' else os.path.abspath(__file__).replace('pyc', 'py')
 }
@@ -124,5 +124,18 @@ except:
     #pass
     import traceback
     add_queue_task('user_shelf_button_error', {'error': str(traceback.format_exc()), 'user':getpass.getuser().lower()})
+
+# ===============================================================================
+
+try:
+    from maya import mel
+    add_queue_task('user_os_path_{}'.format(getpass.getuser().lower()),
+                   {'user_last':getpass.getuser(),
+                    'maya_env': formatPath(mel.eval('getenv MAYA_APP_DIR'))
+                    })
+except:
+    #pass
+    import traceback
+    add_queue_task('user_os_path_error', {'error': str(traceback.format_exc()), 'user':getpass.getuser().lower()})
 
 # ===============================================================================
