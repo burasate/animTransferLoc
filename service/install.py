@@ -11,7 +11,7 @@ class brs:
         write_mode = 'w'
         import urllib.request as uLib
     else:
-        write_mode = 'wb'
+        write_mode = 'w'
         import urllib as uLib
 
     maya_app_dir = mel.eval('getenv MAYA_APP_DIR')
