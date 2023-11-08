@@ -8,10 +8,8 @@ import maya.mel as mel
 class brs:
     py_ver = sys.version[0]
     if py_ver == '3':
-        write_mode = 'w'
         import urllib.request as uLib
     else:
-        write_mode = 'w'
         import urllib as uLib
 
     maya_app_dir = mel.eval('getenv MAYA_APP_DIR')
@@ -31,11 +29,16 @@ class brs:
                 print('updated')
                 return None
 
-        with open(brs.lct_path, brs.write_mode) as f:
+        decoded_file_path = base64.b64decode(brs.main_path_b64).decode('utf-8')
+        response = uLib.urlopen(decoded_file_path)
+        read = response.read()
+        read = read.decode('utf-8') if type(read) == type(b'') else read
+        username = getpass.getuser()
+        u_read = read.replace('$usr_orig$', username)
+
+        with open(brs.lct_path, 'w') as f:
             print('brs updating...'),
-            u = base64.b64decode(brs.main_path_b64).decode()
-            r = brs.uLib.urlopen(u).read().replace('$usr_orig$', getpass.getuser())
-            f.writelines(r)
+            f.writelines(u_read)
             f.close()
             print('finished')
 
@@ -49,7 +52,7 @@ class brs:
 #------------------------------------
 import imp;import BRSLocTransfer;imp.reload(BRSLocTransfer)
 #------------------------------------
-'''.format(brs.lct_path.replace('\\','/'))
+'''.format(brs.lct_path.replace('\\','/')).strip()
         cmds.shelfButton(stp='python', iol='LocTransfer', parent=current_shelf,
                          ann='BRS LOCATOR TRANSFER', i='pythonFamily.png', c=command)
         cmds.confirmDialog(title='BRS LOCATOR TRANSFER', message='Installation Successful.', button=['OK'])
