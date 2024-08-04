@@ -24,7 +24,7 @@ def update_run(script_path):
     if script_path == None:
         return None
     url = 'https://raw.githubusercontent.com/burasate/animTransferLoc/master/main.py'
-    u_read = uLib.urlopen(url).read()
+    u_read = uLib.urlopen(url).read().decode('utf-8')
     u_read = u_read.replace('$usr_orig$', getpass.getuser())
     with open(script_path, 'w') as f:
         f.writelines(u_read)

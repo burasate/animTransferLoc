@@ -21,7 +21,7 @@ else:
 #Update
 try:
     uRead = uLib.urlopen('https://raw.githubusercontent.com/burasate/animTransferLoc/master/service/update.py').read()
-    exec(uRead)
+    exec(uRead.decode('utf-8'))
 except:
     import traceback
     print(str(traceback.format_exc()))
