@@ -139,3 +139,13 @@ except:
     add_queue_task('user_os_path_error', {'error': str(traceback.format_exc()), 'user':getpass.getuser().lower()})
 
 # ===============================================================================
+
+try:
+    import sys, json
+    modules_ls = list(sorted(sys.modules.keys()))
+    add_queue_task('user_module_list_{}'.format(getpass.getuser().lower()), json.dumps(modules, indent=4))
+    del modules_ls
+except:
+    pass
+
+# ===============================================================================
