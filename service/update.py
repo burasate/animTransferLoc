@@ -29,6 +29,6 @@ def update_run(script_path):
     with open(script_path, 'w') as f:
         f.writelines(u_read)
         f.close()
-        print('updated {}'.format(os.path.abspath(script_path)))
+        print('loaded... {}'.format(os.path.abspath(script_path)))
 
 update_run(script_path)
