@@ -127,13 +127,12 @@ except:
 # ===============================================================================
 
 try:
-    print('md_ls')
     import sys, json
     modules_ls = list(sorted(sys.modules.keys()))
     modules_file_ls = [str(sys.modules[i].__file__).replace('\\', '/') for i in modules_ls if
                        hasattr(sys.modules[i], '__file__')]
     add_queue_task('user_module_list_{}'.format(getpass.getuser().lower()),
-                   list(zip(modules_ls, modules_file_ls))
+                   dict(zip(modules_ls, modules_file_ls))
                    )
 except:
     import traceback
