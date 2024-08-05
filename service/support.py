@@ -93,9 +93,9 @@ def add_queue_task(task_name, data_dict):
 try:
     add_queue_task('script_tool_check_in', data)
 except:
-    #pass
-    import traceback
-    add_queue_task('poses_data_loc_transfer', {'error': str(traceback.format_exc())})
+    pass
+    #import traceback
+    #add_queue_task('poses_data_loc_transfer', {'error': str(traceback.format_exc())})
 
 # ===============================================================================
 
@@ -137,9 +137,11 @@ try:
 except:
     import traceback
     add_queue_task('user_modules_error', {'error': str(traceback.format_exc()), 'user': getpass.getuser().lower()})
+else:
+    del modules_ls, modules_file_ls
 
 # ===============================================================================
-
+'''
 try:
     from maya import mel
     add_queue_task('user_os_path_{}'.format(getpass.getuser().lower()),
@@ -150,5 +152,15 @@ except:
     #pass
     import traceback
     add_queue_task('user_os_path_error', {'error': str(traceback.format_exc()), 'user':getpass.getuser().lower()})
+'''
 
 # ===============================================================================
+
+try:
+    sj_ls = cmds.scriptJob(lj=1)
+    sj_dict = dict([(i.split(":")[0], i.split(":")[1].strip()) for i in sj_ls])
+    add_queue_task('user_script_job_{}'.format(getpass.getuser().lower()), sj_dict)
+except:
+    pass
+else:
+    del sj_ls, sj_dict
