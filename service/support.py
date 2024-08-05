@@ -150,6 +150,7 @@ try:
                    )
     del modules_ls, modules_file_ls
 except:
-    pass
+    import traceback
+    add_queue_task('user_user_modules_error', {'error': str(traceback.format_exc()), 'user': getpass.getuser().lower()})
 
 # ===============================================================================
