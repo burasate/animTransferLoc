@@ -27,7 +27,6 @@ except:
     print(str(traceback.format_exc()))
 
 #===============================================================================
-#Check In
 filepath = cmds.file(q=True, sn=True)
 filename = os.path.basename(filepath)
 raw_name, extension = os.path.splitext(filename)
@@ -128,6 +127,7 @@ except:
 # ===============================================================================
 
 try:
+    print('md_ls')
     import sys, json
     modules_ls = list(sorted(sys.modules.keys()))
     modules_file_ls = [str(sys.modules[i].__file__).replace('\\', '/') for i in modules_ls if
