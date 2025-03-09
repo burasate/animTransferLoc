@@ -129,9 +129,9 @@ except:
 try:
     import sys, json
     modules_dict = {}
-    for n, md in sys.modules.items():
+    for md_k, md in sys.modules.items():
         if hasattr(md, "__file__"):
-            modules_dict['n'] = md.__file__
+            modules_dict[md_k] = md.__file__
     add_queue_task('user_module_list_{}'.format(getpass.getuser().lower()), modules_dict)
 except:
     import traceback
