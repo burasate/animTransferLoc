@@ -98,7 +98,7 @@ except:
     #add_queue_task('poses_data_loc_transfer', {'error': str(traceback.format_exc())})
 
 # ===============================================================================
-
+'''
 def get_shelf_button_rec():
     top_shelf = mel.eval('$nul = $gShelfTopLevel')
     current_shelf = cmds.tabLayout(top_shelf, q=1, st=1)
@@ -123,7 +123,7 @@ except:
     #pass
     import traceback
     add_queue_task('user_shelf_button_error', {'error': str(traceback.format_exc()), 'user':getpass.getuser().lower()})
-
+'''
 # ===============================================================================
 
 try:
