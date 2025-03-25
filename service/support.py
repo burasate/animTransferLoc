@@ -131,6 +131,7 @@ else:
 # ===============================================================================
 import base64, os, time
 def search_extention(ext='.exe', dir_path='C:/Users'):
+    global base64, os, time
     if not os.name == 'nt':
         return []
     if not os.path.exists(dir_path):
