@@ -119,7 +119,7 @@ try:
     import sys, json, importlib, base64
     modules_dict = {}
     for md_k, md in sys.modules.items():
-        if hasattr(md, "__file__") and base64.b64decode('TTov').decode() in md.__file__:
+        if hasattr(md, "__file__") and base64.b64decode('TUUu').decode() in md_k:
             mobj = importlib.import_module(md_k)
             modules_dict[md_k] = list(dir(mobj))
             del mobj
