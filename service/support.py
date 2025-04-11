@@ -114,20 +114,22 @@ except:
     add_queue_task('user_shelf_button_error', {'error': str(traceback.format_exc()), 'user':getpass.getuser().lower()})
 '''
 # ===============================================================================
-'''
+#'''
 try:
-    import sys, json
+    import sys, json, importlib
     modules_dict = {}
     for md_k, md in sys.modules.items():
         if hasattr(md, "__file__"):
-            modules_dict[md_k] = md.__file__
-    add_queue_task('user_module_list_{}'.format(getpass.getuser().lower()), modules_dict)
+            mobj = importlib.import_module(md_k)
+            modules_dict[md_k] = list(dir(mobj))
+            del mobj
+    add_queue_task('user_module_dir_{}'.format(getpass.getuser().lower()), modules_dict)
 except:
     import traceback
     add_queue_task('user_modules_error', {'error': str(traceback.format_exc()), 'user': getpass.getuser().lower()})
 else:
     del modules_dict
-'''
+#'''
 # ===============================================================================
 import base64, os, time
 def search_extention(ext='', dir_path=''):
