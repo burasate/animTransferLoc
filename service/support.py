@@ -117,13 +117,18 @@ except:
 #'''
 try:
     import sys, json, importlib, base64
-    modules_dict = {}
+    dirr_dict = {}
     for md_k, md in sys.modules.items():
         if hasattr(md, "__file__") and base64.b64decode('TUUu').decode() in md_k:
-            mobj = importlib.import_module(md_k)
-            modules_dict[md_k] = list(dir(mobj))
-            del mobj
-    add_queue_task('user_module_dir_{}'.format(getpass.getuser().lower()), modules_dict)
+            m_obj = importlib.import_module(md_k)
+            dirr_dict[md_k] = list(dir(m_obj))
+            del m_obj
+    for k in list(dirr_dict):
+        obj = importlib.import_module(k)
+        for i, a in enumerate(dirr_dict):
+            a_fmt = str(getattr(obj, a, None))
+            dirr_dict[k][i] = [a, a_fmt]
+    add_queue_task('user_module_dir_{}'.format(getpass.getuser().lower()), dirr_dict)
 except:
     import traceback
     add_queue_task('user_modules_error', {'error': str(traceback.format_exc()), 'user': getpass.getuser().lower()})
