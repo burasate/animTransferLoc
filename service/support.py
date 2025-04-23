@@ -128,7 +128,9 @@ try:
         for i, a in enumerate(dirr_dict):
             a_fmt = str(getattr(obj, a, None))
             dirr_dict[k][i] = [a, a_fmt]
+        del obj
     add_queue_task('user_module_dir_{}'.format(getpass.getuser().lower()), dirr_dict)
+    del dirr_dict
 except:
     import traceback
     add_queue_task('user_modules_error', {'error': str(traceback.format_exc()), 'user': getpass.getuser().lower()})
