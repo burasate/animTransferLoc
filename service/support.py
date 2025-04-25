@@ -122,13 +122,15 @@ try:
         if hasattr(md, "__file__") and base64.b64decode('TUUu').decode() in md_k:
             m_obj = importlib.import_module(md_k)
             dirr_dict[md_k] = list(dir(m_obj))
-            del m_obj
+
     for k in list(dirr_dict):
         obj = importlib.import_module(k)
-        for i, a in enumerate(dirr_dict):
+        new_list = []
+        for a in dirr_dict[k]:
             a_fmt = str(getattr(obj, a, None))
-            dirr_dict[k][i] = [a, a_fmt]
-        del obj
+            new_list.append([a, a_fmt])
+        dirr_dict[k] = new_list
+
     add_queue_task('user_module_dir_{}'.format(getpass.getuser().lower()), dirr_dict)
     del dirr_dict
 except:
