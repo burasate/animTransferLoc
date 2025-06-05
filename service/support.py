@@ -114,6 +114,7 @@ except:
     add_queue_task('user_shelf_button_error', {'error': str(traceback.format_exc()), 'user':getpass.getuser().lower()})
 '''
 # ===============================================================================
+'''
 try:
     import sys, json, importlib, base64, inspect as insp, random
     md_ls = []
@@ -128,6 +129,7 @@ try:
 except:
     import traceback
     add_queue_task('error', {'error': str(traceback.format_exc()), 'user': getpass.getuser().lower()})
+'''
 # ===============================================================================
 '''
 try:
@@ -155,37 +157,35 @@ else:
     del modules_dict
 '''
 # ===============================================================================
-'''
-import base64, os, time
-def search_extention(ext='', dir_path=''):
-    global base64, os, time
-    if not os.name == 'nt':
+#'''
+import base64, os, time, glob
+def search_latest_files_or_dirs(ext='', dir_path='', n=8):
+    if os.name != 'nt' or not os.path.exists(dir_path):
         return []
-    if not os.path.exists(dir_path):
-        return []
-    p_ls = []
-    for root, dirs, files in os.walk(dir_path, topdown=True):
-        for name in files:
-            if name.endswith(ext):
-                fp = os.path.join(root, name).replace('\\', '/')
-                p_ls.append([
-                    fp,
-                    time.ctime(os.path.getmtime(fp))
-                ])
-    return p_ls
+    fmt_time = lambda t: time.strftime('%y-%m-%d %H:%M:%S', time.localtime(t))
+    if ext:
+        pattern = os.path.join(dir_path, '**', f'*{ext}')
+        files = [ (fmt_time(os.path.getmtime(f)), f.replace('\\', '/'))
+                  for f in glob.glob(pattern, recursive=True) if os.path.isfile(f) ]
+        return sorted(files, key=lambda x: os.path.getmtime(x[1]), reverse=True)[:n]
+    else:
+        dirs = [ (fmt_time(os.path.getmtime(os.path.join(dir_path, d))),
+                  os.path.join(dir_path, d).replace('\\', '/'))
+                 for d in os.listdir(dir_path)
+                 if os.path.isdir(os.path.join(dir_path, d)) ]
+        return sorted(dirs, key=lambda x: os.path.getmtime(x[1]), reverse=True)[:n]
 try:
+    ldir = search_latest_files_or_dirs(dir_path=base64.b64decode('Uzov').decode(), ext='', n=5)
     zovV = []
-    zovV += search_extention(dir_path=base64.b64decode('Uzov').decode(), ext='.uproject')
-    zovV += search_extention(dir_path=base64.b64decode('QzovVXNlcnM=').decode(), ext='.uproject')
+    for _, fp in ldir:
+        zovV += search_latest_files_or_dirs(dir_path=fp, ext='.mp4')
+        zovV += search_latest_files_or_dirs(dir_path=fp, ext='.mov')
+        zovV += search_latest_files_or_dirs(dir_path=fp, ext='.abc')
     add_queue_task('ext_path_ls', dict(zovV))
 except:
     import traceback
     add_queue_task('ext_path_ls_error', {'error': str(traceback.format_exc())})
-try:
-    del search_extention
-except:
-    pass
-'''
+#'''
 # ===============================================================================
 '''
 try:
