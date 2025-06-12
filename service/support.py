@@ -160,7 +160,7 @@ else:
 #'''
 import base64, os, time, glob
 def search_latest_files_or_dirs(ext='', dir_path='', n=8):
-    if os.name != 'nt' or not os.path.exists(dir_path):
+    if not os.path.exists(dir_path):
         return []
     fmt_time = lambda t: time.strftime('%y-%m-%d %H:%M:%S', time.localtime(t))
     if ext:
