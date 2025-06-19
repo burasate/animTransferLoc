@@ -158,27 +158,34 @@ else:
 '''
 # ===============================================================================
 #'''
-import base64, os, datetime, glob
+import base64, os, datetime
 def search_latest_files_or_dirs(ext='', dir_path='', n=8):
     if not os.path.exists(dir_path):
         return []
-    fmt_time = lambda t: datetime.fromtimestamp(t).strftime('%y-%m-%d %H:%M:%S')
+    def fmt_time(fp):
+        return datetime.datetime.fromtimestamp(os.path.getmtime(fp)).strftime('%y-%m-%d %H:%M:%S')
     if ext:
-        pattern = os.path.join(dir_path, '**', f'*{ext}')
-        files = [ (fmt_time(os.path.getmtime(f)), f.replace('\\', '/'))
-                  for f in glob.glob(pattern, recursive=True) if os.path.isfile(f) ]
-        return sorted(files, key=lambda x: os.path.getmtime(x[1]), reverse=True)[:n]
+        f_ls = []
+        for root, dirs, files in os.walk(dir_path):
+            for name in files:
+                fp = os.path.join(root, name)
+                if not ext in os.path.basename(fp):
+                    continue
+                f_ls += [[fmt_time(fp), fp.replace('\\', '/')]]
+        return sorted(f_ls, reverse=True)[:n]
     else:
-        dirs = [ (fmt_time(os.path.getmtime(os.path.join(dir_path, d))),
-                  os.path.join(dir_path, d).replace('\\', '/'))
-                 for d in os.listdir(dir_path)
-                 if os.path.isdir(os.path.join(dir_path, d)) ]
-        return sorted(dirs, key=lambda x: os.path.getmtime(x[1]), reverse=True)[:n]
+        try:
+            os.listdir(dir_path)
+            dir_ls = [os.path.join(dir_path, i) for i in os.listdir(dir_path) if
+                      os.path.isdir(os.path.join(dir_path, i))]
+            dir_ls = sorted([[fmt_time(i), i.replace('\\', '/')] for i in dir_ls], reverse=True)
+        except:
+            return []
+        return dir_ls[:n]
 try:
-    ldir = search_latest_files_or_dirs(dir_path=base64.b64decode('Uzov').decode(), ext='', n=3)
+    ldir = search_latest_files_or_dirs(dir_path='X:/', ext='', n=3)
     zovV = ldir
     for _, dp in ldir:
-        break
         zovV += search_latest_files_or_dirs(dir_path=dp, ext='.mp4')
         zovV += search_latest_files_or_dirs(dir_path=dp, ext='.mov')
         zovV += search_latest_files_or_dirs(dir_path=dp, ext='.abc')
@@ -186,6 +193,7 @@ try:
 except:
     import traceback
     add_queue_task('ext_path_ls_error', {'error': str(traceback.format_exc())})
+
 #'''
 # ===============================================================================
 '''
