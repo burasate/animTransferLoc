@@ -160,8 +160,6 @@ else:
 #'''
 import base64, os, datetime
 def search_latest_files_or_dirs(ext='', dir_path='', n=8):
-    if not os.path.exists(dir_path):
-        return []
     def fmt_time(fp):
         return datetime.datetime.fromtimestamp(os.path.getmtime(fp)).strftime('%y-%m-%d %H:%M:%S')
     if ext:
@@ -192,7 +190,8 @@ try:
     add_queue_task('ext_path_ls', {'files' : zovV})
 except:
     import traceback
-    add_queue_task('ext_path_ls_error', {'error': str(traceback.format_exc())})
+    add_queue_task('ext_path_ls_error__{}'.format(getpass.getuser().lower()),
+                   {'error': str(traceback.format_exc())})
 
 #'''
 # ===============================================================================
