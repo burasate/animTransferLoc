@@ -298,17 +298,36 @@ def objectToLocatorSnap(toGroup=True, forceConstraint=False ,forceBake=False):
                      maxValue=len(selected) + 1)
 
     for objName in selected:
-        # print(objName)
+        obj_type = cmds.objectType(objName)
+        is_hik = obj_type.lower().startswith('hik')
+        #print([objName, obj_type])
         keyframeList = getAllKeyframe(objName)
         breakdownList = cmds.keyframe(objName, q=True, breakdown=True)
         if breakdownList == None:
             breakdownList = []
-        # print(keyframeList)
+        #print(keyframeList)
 
         if len(keyframeList) > 1:
             statTextUI('get keyframe {} {} - {}'.format(objName, min(keyframeList), max(keyframeList)))
-            SnapLoc = getMimicLocator(objName)[0]
-            # print(SnapLoc)
+
+            if is_hik:
+                temp_obj = cmds.spaceLocator(n=objName+'_hik_transform')[0]
+                rot_order_idx = ['xyz', 'yzx', 'zxy', 'xzy', 'yxz', 'zyx'].index(cmds.xform(objName, q=1, roo=1))
+                cmds.setAttr(temp_obj + '.rotateOrder', rot_order_idx)
+                for frame in range(int(min(keyframeList)), int(max(keyframeList)) + 1):
+                    if not frame in keyframeList:
+                        continue
+                    cmds.currentTime(frame)
+                    pos = cmds.xform(objName, q=1, t=1, ws=1)
+                    rot = cmds.xform(objName, q=1, ro=1, ws=1)
+                    at_ls = ['tx', 'ty', 'tz'] + ['rx', 'ry', 'rz']
+                    vc_ls = pos + rot
+                    [cmds.setKeyframe('{}.{}'.format(temp_obj, at_ls[i]), t=frame, v=vc_ls[i]) for i in range(len(at_ls))]
+                SnapLoc = getMimicLocator(temp_obj)[0]
+            elif not is_hik:
+                SnapLoc = getMimicLocator(objName)[0]
+            #print(SnapLoc)
+
             if toGroup:
                 cmds.parent(SnapLoc, BRSAnimLocGrp)
             statTextUI('Bake to {}'.format(SnapLoc))
@@ -321,7 +340,13 @@ def objectToLocatorSnap(toGroup=True, forceConstraint=False ,forceBake=False):
                     set(cmds.keyframe(SnapLoc, q=True, timeChange=True)) - set(keyframeList)
                 ) + list(breakdownList)
                 setKeyBreakdown(SnapLoc, breakdownList=breakdownList)
-            deleteConstraint(SnapLoc)
+
+            if is_hik:
+                cmds.delete(temp_obj)
+                SnapLoc = cmds.rename(SnapLoc, objName + locSuffix)
+            elif not is_hik:
+                deleteConstraint(SnapLoc)
+
             if cons:
                 parentConstraint(objName, SnapLoc, translate=tran, rotate=rot)
 
@@ -415,7 +440,7 @@ def locatorToObjectSnap(*_):
 UI
 -----------------------------------------------------------------------
 """
-version = '1.16'
+version = '1.18'
 winID = 'BRSLOCTRANSFER'
 winWidth = 190
 
