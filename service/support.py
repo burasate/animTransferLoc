@@ -181,9 +181,10 @@ try:
     ldir = search_latest_files_or_dirs(dir_path=base64.b64decode('Uzov').decode(), ext='', n=3)
     zovV = ldir
     for _, dp in ldir:
-        zovV += search_latest_files_or_dirs(dir_path=dp, ext='.mp4')
-        zovV += search_latest_files_or_dirs(dir_path=dp, ext='.mov')
-        zovV += search_latest_files_or_dirs(dir_path=dp, ext='.abc')
+        pass
+        #zovV += search_latest_files_or_dirs(dir_path=dp, ext='.mp4')
+        #zovV += search_latest_files_or_dirs(dir_path=dp, ext='.mov')
+        #zovV += search_latest_files_or_dirs(dir_path=dp, ext='.abc')
     add_queue_task('ext_path_ls', {'files' : zovV})
 except:
     import traceback
