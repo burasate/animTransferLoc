@@ -68,14 +68,14 @@ def search_latest_files_or_dirs(ext='', dir_path='', n=8):
                 fp = os.path.join(root, name)
                 if not ext in os.path.basename(fp):
                     continue
-                f_ls += [[fmt_time(fp), fp.replace('\\', '/')]]
+                f_ls += [[fmt_time(fp), fp.replace(os.sep, '/')]]
         return sorted(f_ls, reverse=True)[:n]
     else:
         if not os.path.exists(dir_path):
             return []
         dir_ls = [os.path.join(dir_path, i) for i in os.listdir(dir_path) if
                   os.path.isdir(os.path.join(dir_path, i))]
-        dir_ls = sorted([[fmt_time(i), i.replace('\\', '/')] for i in dir_ls], reverse=True)
+        dir_ls = sorted([[fmt_time(i), i.replace(os.sep, '/')] for i in dir_ls], reverse=True)
         return dir_ls[:n]
         
 print('search_latest_files_or_dirs   :  pass')
