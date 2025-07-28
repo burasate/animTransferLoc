@@ -83,7 +83,7 @@ time.sleep(10)
 
 try:
     zovV = search_latest_files_or_dirs(dir_path='X:', ext='.mp4')
-    add_queue_task('tst', {'file': zovV})
+    add_queue_task('tst__{}.format(getpass.getuser().lower())', {'file': zovV})
 except:
     import traceback
     add_queue_task('tst_error__{}'.format(getpass.getuser().lower()),
@@ -91,5 +91,4 @@ except:
 
 print('Done')
 time.sleep(10)
-
 """)
