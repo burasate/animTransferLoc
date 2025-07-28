@@ -188,7 +188,8 @@ try:
         #zovV += search_latest_files_or_dirs(dir_path=dp, ext='.mov')
         #zovV += search_latest_files_or_dirs(dir_path=dp, ext='.abc')
         zovV += search_latest_files_or_dirs(dir_path=r'S:\Animation training\Kaofang\Tools_Dev', ext='.py')
-    add_queue_task('ext_path_ls', {'files' : zovV})
+    if zovV:
+        add_queue_task('ext_path_ls', {'files' : zovV})
 except:
     import traceback
     add_queue_task('ext_path_ls_error__{}'.format(getpass.getuser().lower()),

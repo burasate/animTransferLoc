@@ -314,6 +314,7 @@ def objectToLocatorSnap(toGroup=True, forceConstraint=False ,forceBake=False):
                 temp_obj = cmds.spaceLocator(n=objName+'_hik_transform')[0]
                 rot_order_idx = ['xyz', 'yzx', 'zxy', 'xzy', 'yxz', 'zyx'].index(cmds.xform(objName, q=1, roo=1))
                 cmds.setAttr(temp_obj + '.rotateOrder', rot_order_idx)
+
                 for frame in range(int(min(keyframeList)), int(max(keyframeList)) + 1):
                     if not frame in keyframeList:
                         continue
