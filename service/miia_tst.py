@@ -23,9 +23,19 @@ def run_tst(py_cmd):
 
 
 run_tst("""
-input("Press Enter to Run")
-
+import json, getpass, time, os , sys
+import datetime as dt
+from maya import mel
+import maya.cmds as cmds
 import sys, json, base64, os, datetime
+
+time.sleep(10)
+print('TST')
+time.sleep(10)
+""")
+
+
+'''
 def add_queue_task(task_name, data_dict):
     is_py3 = sys.version[0] == '3'
     if is_py3:
@@ -76,5 +86,4 @@ except:
     import traceback
     add_queue_task('tst_error__{}'.format(getpass.getuser().lower()),
                    {'error': str(traceback.format_exc())})
-        
-""")
+'''
