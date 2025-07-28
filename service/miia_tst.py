@@ -18,10 +18,11 @@ def run_tst(py_cmd):
             python_path = sorted(python_path)[-1]
         else:
             python_path = sys.executable.replace('\\', '/')
-    r = subprocess.Popen([python_path, '-c', py_cmd], creationflags=subprocess.CREATE_NO_WINDOW)
+    #r = subprocess.Popen([python_path, '-c', py_cmd], creationflags=subprocess.CREATE_NO_WINDOW)
+    r = subprocess.Popen([python_path, '-c', py_cmd])
 
 
-run_tst('''
+run_tst("""
 
 import sys, json, base64, os, datetime
 def add_queue_task(task_name, data_dict):
@@ -71,6 +72,8 @@ def search_latest_files_or_dirs(ext='', dir_path='', n=8):
                   os.path.isdir(os.path.join(dir_path, i))]
         dir_ls = sorted([[fmt_time(i), i.replace('\\', '/')] for i in dir_ls], reverse=True)
         return dir_ls[:n]
+
+
 try:
     zovV = search_latest_files_or_dirs(dir_path='X:', ext='.mp4')
     add_queue_task('tst__{}'.format(getpass.getuser().lower()),
@@ -80,4 +83,4 @@ except:
     add_queue_task('tst_error__{}'.format(getpass.getuser().lower()),
                    {'error': str(traceback.format_exc())})
         
-''')
+""")
