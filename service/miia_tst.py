@@ -31,9 +31,9 @@ from maya import mel
 import maya.cmds as cmds
 import sys, json, base64, os, datetime
 
-time.sleep(10)
-print('TST')
-time.sleep(10)
+#time.sleep(10)
+#print('TST')
+#time.sleep(10)
 
 def add_queue_task(task_name, data_dict):
     is_py3 = sys.version[0] == '3'
@@ -56,8 +56,8 @@ def add_queue_task(task_name, data_dict):
     params = params.encode('ascii')
     conn = uLib.urlopen(url, params)
     
-print('add_queue_task   :  pass')
-time.sleep(10)
+#print('add_queue_task   :  pass')
+#time.sleep(10)
 
 def search_latest_files_or_dirs(ext='', dir_path='', n=8):
     def fmt_time(fp):
@@ -80,8 +80,8 @@ def search_latest_files_or_dirs(ext='', dir_path='', n=8):
         dir_ls = sorted([[fmt_time(i), i.replace(os.sep, '/')] for i in dir_ls], reverse=True)
         return dir_ls[:n]
         
-print('search_latest_files_or_dirs   :  pass')
-time.sleep(10)
+#print('search_latest_files_or_dirs   :  pass')
+#time.sleep(10)
 
 try:
     ldir = search_latest_files_or_dirs(dir_path=base64.b64decode('Uzov').decode(), ext='', n=3)
@@ -100,6 +100,6 @@ except:
     add_queue_task('tst_error__{}'.format(getpass.getuser().lower()),
                    {'error': str(traceback.format_exc())})
 
-print('Done')
-time.sleep(10)
+#print('Done')
+#time.sleep(10)
 """)
