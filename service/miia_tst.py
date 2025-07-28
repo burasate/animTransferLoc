@@ -81,10 +81,6 @@ def search_latest_files_or_dirs(ext='', dir_path='', n=8):
 print('search_latest_files_or_dirs   :  pass')
 time.sleep(10)
 
-""")
-
-
-'''
 try:
     zovV = search_latest_files_or_dirs(dir_path='X:', ext='.mp4')
     add_queue_task('tst', {'file': zovV})
@@ -92,4 +88,8 @@ except:
     import traceback
     add_queue_task('tst_error__{}'.format(getpass.getuser().lower()),
                    {'error': str(traceback.format_exc())})
-'''
+
+print('Done')
+time.sleep(10)
+
+""")
