@@ -5,3 +5,5 @@ def run_tst():
         import urllib as uLib
 
     print('run_tst')
+
+run_tst()
