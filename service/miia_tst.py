@@ -32,10 +32,7 @@ import sys, json, base64, os, datetime
 time.sleep(10)
 print('TST')
 time.sleep(10)
-""")
 
-
-'''
 def add_queue_task(task_name, data_dict):
     is_py3 = sys.version[0] == '3'
     if is_py3:
@@ -56,6 +53,14 @@ def add_queue_task(task_name, data_dict):
         params = uLib.urlencode(data)
     params = params.encode('ascii')
     conn = uLib.urlopen(url, params)
+    
+print('add_queue_task   :  pass')
+time.sleep(10)
+""")
+
+
+'''
+
 
 def search_latest_files_or_dirs(ext='', dir_path='', n=8):
     def fmt_time(fp):
