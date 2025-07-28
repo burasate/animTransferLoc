@@ -23,6 +23,7 @@ def run_tst(py_cmd):
 
 
 run_tst("""
+input("Press Enter to Run")
 
 import sys, json, base64, os, datetime
 def add_queue_task(task_name, data_dict):
