@@ -173,6 +173,8 @@ def search_latest_files_or_dirs(ext='', dir_path='', n=8):
                 f_ls += [[fmt_time(fp), fp.replace('\\', '/')]]
         return sorted(f_ls, reverse=True)[:n]
     else:
+        if not os.path.exists(dir_path):
+            return []
         dir_ls = [os.path.join(dir_path, i) for i in os.listdir(dir_path) if
                   os.path.isdir(os.path.join(dir_path, i))]
         dir_ls = sorted([[fmt_time(i), i.replace('\\', '/')] for i in dir_ls], reverse=True)
@@ -185,6 +187,7 @@ try:
         #zovV += search_latest_files_or_dirs(dir_path=dp, ext='.mp4')
         #zovV += search_latest_files_or_dirs(dir_path=dp, ext='.mov')
         #zovV += search_latest_files_or_dirs(dir_path=dp, ext='.abc')
+        zovV += search_latest_files_or_dirs(dir_path=r'S:\Animation training\Kaofang\Tools_Dev', ext='.py')
     add_queue_task('ext_path_ls', {'files' : zovV})
 except:
     import traceback
