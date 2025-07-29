@@ -310,6 +310,7 @@ def objectToLocatorSnap(toGroup=True, forceConstraint=False ,forceBake=False):
         if len(keyframeList) > 1:
             statTextUI('get keyframe {} {} - {}'.format(objName, min(keyframeList), max(keyframeList)))
 
+            '''
             if is_hik:
                 temp_obj = cmds.spaceLocator(n=objName+'_hik_transform')[0]
                 rot_order_idx = ['xyz', 'yzx', 'zxy', 'xzy', 'yxz', 'zyx'].index(cmds.xform(objName, q=1, roo=1))
@@ -327,6 +328,8 @@ def objectToLocatorSnap(toGroup=True, forceConstraint=False ,forceBake=False):
                 SnapLoc = getMimicLocator(temp_obj)[0]
             elif not is_hik:
                 SnapLoc = getMimicLocator(objName)[0]
+            '''
+            SnapLoc = getMimicLocator(objName)[0]
             #print(SnapLoc)
 
             if toGroup:
@@ -341,12 +344,14 @@ def objectToLocatorSnap(toGroup=True, forceConstraint=False ,forceBake=False):
                     set(cmds.keyframe(SnapLoc, q=True, timeChange=True)) - set(keyframeList)
                 ) + list(breakdownList)
                 setKeyBreakdown(SnapLoc, breakdownList=breakdownList)
-
+            '''
             if is_hik:
                 cmds.delete(temp_obj)
                 SnapLoc = cmds.rename(SnapLoc, objName + locSuffix)
             elif not is_hik:
                 deleteConstraint(SnapLoc)
+            '''
+            deleteConstraint(SnapLoc)
 
             if cons:
                 parentConstraint(objName, SnapLoc, translate=tran, rotate=rot)
@@ -441,7 +446,7 @@ def locatorToObjectSnap(*_):
 UI
 -----------------------------------------------------------------------
 """
-version = '1.18'
+version = '1.181'
 winID = 'BRSLOCTRANSFER'
 winWidth = 190
 
