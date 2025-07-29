@@ -354,7 +354,7 @@ def objectToLocatorSnap(toGroup=True, forceConstraint=False ,forceBake=False):
             deleteConstraint(SnapLoc)
 
             if cons:
-                parentConstraint(objName, SnapLoc, translate=tran, rotate=rot)
+                parentConstraint(objName, SnapLoc, translate=tran, rotate=rot, mo=1)
 
         cmds.progressBar(gMainProgressBar, edit=True, step=1)
 
