@@ -29,7 +29,7 @@ def snapPoint(object, target):
     pointCon = cmds.pointConstraint(target, object, mo=False, weight=1.0)
     cmds.delete(pointCon)
 
-def parentConstraint(object, target, translate=True, rotate=True):
+def parentConstraint(object, target, translate=True, rotate=True, maintain_offset=False):
     translate_at = {'translateX':'x','translateY':'y','translateZ':'z'}
     rotate_at = {'rotateX':'x','rotateY':'y','rotateZ':'z'}
     t_at = [a for a in cmds.listAttr(object,k=True) if a in list(translate_at)]
@@ -41,14 +41,14 @@ def parentConstraint(object, target, translate=True, rotate=True):
     conList = []
     if translate:
         try:
-            pointC = cmds.pointConstraint(target, object, weight=1.0, mo=False, skip=skip_t_at)
+            pointC = cmds.pointConstraint(target, object, weight=1.0, mo=maintain_offset, skip=skip_t_at)
         except:
             pass
         else:
             conList.append(pointC)
     if rotate:
         try:
-            orientC = cmds.orientConstraint(target, object, weight=1.0, mo=False, skip=skip_r_at)
+            orientC = cmds.orientConstraint(target, object, weight=1.0, mo=maintain_offset, skip=skip_r_at)
         except:
             pass
         else:
@@ -354,7 +354,7 @@ def objectToLocatorSnap(toGroup=True, forceConstraint=False ,forceBake=False):
             deleteConstraint(SnapLoc)
 
             if cons:
-                parentConstraint(objName, SnapLoc, translate=tran, rotate=rot, mo=1)
+                parentConstraint(objName, SnapLoc, translate=tran, rotate=rot, maintain_offset=True)
 
         cmds.progressBar(gMainProgressBar, edit=True, step=1)
 
