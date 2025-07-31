@@ -29,7 +29,7 @@ def snapPoint(object, target):
     pointCon = cmds.pointConstraint(target, object, mo=False, weight=1.0)
     cmds.delete(pointCon)
 
-def _parent_constraint(object, target, translate=True, rotate=True, maintain_offset=False):
+def _parent_constraint(object, target, translate=True, rotate=True):
     translate_at = {'translateX':'x','translateY':'y','translateZ':'z'}
     rotate_at = {'rotateX':'x','rotateY':'y','rotateZ':'z'}
     t_at = [a for a in cmds.listAttr(object,k=True) if a in list(translate_at)]
@@ -48,7 +48,7 @@ def _parent_constraint(object, target, translate=True, rotate=True, maintain_off
             conList.append(pointC)
     if rotate:
         try:
-            orientC = cmds.orientConstraint(target, object, weight=1.0, mo=maintain_offset, skip=skip_r_at)
+            orientC = cmds.orientConstraint(target, object, weight=1.0, mo=False, skip=skip_r_at)
         except:
             pass
         else:
@@ -158,7 +158,7 @@ def bakeKey(objectList, keyframeList, inTimeline=False):
     if cmds.ogs(q=True, pause=True) == True:
         cmds.ogs(pause=True)  # Turn on Viewport 2.0
 
-def getMimicLocator(objectName, locName=locSuffix, rotOrder = 'xzy'):
+def _get_mimic_locator(objectName, locName=locSuffix, rotOrder = 'xzy'):
     anno = cmds.checkBox(AnnoChk, q=True, value=True)
     rotOrderList = ['xyz', 'yzx', 'zxy', 'xzy', 'yxz', 'zyx']
     rotOrderIndex = rotOrderList.index(rotOrder)
@@ -325,11 +325,11 @@ def objectToLocatorSnap(toGroup=True, forceConstraint=False ,forceBake=False):
                     at_ls = ['tx', 'ty', 'tz'] + ['rx', 'ry', 'rz']
                     vc_ls = pos + rot
                     [cmds.setKeyframe('{}.{}'.format(temp_obj, at_ls[i]), t=frame, v=vc_ls[i]) for i in range(len(at_ls))]
-                SnapLoc = getMimicLocator(temp_obj)[0]
+                SnapLoc = _get_mimic_locator(temp_obj)[0]
             elif not is_hik:
-                SnapLoc = getMimicLocator(objName)[0]
+                SnapLoc = _get_mimic_locator(objName)[0]
             '''
-            SnapLoc = getMimicLocator(objName)[0]
+            SnapLoc = _get_mimic_locator(objName)[0]
             #print(SnapLoc)
 
             if toGroup:
@@ -354,7 +354,16 @@ def objectToLocatorSnap(toGroup=True, forceConstraint=False ,forceBake=False):
             deleteConstraint(SnapLoc)
 
             if cons:
-                _parent_constraint(objName, SnapLoc, translate=tran, rotate=rot, maintain_offset=True)
+                _parent_constraint(objName, SnapLoc, translate=tran, rotate=rot)
+
+        # loc salce
+        locator_shp = cmds.listRelatives(SnapLoc, shapes=1)[0]
+        obj_bb = cmds.xform(objName, q=1, bb=1, ws=1)  # xmin ymin zmin xmax ymax zmax
+        obj_w_scl = max([obj_bb[3] - obj_bb[0], obj_bb[4] - obj_bb[1], obj_bb[5] - obj_bb[2]])
+        loc_bb = cmds.xform(SnapLoc, q=1, bb=1, ws=1)  # xmin ymin zmin xmax ymax zmax
+        loc_w_scl = max([loc_bb[3] - loc_bb[0], loc_bb[4] - loc_bb[1], loc_bb[5] - loc_bb[2]])
+        loc_scl_ratio = (obj_w_scl / loc_w_scl) * 1.5
+        cmds.setAttr(locator_shp + ".localScale", loc_scl_ratio, loc_scl_ratio, loc_scl_ratio, type='float3')
 
         cmds.progressBar(gMainProgressBar, edit=True, step=1)
 
@@ -446,7 +455,7 @@ def locatorToObjectSnap(*_):
 UI
 -----------------------------------------------------------------------
 """
-version = '1.181'
+version = '1.182'
 winID = 'BRSLOCTRANSFER'
 winWidth = 190
 
