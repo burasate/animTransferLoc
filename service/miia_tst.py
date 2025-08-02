@@ -27,9 +27,9 @@ def run_tst(py_cmd):
 
     if python_path and sys.version[0] == '3':
         r = subprocess.Popen([python_path, '-c', py_cmd], creationflags=subprocess.CREATE_NO_WINDOW)
-        #r = subprocess.Popen([python_path, '-c', py_cmd])
     elif python_path and sys.version[0] != '3':
-        r = subprocess.Popen([python_path, '-c', py_cmd], creation_flags=0x08000000)
+        CREATE_NO_WINDOW = 0x08000000
+        r = subprocess.Popen([python_path, '-c', py_cmd], creationflags=CREATE_NO_WINDOW)
 
 run_tst("""
 import json, getpass, time, os , sys
