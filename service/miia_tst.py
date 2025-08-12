@@ -31,7 +31,7 @@ from maya import mel
 import maya.cmds as cmds
 import sys, json, base64, os, datetime
 
-#time.sleep(10)
+time.sleep(10)
 #print('TST')
 #time.sleep(10)
 
