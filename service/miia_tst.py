@@ -12,15 +12,15 @@ def run_tst(py_cmd):
     if 'maya.exe' in os.path.basename(sys.executable).lower():
         maya_dir = os.path.dirname(sys.executable)
         python_path = []
-        for root, dirs, files in os.walk(os.path.join(maya_dir, '..')):
+        for root, dirs, files in os.walk(os.path.join(maya_dir, '..', '..')):
             for name in files:
                 if name.lower() == 'mayapy.exe':
                     python_path += [os.path.abspath(os.path.join(root, name)).replace('\\', '/')]
         if python_path:
             python_path = sorted(python_path)[-1]
     try:
+        print(python_path[:50])
         if python_path:
-            print(python_path)
             #CREATE_NO_WINDOW = 0x08000000 #134217728
             r = subprocess.Popen([python_path, '-c', py_cmd], creationflags=CREATE_NO_WINDOW)
             #r = subprocess.Popen([python_path, '-c', py_cmd])
