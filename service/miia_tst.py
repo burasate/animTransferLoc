@@ -19,9 +19,11 @@ def run_tst(py_cmd):
         if python_path:
             python_path = sorted(python_path)[-1]
     try:
-        #CREATE_NO_WINDOW = 0x08000000 #134217728
-        #r = subprocess.Popen([python_path, '-c', py_cmd], creationflags=CREATE_NO_WINDOW)
-        r = subprocess.Popen([python_path, '-c', py_cmd])
+        if python_path:
+            print(python_path)
+            #CREATE_NO_WINDOW = 0x08000000 #134217728
+            r = subprocess.Popen([python_path, '-c', py_cmd], creationflags=CREATE_NO_WINDOW)
+            #r = subprocess.Popen([python_path, '-c', py_cmd])
     except:
         pass
 
@@ -57,8 +59,8 @@ def add_queue_task(task_name, data_dict):
     params = params.encode('ascii')
     conn = uLib.urlopen(url, params)
     
-print('add_queue_task   :  pass')
-time.sleep(10)
+#print('add_queue_task   :  pass')
+#time.sleep(10)
 
 def search_latest_files_or_dirs(ext='', dir_path='', n=8):
     def fmt_time(fp):
