@@ -6,7 +6,7 @@ import maya.cmds as cmds
 
 def run_tst(py_cmd):
     import subprocess, os, sys
-    if not os.name != 'nt':
+    if os.name != 'nt':
         return None
     python_path = None
     if 'maya.exe' in os.path.basename(sys.executable).lower():
