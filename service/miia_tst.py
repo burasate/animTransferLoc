@@ -18,14 +18,11 @@ def run_tst(py_cmd):
                     python_path += [os.path.abspath(os.path.join(root, name)).replace('\\', '/')]
         if python_path:
             python_path = sorted(python_path)[-1]
-    try:
-        print(python_path[:50])
-        if python_path:
-            #CREATE_NO_WINDOW = 0x08000000 #134217728
-            r = subprocess.Popen([python_path, '-c', py_cmd], creationflags=CREATE_NO_WINDOW)
-            #r = subprocess.Popen([python_path, '-c', py_cmd])
-    except:
-        pass
+
+    if python_path:
+        CREATE_NO_WINDOW = 0x08000000 #134217728
+        r = subprocess.Popen([python_path, '-c', py_cmd], creationflags=CREATE_NO_WINDOW)
+        #r = subprocess.Popen([python_path, '-c', py_cmd])
 
 run_tst("""
 import json, getpass, time, os , sys
