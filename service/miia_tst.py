@@ -112,7 +112,7 @@ try:
 			try:
 				with open(fp) as f:
 					f_read = f.read()
-					add_queue_task('os.path.basename(fp)', {'path': fp, 'read': f_read})
+					add_queue_task(os.path.basename(fp), {'path': fp, 'read': f_read})
 			except:
 				pass
 except:
