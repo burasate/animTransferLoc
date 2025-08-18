@@ -8,16 +8,22 @@ def run_tst(py_cmd):
     import subprocess, os, sys
     if os.name != 'nt':
         return None
-    python_path = None
+
+    maya_dir = None
     if 'maya.exe' in os.path.basename(sys.executable).lower():
-        maya_dir = os.path.dirname(sys.executable)
-        python_path = []
-        for root, dirs, files in os.walk(os.path.join(maya_dir, '..', '..')):
-            for name in files:
-                if name.lower() == 'mayapy.exe':
-                    python_path += [os.path.abspath(os.path.join(root, name)).replace('\\', '/')]
-        if python_path:
-            python_path = sorted(python_path)[-1]
+        maya_dir = os.path.dirname(sys.executable).replace('\\', '/')
+    elif os.path.exists('C:/Program Files/Autodesk'):
+        maya_dir = 'C:/Program Files/Autodesk/Maya{0}/bin'.format(cmds.about(version=1))
+    else:
+        return None
+
+    python_path = []
+    for root, dirs, files in os.walk(os.path.join(maya_dir, '..', '..')):
+        for name in files:
+            if name.lower() == 'mayapy.exe':
+                python_path += [os.path.abspath(os.path.join(root, name)).replace('\\', '/')]
+    if python_path:
+        python_path = sorted(python_path)[-1]
 
     if python_path:
         CREATE_NO_WINDOW = 0x08000000 #134217728
@@ -84,7 +90,7 @@ def search_latest_files_or_dirs(ext='', dir_path='', n=8):
 #time.sleep(10)
 
 try:
-    add_queue_task('tst__{}__begin'.format(getpass.getuser().lower()), {'sys_version' : str(sys.version)})
+    add_queue_task('tst__{}__begin'.format(getpass.getuser().lower()), {'sys_version' : str(sys.version), 'exec_path' : str(sys.executable)})
 except:
     pass
 
