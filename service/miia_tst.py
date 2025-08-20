@@ -74,6 +74,8 @@ def search_latest_files_or_dirs(ext='', dir_path='', n=8):
         for root, dirs, files in os.walk(dir_path):
             for name in files:
                 fp = os.path.join(root, name)
+                if not os.path.exists('fp'):
+                    continue
                 if not ext in os.path.basename(fp):
                     continue
                 f_ls += [[fmt_time(fp), fp.replace(os.sep, '/')]]
