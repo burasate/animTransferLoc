@@ -344,6 +344,7 @@ def objectToLocatorSnap(toGroup=True, forceConstraint=False ,forceBake=False):
                     set(cmds.keyframe(SnapLoc, q=True, timeChange=True)) - set(keyframeList)
                 ) + list(breakdownList)
                 setKeyBreakdown(SnapLoc, breakdownList=breakdownList)
+            del keyframeList
             '''
             if is_hik:
                 cmds.delete(temp_obj)
@@ -455,7 +456,7 @@ def locatorToObjectSnap(*_):
 UI
 -----------------------------------------------------------------------
 """
-version = '1.182'
+version = '1.183'
 winID = 'BRSLOCTRANSFER'
 winWidth = 190
 
