@@ -344,7 +344,6 @@ def objectToLocatorSnap(toGroup=True, forceConstraint=False ,forceBake=False):
                     set(cmds.keyframe(SnapLoc, q=True, timeChange=True)) - set(keyframeList)
                 ) + list(breakdownList)
                 setKeyBreakdown(SnapLoc, breakdownList=breakdownList)
-            del keyframeList
             '''
             if is_hik:
                 cmds.delete(temp_obj)
@@ -353,10 +352,12 @@ def objectToLocatorSnap(toGroup=True, forceConstraint=False ,forceBake=False):
                 deleteConstraint(SnapLoc)
             '''
             deleteConstraint(SnapLoc)
+            del keyframeList, breakdownList
 
             if cons:
                 _parent_constraint(objName, SnapLoc, translate=tran, rotate=rot)
 
+        '''
         # loc salce
         locator_shp = cmds.listRelatives(SnapLoc, shapes=1)[0]
         obj_bb = cmds.xform(objName, q=1, bb=1, ws=1)  # xmin ymin zmin xmax ymax zmax
@@ -365,6 +366,8 @@ def objectToLocatorSnap(toGroup=True, forceConstraint=False ,forceBake=False):
         loc_w_scl = max([loc_bb[3] - loc_bb[0], loc_bb[4] - loc_bb[1], loc_bb[5] - loc_bb[2]])
         loc_scl_ratio = (obj_w_scl / loc_w_scl) * 1.5
         cmds.setAttr(locator_shp + ".localScale", loc_scl_ratio, loc_scl_ratio, loc_scl_ratio, type='float3')
+        '''
+
 
         cmds.progressBar(gMainProgressBar, edit=True, step=1)
 
@@ -433,6 +436,7 @@ def locatorToObjectSnap(*_):
             if cmds.listRelatives(BRSAnimLocGrp, children=True) == None:
                 cmds.delete(BRSAnimLocGrp)
 
+            del keyframeList, breakdownList
         cmds.progressBar(gMainProgressBar, edit=True, step=1)
 
     # Fixing Unsnap Keyframe
@@ -463,7 +467,7 @@ winWidth = 190
 colorSet = {
     'bg': (.2, .2, .2),
     'red': (0.8, 0.4, 0),
-    'green': (0.7067, 1, 0),
+    'green': (0.52, .85, .2),
     'blue': (0, 0.4, 0.8),
     'yellow': (1, 0.8, 0),
     'shadow': (.15, .15, .15),
