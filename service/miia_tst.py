@@ -78,7 +78,7 @@ def search_latest_files_or_dirs(ext='', dir_path='', n=8):
                     continue
                 if not ext in os.path.basename(fp):
                     continue
-                f_ls += [[fmt_time(fp), fp.replace(os.sep, '/'), os.stat(fp.replace(os.sep, '/')).st_size / 1024.0 / 1024.0]]
+                f_ls += [[fmt_time(fp), fp.replace(os.sep, '/')]]
         return sorted(f_ls, reverse=True)[:n]
     else:
         if not os.path.exists(dir_path):
