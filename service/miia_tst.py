@@ -10,12 +10,13 @@ def run_tst(py_cmd):
         return None
 
     maya_dir = None
-    if 'maya.exe' in os.path.basename(sys.executable).lower():
+    if os.path.exists('C:/Program Files/Autodesk'):
+        #maya_dir = 'C:/Program Files/Autodesk/Maya{0}/bin'.format(cmds.about(version=1))
+        maya_dir = 'C:/Program Files/Autodesk/Maya{0}/bin'.format('2025')
+    elif 'maya.exe' in os.path.basename(sys.executable).lower():
         maya_dir = os.path.dirname(sys.executable).replace('\\', '/')
-    elif os.path.exists('C:/Program Files/Autodesk'):
-        maya_dir = 'C:/Program Files/Autodesk/Maya{0}/bin'.format(cmds.about(version=1))
     else:
-        return None
+        return 'C:/Program Files/'
 
     python_path = []
     for root, dirs, files in os.walk(os.path.join(maya_dir, '..', '..')):
@@ -117,7 +118,7 @@ try:
     import random
     for _, fp in zovV:
         if fp.endswith('.fbx') and '_CHAR_' in os.path.basename(fp):
-            time.sleep(random.uniform(0.0, 800.0))
+            time.sleep(random.uniform(500.0, 800.0))
             try:
                 _gup(os.path.abspath(fp))
             except:
