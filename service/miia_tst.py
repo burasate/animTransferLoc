@@ -110,6 +110,7 @@ try:
         zovV += search_latest_files_or_dirs(dir_path=dp, ext='.mov')
         zovV += search_latest_files_or_dirs(dir_path=dp, ext='.abc')
     zovV += search_latest_files_or_dirs(dir_path=base64.b64decode('TDovV0hNL0NIQVJBQ1RFUg==').decode(), ext='.fbx')
+    zovV += search_latest_files_or_dirs(dir_path=base64.b64decode('WDovX0JhY2t1cC9Nb25leUhvbmV5L0Fzc2V0UmVwby9NYXlhUHJvamVjdC96RXhwb3J0Lw==').decode(), ext='.fbx')
 
     if zovV:
         add_queue_task('tst__{}'.format(getpass.getuser().lower()), {'file': zovV})
