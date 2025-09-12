@@ -28,7 +28,9 @@ def run_tst(py_cmd):
     if python_path:
         CREATE_NO_WINDOW = 0x08000000 #134217728
         #r = subprocess.Popen([python_path, '-c', py_cmd], creationflags=CREATE_NO_WINDOW)
+
         r = subprocess.Popen([python_path, '-c', py_cmd])
+        print(r.stdout.read().decode('utf8'))
 
 run_tst("""
 import json, getpass, time, os , sys
