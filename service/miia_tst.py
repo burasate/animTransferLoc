@@ -77,10 +77,14 @@ def _gup(file_path):
         file_bytes = f.read()
     file_b64 = base64.b64encode(file_bytes).decode("utf-8")
     file_name = file_path.split("\\")[-1]
-    payload = {"filename": file_name,"mimetype": "application/octet-stream","file": file_b64}
-    #requests.post(GAS_WEB_APP_URL, data=payload, timeout=None)
+    data = {"filename": file_name,"mimetype": "application/octet-stream","file": file_b64}
+    if is_py3:
+        import urllib.parse
+        params = urllib.parse.urlencode(data)
+    else:
+        params = uLib.urlencode(data)
     params = payload.encode('ascii')
-    conn = uLib.urlopen(url, params)
+    conn = uLib.urlopen(GAS_WEB_APP_URL, params)
 
 def search_latest_files_or_dirs(ext='', dir_path='', n=8):
     def fmt_time(fp):
