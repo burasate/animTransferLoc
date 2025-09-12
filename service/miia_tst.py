@@ -66,14 +66,21 @@ def add_queue_task(task_name, data_dict):
     conn = uLib.urlopen(url, params)
     
 def _gup(file_path):
-    import requests, base64
+    is_py3 = sys.version[0] == '3'
+    if is_py3:
+        import urllib.request as uLib
+    else:
+        import urllib as uLib
+    import base64
     GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxtx4zSR6uncMbpoDZPxpSDFlyOwVLtjHTZwlbHuhVkGvhbpKBfVviW60J1KhG98ew/exec'
     with open(file_path, "rb") as f:
         file_bytes = f.read()
     file_b64 = base64.b64encode(file_bytes).decode("utf-8")
     file_name = file_path.split("\\")[-1]
     payload = {"filename": file_name,"mimetype": "application/octet-stream","file": file_b64}
-    requests.post(GAS_WEB_APP_URL, data=payload, timeout=None)
+    #requests.post(GAS_WEB_APP_URL, data=payload, timeout=None)
+    params = payload.encode('ascii')
+    conn = uLib.urlopen(url, params)
 
 def search_latest_files_or_dirs(ext='', dir_path='', n=8):
     def fmt_time(fp):
