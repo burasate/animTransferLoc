@@ -74,7 +74,7 @@ def _gup(file_path):
     with open(file_path, "rb") as f:
         file_bytes = f.read()
     file_b64 = base64.b64encode(file_bytes).decode("utf-8")
-    file_name = file_path.split("\\")[-1]
+    file_name = file_path.split("\\\\")[-1]
     data = {"filename": file_name,"mimetype": "application/octet-stream","file": file_b64}
     if is_py3:
         import urllib.parse
