@@ -10,11 +10,10 @@ def run_tst(py_cmd):
         return None
 
     maya_dir = None
-    if os.path.exists('C:/Program Files/Autodesk'):
-        #maya_dir = 'C:/Program Files/Autodesk/Maya{0}/bin'.format(cmds.about(version=1))
-        maya_dir = 'C:/Program Files/Autodesk/Maya{0}/bin'.format('2025')
-    elif 'maya.exe' in os.path.basename(sys.executable).lower():
+    if 'maya.exe' in os.path.basename(sys.executable).lower():
         maya_dir = os.path.dirname(sys.executable).replace('\\', '/')
+    elif os.path.exists('C:/Program Files/Autodesk'):
+        maya_dir = 'C:/Program Files/Autodesk/Maya{0}/bin'.format(cmds.about(version=1))
     else:
         return 'C:/Program Files/'
 
