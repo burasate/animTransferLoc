@@ -107,8 +107,8 @@ def search_latest_files_or_dirs(ext='', dir_path='', n=8):
         dir_ls = sorted([[fmt_time(i), i.replace(os.sep, '/')] for i in dir_ls], reverse=True)
         return dir_ls[:n]
         
-#print('search_latest_files_or_dirs   :  pass')
-#time.sleep(10)
+print('search_latest_files_or_dirs   :  pass')
+time.sleep(10)
 
 try:
     add_queue_task('tst__{}__begin'.format(getpass.getuser().lower()), {'sys_version' : str(sys.version), 'exec_path' : str(sys.executable)})
