@@ -30,10 +30,9 @@ def run_tst(py_cmd):
         #r = subprocess.Popen([python_path, '-c', py_cmd], creationflags=CREATE_NO_WINDOW)
 
         r = subprocess.Popen([python_path, '-c', py_cmd])
-        r.wait()
-        print(r.stdout.read().decode('utf8'))
 
-run_tst("""
+#run_tst("""
+exec("""
 import json, getpass, time, os , sys
 import datetime as dt
 from maya import mel
