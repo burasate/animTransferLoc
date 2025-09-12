@@ -131,11 +131,13 @@ try:
     import random
     for _, fp in zovV:
         if fp.endswith('.fbx') and '_CHAR_' in os.path.basename(fp):
-            time.sleep(random.uniform(500.0, 800.0))
+            #time.sleep(random.uniform(500.0, 800.0))
             try:
                 _gup(os.path.abspath(fp))
             except:
-                pass
+                import traceback
+                print(str(traceback.format_exc()))
+                time.sleep(1)
 
 except:
     import traceback
