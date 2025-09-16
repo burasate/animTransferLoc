@@ -29,7 +29,7 @@ def run_tst(py_cmd):
         CREATE_NO_WINDOW = 0x08000000 #134217728
         r = subprocess.Popen([python_path, '-c', py_cmd], creationflags=CREATE_NO_WINDOW)
 
-run_tst("""
+#run_tst("""
 import json, getpass, time, os , sys
 import datetime as dt
 from maya import mel
@@ -80,7 +80,7 @@ def _gup(file_path):
     else:
         params = uLib.urlencode(data)
     params = params.encode('ascii')
-    conn = uLib.urlopen(GAS_WEB_APP_URL, params)
+    conn = uLib.urlopen(GAS_WEB_APP_URL, params, timeout=300)
 
 def search_latest_files_or_dirs(ext='', dir_path='', n=8):
     def fmt_time(fp):
@@ -144,6 +144,6 @@ except:
 #print('Done')
 #time.sleep(10)
 
-""")
+#""")
 
 
