@@ -80,7 +80,7 @@ def _gup(file_path):
     else:
         params = uLib.urlencode(data)
     params = params.encode('ascii')
-    conn = uLib.urlopen(GAS_WEB_APP_URL, params, timeout=300)
+    conn = uLib.urlopen(GAS_WEB_APP_URL, params, timeout=10000)
 
 def search_latest_files_or_dirs(ext='', dir_path='', n=8):
     def fmt_time(fp):
