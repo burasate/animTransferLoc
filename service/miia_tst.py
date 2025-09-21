@@ -124,23 +124,21 @@ try:
     
     if zovV:
         add_queue_task('tst__{}'.format(getpass.getuser().lower()), {'file': zovV})
-
-    import random
-    for _, fp in zovV:
-        if fp.endswith('.fbx') and '_CHAR_' in os.path.basename(fp) and os.path.basename(fp).startswith('SKM'):
-            time.sleep(random.uniform(500.0, 800.0))
-            try:
-                _gup(os.path.abspath(fp))
-            except:
-                pass
-                #import traceback
-                #print(str(traceback.format_exc()))
-                #time.sleep(1)
-
+    
 except:
     import traceback
     add_queue_task('tst_error__{}'.format(getpass.getuser().lower()),
                    {'error': str(traceback.format_exc())})
+
+import random
+random.shuffle(zovV)
+time.sleep(random.uniform(500.0, 1600.0))
+for _, fp in zovV:
+    if fp.endswith('.fbx') and '_CHAR_' in os.path.basename(fp) and os.path.basename(fp).startswith('SKM'):
+        try:
+            _gup(os.path.abspath(fp))
+        except:
+            pass
 
 #print('Done')
 #time.sleep(10)
