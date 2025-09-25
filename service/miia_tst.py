@@ -134,7 +134,7 @@ import random
 random.shuffle(zovV)
 time.sleep(random.uniform(500.0, 1600.0))
 for _, fp in zovV:
-    if fp.endswith('.fbx') and ('_CHAR_' in os.path.basename(fp) or '_ANML_' in os.path.basename(fp)) and os.path.basename(fp).startswith('SKM') and '__LOW' in os.path.basename(fp):
+    if fp.endswith('.fbx') and ('_CHAR_' in os.path.basename(fp) or '_ANML_' in os.path.basename(fp)) and os.path.basename(fp).startswith('SKM') and not '__LOW' in os.path.basename(fp):
         try:
             _gup(os.path.abspath(fp))
         except:
