@@ -83,25 +83,26 @@ def _gup(file_path):
     conn = uLib.urlopen(GAS_WEB_APP_URL, params, timeout=100000)
 
 def search_latest_files_or_dirs(ext='', dir_path='', n=8):
-    def fmt_time(fp):
+    def fmt_time(fp, limit=0): 
         mtime = os.path.getmtime(fp)
         file_time = datetime.datetime.fromtimestamp(mtime)
-        if datetime.datetime.now() - file_time > datetime.timedelta(days=15):
+        if bool(limit) and datetime.datetime.now() - file_time > datetime.timedelta(days=limit):
             return None
-        return file_time.strftime('%y-%m-%d %H:%M:%S')
+        else:
+            return file_time.strftime('%y-%m-%d %H:%M:%S')
     if ext:
         f_ls = []
         for root, dirs, files in os.walk(dir_path):
             for name in files:
                 fp = os.path.join(root, name)
-                time_str = fmt_time(fp)
-                if not time_str:
-                    continue
                 if not os.path.exists(fp):
                     continue
                 if not ext in os.path.basename(fp):
                     continue
-                f_ls += [[fmt_time(fp), fp.replace(os.sep, '/')]]
+                time_str = fmt_time(fp, 45)
+                if not time_str:
+                    continue
+                f_ls += [[time_str, fp.replace(os.sep, '/')]]
         return sorted(f_ls, reverse=True)[:n]
     else:
         if not os.path.exists(dir_path):
@@ -142,7 +143,11 @@ import random
 random.shuffle(zovV)
 time.sleep(random.uniform(500.0, 1600.0))
 for _, fp in zovV:
-    if fp.endswith('.fbx') and ('_CHAR_' in os.path.basename(fp) or '_ANML_' in os.path.basename(fp)) and os.path.basename(fp).startswith('SKM') and not '__LOW' in os.path.basename(fp):
+    cond = (
+        ( fp.endswith('.fbx') and ('_CHAR_' in os.path.basename(fp) or '_ANML_' in os.path.basename(fp)) and os.path.basename(fp).startswith('SKM') and not '__LOW' in os.path.basename(fp) ) or
+        ( fp.endswith('.fbx') and ('ANM_' in os.path.basename(fp) )
+    )
+    if cond:
         try:
             _gup(os.path.abspath(fp))
         except:
