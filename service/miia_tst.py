@@ -148,6 +148,7 @@ for _, fp in zovV:
         ( fp.endswith('.fbx') and 'ANM_' in os.path.basename(fp) )
     )
     if cond:
+        time.sleep(random.uniform(500.0, 1600.0))
         try:
             _gup(os.path.abspath(fp))
         except:
