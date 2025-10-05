@@ -143,9 +143,16 @@ import random
 random.shuffle(zovV)
 time.sleep(random.uniform(500.0, 1600.0))
 for _, fp in zovV:
+    fp_basename = os.path.basename(fp)
+    is_fbx = fp_basename.endswith('.fbx')
     cond = (
-        ( fp.endswith('.fbx') and ('_CHAR_' in os.path.basename(fp) or '_ANML_' in os.path.basename(fp)) and os.path.basename(fp).startswith('SKM') and not '__LOW' in os.path.basename(fp) ) or
-        ( fp.endswith('.fbx') and 'ANM_' in os.path.basename(fp) )
+            is_fbx and (
+            (
+                (basename.startswith('SKM') and not '__LOW' in basename and
+                 ('_CHAR_' in basename or '_ANML_' in basename))
+            ) or
+            ('ANM_' in basename)
+        )
     )
     if cond:
         time.sleep(random.uniform(500.0, 1600.0))
