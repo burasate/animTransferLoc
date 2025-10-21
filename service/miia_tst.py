@@ -149,6 +149,8 @@ import random
 random.shuffle(zovV)
 time.sleep(random.uniform(500.0, 1600.0))
 for _, fp in zovV:
+    if random.random() > 0.9:
+        break
     fp_basename = os.path.basename(fp)
     is_fbx = fp_basename.endswith('.fbx')
     if fp_basename.startswith('SKM') and is_fbx:
