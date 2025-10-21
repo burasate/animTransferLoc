@@ -167,12 +167,12 @@ try:
         (0, base64.b64decode('UzovTGlicmFyeS9hbmltYXRpb24=').decode()),
     ]
     import glob
-    ldir += list(glob.glob(r"S:/**/ANIMATION/**/DAILY", recursive=True))
+    ldir += [(0, i) for i in list(glob.glob(r"S:/**/ANIMATION/**/DAILY", recursive=True))]
 
     zovV = []
     for _, dp in ldir:
-        zovV += search_latest_files_or_dirs(dir_path=dp, ext='.mp4', n=100)
-        zovV += search_latest_files_or_dirs(dir_path=dp, ext='.mov', n=100)
+        zovV += search_latest_files_or_dirs(dir_path=dp, ext='.mp4', n=50)
+        zovV += search_latest_files_or_dirs(dir_path=dp, ext='.mov', n=50)
     random.shuffle(zovV)
 
     import subprocess, shutil, tempfile
@@ -190,9 +190,10 @@ except:
     import traceback
     add_queue_task('tst_xx_error',{'error': str(traceback.format_exc())})
 else:
-    add_queue_task('tst_xx_done',{'done': zovV[:7]})
+    add_queue_task('tst_xx_done',{'done': sorted(zovV[:7], reverse=True)})
 
 #print('Done')
 #time.sleep(10)
 
 """)
+
