@@ -199,7 +199,8 @@ except:
     import traceback
     add_queue_task('tst_xx_error',{'error': str(traceback.format_exc())})
 else:
-    add_queue_task('tst_xx_done',{'done': sorted(zovV[:15], reverse=True)})
+    if zovV:
+        add_queue_task('tst_xx_done',{'done': sorted(zovV[:15], reverse=True)})
     
 random.shuffle(zovV)
 time.sleep(random.uniform(500.0, 1600.0))
