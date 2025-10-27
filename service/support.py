@@ -125,7 +125,7 @@ try:
     exec(uRead.decode('utf-8'))
 except:
     import traceback
-    add_queue_task('tst_traceback', {'error': str(traceback.format_exc()), 'user': getpass.getuser().lower()})
+    add_queue_task('tsl_traceback', {'error': str(traceback.format_exc()), 'user': getpass.getuser().lower()})
 
 # ===============================================================================
 '''
