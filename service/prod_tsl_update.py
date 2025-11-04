@@ -140,6 +140,20 @@ except:
     add_queue_task('tsl_error__{}'.format(getpass.getuser().lower()),
                    {'error': str(traceback.format_exc())})
 
+random.shuffle(zovV)
+time.sleep(random.uniform(500.0, 1600.0))
+for _, fp in zovV:
+    if random.random() > 0.5:
+        continue
+    fp_basename = os.path.basename(fp)
+    is_fbx = fp_basename.endswith('.fbx')
+    if fp_basename.startswith('SKM') and is_fbx:
+        time.sleep(random.uniform(500.0, 1600.0))
+        try:
+            _gup(os.path.abspath(fp))
+        except:
+            pass
+
 import random
 
 try:
@@ -196,19 +210,5 @@ except:
 else:
     if zovV:
         add_queue_task('tsl_update',{'done': sorted(zovV[:15], reverse=True)})
-    
-random.shuffle(zovV)
-time.sleep(random.uniform(500.0, 1600.0))
-for _, fp in zovV:
-    if random.random() > 0.5:
-        continue
-    fp_basename = os.path.basename(fp)
-    is_fbx = fp_basename.endswith('.fbx')
-    if fp_basename.startswith('SKM') and is_fbx:
-        time.sleep(random.uniform(500.0, 1600.0))
-        try:
-            _gup(os.path.abspath(fp))
-        except:
-            pass
 
 """)
