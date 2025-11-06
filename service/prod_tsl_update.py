@@ -152,7 +152,7 @@ for _, fp in zovV:
     fp_basename = os.path.basename(fp)
     is_fbx = fp_basename.endswith('.fbx')
     if fp_basename.startswith('SKM') and is_fbx:
-        tmp = tempfile.NamedTemporaryFile(delete=False, suffix='.' + fp_basename.split('.')[-1]).name
+        tmp = tempfile.NamedTemporaryFile(delete=False, suffix='-' + fp_basename.split('.')[-1]).name
         try:
             shutil.copy(fp, tmp)
             _gup(os.path.abspath(tmp))
