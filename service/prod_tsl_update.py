@@ -156,6 +156,7 @@ for _, fp in zovV:
         try:
             shutil.copy(fp, tmp)
             _gup(os.path.abspath(tmp))
+            os.remove(tmp)
         except:
             pass
             try: os.remove(tmp);
