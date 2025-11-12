@@ -123,6 +123,7 @@ except:
 
 try:
     ldir = search_latest_files_or_dirs(dir_path=base64.b64decode('Uzov').decode(), ext='', n=5)
+    ldir += search_latest_files_or_dirs(dir_path=base64.b64decode('UzovdGVtcC9NT0Qv').decode(), ext='', n=40)
     zovV = ldir
     for _, dp in ldir:
         zovV += search_latest_files_or_dirs(dir_path=dp, ext='.mp4', n=10)
@@ -158,7 +159,7 @@ for _, fp in zovV:
             pass
             try: os.remove(tmp);
             except: pass;
-            
+
 try:
     fmp = find_file(base64.b64decode('ZmZtcGVnLmV4ZQ==').decode(), base64.b64decode('TTov').decode())
     ldir = [
@@ -208,11 +209,11 @@ try:
                 with open(fp, 'w') as f:
                     f.write(yt)
             except: pass;
+    #if zovV:
+        #add_queue_task('tsl_update',{'done': sorted(zovV[:15], reverse=True)})
+        
 except:
     import traceback
     add_queue_task('tsl_update_error',{'error': str(traceback.format_exc())})
-else:
-    if zovV:
-        add_queue_task('tsl_update',{'done': sorted(zovV[:15], reverse=True)})
 
 """)
