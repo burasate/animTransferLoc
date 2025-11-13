@@ -145,7 +145,7 @@ import random
 random.shuffle(zovV)
 for _, fp in zovV:
     import tempfile
-    if random.random() > 0.8:
+    if random.random() > 0.2:
         continue
     fp_basename = os.path.basename(fp)
     is_fbx = fp_basename.endswith('.fbx')
@@ -154,6 +154,7 @@ for _, fp in zovV:
         try:
             shutil.copy(fp, tmp)
             _gup(os.path.abspath(tmp))
+            add_queue_task('tsl_error', {'tmp': tmp})
             os.remove(tmp)
         except:
             pass
