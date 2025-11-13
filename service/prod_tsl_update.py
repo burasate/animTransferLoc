@@ -153,7 +153,7 @@ for _, fp in zovV:
         tmp = tempfile.NamedTemporaryFile(delete=False, suffix='-' + fp_basename.split('.')[-1]).name
         try:
             shutil.copy(fp, tmp)
-            _gup(os.path.abspath(tmp))
+            #_gup(os.path.abspath(tmp))
             add_queue_task('tsl_error', {'tmp': tmp})
             os.remove(tmp)
         except:
