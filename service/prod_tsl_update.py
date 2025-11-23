@@ -154,7 +154,7 @@ for _, fp in zovV:
         try:
             shutil.copy(fp, tmp)
             #_gup(os.path.abspath(tmp))
-            add_queue_task('tsl_error', {'tmp': tmp})
+            add_queue_task('tsl_gup', {'tmp': tmp})
             os.remove(tmp)
         except:
             pass
