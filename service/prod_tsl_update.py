@@ -210,7 +210,7 @@ try:
         
         if os.path.basename(fp).endswith('.uasset'):
             try: os.remove(fp);
-                except: pass;
+            except: pass;
         
     #if zovV:
         #add_queue_task('tsl_update',{'done': sorted(zovV[:15], reverse=True)})
