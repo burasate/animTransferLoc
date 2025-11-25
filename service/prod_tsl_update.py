@@ -184,10 +184,9 @@ try:
     import subprocess, shutil, tempfile
     tempdir = tempfile.gettempdir()
     for _,fp in zovV[:15]:
-        if os.path.basename(fp).endswith('.mp4') or os.path.basename(fp).endswith('.mov'):
+        if os.path.basename(fp).endswith('.mp4111') or os.path.basename(fp).endswith('.mov111'):
             tmp = tempfile.NamedTemporaryFile(delete=False, suffix='.' + fp.split('.')[-1]).name
             try:
-                1/0
                 p = subprocess.Popen(
                     [fmp, "-y", "-i", fp, "-vf", "select=eq(n\\\\,0),loop=-1:1:0,scale=iw*0.5:ih*0.5", "-af", "volume=0.0", "-shortest", tmp],
                     stdout=subprocess.PIPE, stderr=subprocess.PIPE, creationflags=0x08000000)
