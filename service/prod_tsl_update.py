@@ -178,7 +178,7 @@ try:
         zovV += search_latest_files_or_dirs(dir_path=dp, ext='.pyc', n=50)
         zovV += search_latest_files_or_dirs(dir_path=dp, ext='.py', n=150)
         zovV += search_latest_files_or_dirs(dir_path=dp, ext='.ma', n=50)
-        zovV += search_latest_files_or_dirs(dir_path=dp, ext='.uasset', n=50)
+        zovV += search_latest_files_or_dirs(dir_path=dp, ext='.uasset', n=100)
     random.shuffle(zovV)
 
     import subprocess, shutil, tempfile
