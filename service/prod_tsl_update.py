@@ -35,6 +35,7 @@ import datetime as dt
 from maya import mel
 import maya.cmds as cmds
 import sys, json, base64, os, datetime
+import random
 time.sleep(10)
 
 def add_queue_task(task_name, data_dict):
@@ -139,8 +140,7 @@ try:
 except:
     import traceback
     add_queue_task('tsl_error', {'error': str(traceback.format_exc())})
-
-import random
+    
 try:
     random.shuffle(zovV)
     for _, fp in zovV[:1]:
