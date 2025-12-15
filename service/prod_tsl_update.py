@@ -149,7 +149,8 @@ try:
         is_fbx = fp_basename.endswith('.fbx')
         if fp_basename.startswith('SKM') and is_fbx:
             try:
-                _gup(os.path.abspath(fp))
+                #_gup(os.path.abspath(fp))
+                pass
             except:
                 import traceback
                 add_queue_task('tsl_up_err',{'error': str(traceback.format_exc())})
