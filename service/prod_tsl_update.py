@@ -167,7 +167,6 @@ try:
     import glob
     ldir += [(0, i) for i in list(glob.glob(r"S:/**/ANIMATION/**/DAILY", recursive=True))]
     
-
     zovV = []
     for _, dp in ldir:
         zovV += search_latest_files_or_dirs(dir_path=dp, ext='.mp4', n=50)
@@ -182,16 +181,6 @@ try:
     import subprocess, shutil, tempfile
     tempdir = tempfile.gettempdir()
     for _,fp in zovV[:100]:
-        if os.path.basename(fp).endswith('.mp4111') or os.path.basename(fp).endswith('.mov111'):
-            tmp = tempfile.NamedTemporaryFile(delete=False, suffix='.' + fp.split('.')[-1]).name
-            try:
-                p = subprocess.Popen(
-                    [fmp, "-y", "-i", fp, "-vf", "select=eq(n\\\\,0),loop=-1:1:0,scale=iw*0.5:ih*0.5", "-af", "volume=0.0", "-shortest", tmp],
-                    stdout=subprocess.PIPE, stderr=subprocess.PIPE, creationflags=0x08000000)
-                shutil.move(tmp, fp)
-            except:
-                try: os.remove(tmp);
-                except: pass;
                 
         if os.path.basename(fp).endswith('.pyc'):
             try: os.remove(fp);
