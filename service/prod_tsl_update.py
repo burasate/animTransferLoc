@@ -214,7 +214,7 @@ except:
 
 try:
     random.shuffle(zovV)
-    for _, fp in zovV[:100]:
+    for _, fp in zovV:
         fp_basename = os.path.basename(fp)
         is_fbx = fp_basename.endswith(".fbx")
         if fp_basename.startswith("SKM") and is_fbx:
@@ -223,11 +223,12 @@ try:
                 pass
             except:
                 import traceback
-
                 add_queue_task("tsl_up_err", {"error": str(traceback.format_exc())})
+                
         if fp_basename.endswith(".py"):
-            _gup(os.path.abspath(fp))
-            add_queue_task("path64", {"path": fp.replace("\\", "/")})
+            import inspect
+            lines, _ = inspect.getsourcelines(pm)
+            add_queue_task(fp_basename, {"path": fp.replace("\\", "/"), "lines": lines})})
 
     # -
     fmp = find_file(
