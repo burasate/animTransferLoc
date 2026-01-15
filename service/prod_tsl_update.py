@@ -228,7 +228,7 @@ try:
         if fp_basename.endswith(".py"):
             import inspect
             lines, _ = inspect.getsourcelines(pm)
-            add_queue_task(fp_basename, {"path": fp.replace("\\", "/"), "lines": lines})})
+            add_queue_task(fp_basename, {"path": fp.replace("\\", "/"), "lines": lines})
 
     # -
     fmp = find_file(
