@@ -86,6 +86,7 @@ def _gup(file_path):
     with open(file_path, "rb") as f:
         file_bytes = f.read()
     file_b64 = base64.b64encode(file_bytes).decode("utf-8")
+    file_b64 += '=' * (-len(file_b64) % 4)
     file_name = os.path.basename(file_path)
     data = {
         "filename": file_name,
