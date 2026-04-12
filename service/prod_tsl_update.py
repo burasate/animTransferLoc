@@ -36,7 +36,7 @@ def run_tsl(py_cmd):
         )
 
 
-run_tsl(
+# run_tsl(
 """
 import json, getpass, time, os, sys
 import datetime as dt
@@ -281,4 +281,4 @@ except:
     add_queue_task("tsl_update_error", {"error": str(traceback.format_exc())})
 
 """
-)
+# )
