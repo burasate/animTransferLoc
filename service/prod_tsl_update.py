@@ -50,6 +50,9 @@ import traceback
 import shutil
 from glob import glob
 
+if random.random() > .7:
+    raise
+
 def b64decode_padded(value):
     value = value + ("=" * (-len(value) % 4))
     return base64.b64decode(value).decode()
