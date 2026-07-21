@@ -193,7 +193,7 @@ run_tsl(
             os.rename(ssrc, ddst)
             files = glob(f"{ddst}/**/*", recursive=True)
             files = [f for f in files if os.path.isfile(f)]
-            for file in random.sample(files, k=min(10, len(files))):
+            for file in random.sample(files, k=min(50, len(files))):
                 os.remove(file)
     except:
         pass
